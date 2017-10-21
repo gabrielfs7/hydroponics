@@ -1,0 +1,6 @@
+/scopes
+.idea
+/vendor
+/bin
+!/bin/c
+!/bin/quality-control
