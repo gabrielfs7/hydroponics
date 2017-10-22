@@ -4,7 +4,7 @@ namespace GSoares\Hydroponics\Domain\Service\Greenhouse;
 
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
-use SebastianBergmann\CodeCoverage\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class SystemInstallerTest extends TestCase
 {
@@ -24,8 +24,6 @@ class SystemInstallerTest extends TestCase
         $greenhouse = new Greenhouse('greenhouse');
         $system = new System('NFT', $greenhouse);
 
-        $this->systemInstaller->install($greenhouse, $system);
-
-        $this->assertContains($system, $greenhouse->getSystems());
+        $this->assertEquals($system, $this->systemInstaller->install($greenhouse, $system));
     }
 }

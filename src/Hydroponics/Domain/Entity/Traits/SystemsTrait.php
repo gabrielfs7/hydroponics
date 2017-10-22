@@ -2,8 +2,6 @@
 
 namespace GSoares\Hydroponics\Domain\Entity\Traits;
 
-use GSoares\Hydroponics\Domain\Entity\System;
-
 trait SystemsTrait
 {
 
@@ -11,18 +9,6 @@ trait SystemsTrait
      * @var \ArrayObject
      */
     protected $systems;
-
-    /**
-     * @param System $system
-     * @return \ArrayObject
-     */
-    public function addSystem(System $system)
-    {
-        $this->systems
-            ->append($system);
-
-        return $this->systems;
-    }
 
     /**
      * @return \ArrayAccess

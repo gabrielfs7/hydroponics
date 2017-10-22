@@ -1,6 +1,6 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\Entity\Traits;
+namespace GSoares\Hydroponics\Domain\ValueObject\Traits;
 
 trait NameTrait
 {

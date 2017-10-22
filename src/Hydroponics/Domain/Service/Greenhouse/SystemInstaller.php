@@ -15,8 +15,6 @@ class SystemInstaller
      */
     public function install(Greenhouse $greenhouse, System $system)
     {
-        $greenhouse->addSystem($system);
-
-        return $greenhouse;
+        return $system;
     }
 }

@@ -11,5 +11,6 @@ class GreenhouseTest extends TestCase
         $greenhouse = new Greenhouse('greenhouse');
 
         $this->assertEquals('greenhouse', $greenhouse->getName());
+        $this->assertEquals(new \ArrayObject(), $greenhouse->getSystems());
     }
 }

@@ -30,9 +30,9 @@
     <filter>
         <whitelist>
             <directory>src/</directory>
-            <exclude>
-                <directory>src/Hydroponics/Application</directory>
-            </exclude>
+            <!--<exclude>-->
+                <!--<directory>src/Hydroponics/Application</directory>-->
+            <!--</exclude>-->
         </whitelist>
     </filter>
     <logging>
