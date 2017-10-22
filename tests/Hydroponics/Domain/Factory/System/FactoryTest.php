@@ -1,12 +1,10 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\Factory\Crops;
+namespace GSoares\Hydroponics\Domain\Factory\System;
 
-use GSoares\Hydroponics\Domain\Entity\Crops;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Entity\Tank;
-use GSoares\Hydroponics\Domain\ValueObject\Plant;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -39,13 +37,11 @@ class FactoryTest extends TestCase
             ->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5);
-        $greenhouse = new Greenhouse('Vegetables');
-        $system = new System('NFT', $greenhouse, $tank);
-        $plant = new Plant('Lettuce', 'Lactuca sativa');
+        $greenhouse = new Greenhouse('Fruits');
 
-        $crops = new Crops('Lettuce Crops', $system, $plant);
-        $crops->changeCreatedAt($currentTime);
+        $system = new System('Fruits', $greenhouse, $tank);
+        $system->changeCreatedAt($currentTime);
 
-        $this->assertEquals($crops, $this->factory->make('Lettuce Crops', $system, $plant));
+        $this->assertEquals($system, $this->factory->make('Fruits', $greenhouse, $tank));
     }
 }

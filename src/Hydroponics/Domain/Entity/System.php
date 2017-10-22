@@ -14,9 +14,23 @@ class System
     use ModifiedAtTrait;
     use GreenhouseTrait;
 
-    public function __construct($name, Greenhouse $greenhouse)
+    /**
+     * @var Tank
+     */
+    private $tank;
+
+    public function __construct($name, Greenhouse $greenhouse, Tank $tank)
     {
         $this->name = $name;
         $this->greenhouse = $greenhouse;
+        $this->tank = $tank;
+    }
+
+    /**
+     * @return Tank
+     */
+    public function getTank()
+    {
+        return $this->tank;
     }
 }

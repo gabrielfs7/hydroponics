@@ -9,9 +9,10 @@ class CropsTest extends TestCase
 {
     public function testNewCropsCreated()
     {
+        $tank = new Tank('Tank', 1.5);
         $plant = new Plant('Lettuce', 'Lactuca sativa');
         $greenhouse = new Greenhouse('greenhouse');
-        $system = new System('NFT', $greenhouse);
+        $system = new System('NFT', $greenhouse, $tank);
         $crops = new Crops('Lettuce Crops', $system, $plant);
 
         $this->assertEquals('Lettuce Crops', $crops->getName());
