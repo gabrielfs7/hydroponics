@@ -33,10 +33,11 @@ class FactoryTest extends TestCase
     {
         $currentTime = new \DateTime('2010-10-10 10:10:10');
 
-        $this->dateTimeProvider
-            ->expects($this->once())
-            ->method('current')
-            ->willReturn($currentTime);
+        $dateProvider = $this->dateTimeProvider;
+        $dateProvider->expects($this->once());
+
+        $invocationMocker = $dateProvider->method('current');
+        $invocationMocker->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5);
         $greenhouse = new Greenhouse('Vegetables');
