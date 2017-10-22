@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class NameTraitTest extends TestCase
 {
-    public function testAddSystem()
+    public function testGetName()
     {
         $nameTrait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\NameTrait');
 

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class IdTraitTest extends TestCase
 {
-    public function testAddSystem()
+    public function testGetId()
     {
         $idTrait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait');
 

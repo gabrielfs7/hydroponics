@@ -17,4 +17,15 @@ trait UpdatedAtTrait
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @param \DateTime $updatedAt
+     * @return $this
+     */
+    public function changeUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 }

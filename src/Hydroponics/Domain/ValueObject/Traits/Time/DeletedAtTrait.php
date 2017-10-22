@@ -17,4 +17,23 @@ trait DeletedAtTrait
     {
         return $this->deletedAt;
     }
+
+    /**
+     * @param \DateTime $deletedAt
+     * @return $this
+     */
+    public function changeDeletedAt(\DateTime $deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDeleted()
+    {
+        return boolval($this->deletedAt);
+    }
 }
