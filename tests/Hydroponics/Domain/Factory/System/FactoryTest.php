@@ -32,9 +32,9 @@ class FactoryTest extends TestCase
         $currentTime = new \DateTime('2010-10-10 10:10:10');
 
         $dateProvider = $this->dateTimeProvider;
-        $dateProvider->expects($this->once());
+        $invocationMocker = $dateProvider->expects($this->once());
 
-        $invocationMocker = $dateProvider->method('current');
+        $invocationMocker->method('current');
         $invocationMocker->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5);
