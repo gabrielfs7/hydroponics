@@ -5,7 +5,7 @@ namespace GSoares\Hydroponics\Domain\Factory\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 
-class Factory
+class GreenhouseFactory
 {
 
     /**

@@ -6,7 +6,7 @@ use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use PHPUnit\Framework\TestCase;
 
-class FactoryTest extends TestCase
+class GreenhouseFactoryTest extends TestCase
 {
 
     /**
@@ -15,14 +15,14 @@ class FactoryTest extends TestCase
     private $dateTimeProvider;
 
     /**
-     * @var Factory
+     * @var GreenhouseFactory
      */
     private $factory;
 
     public function setUp()
     {
         $this->dateTimeProvider = $this->createMock('GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider');
-        $this->factory = new Factory($this->dateTimeProvider);
+        $this->factory = new GreenhouseFactory($this->dateTimeProvider);
     }
 
     public function testMake()
