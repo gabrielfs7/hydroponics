@@ -8,8 +8,8 @@ class IdTraitTest extends TestCase
 {
     public function testGetId()
     {
-        $idTrait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait');
+        $trait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait');
 
-        $this->assertNull($idTrait->getId());
+        $this->assertNull($trait->getId());
     }
 }

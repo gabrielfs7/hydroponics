@@ -8,8 +8,8 @@ class NameTraitTest extends TestCase
 {
     public function testGetName()
     {
-        $nameTrait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\NameTrait');
+        $trait = $this->getMockForTrait('GSoares\Hydroponics\Domain\ValueObject\Traits\NameTrait');
 
-        $this->assertNull($nameTrait->getName());
+        $this->assertNull($trait->getName());
     }
 }
