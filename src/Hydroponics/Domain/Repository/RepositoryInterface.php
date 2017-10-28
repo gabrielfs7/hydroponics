@@ -6,19 +6,19 @@ interface RepositoryInterface
 {
     /**
      * @param array $parameters
-     * @return mixed
+     * @return array
      */
     public function find(array $parameters);
 
     /**
      * @param array $parameters
-     * @return mixed
+     * @return object
      */
     public function findOne(array $parameters);
 
     /**
      * @param $object
-     * @return mixed
+     * @return object
      */
     public function save($object);
 }
