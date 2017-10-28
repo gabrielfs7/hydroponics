@@ -10,5 +10,14 @@
         </service>
         <service id="controller.index" parent="controller.abstract" class="GSoares\Hydroponics\Application\Controller\IndexController"/>
         <service id="controller.qualityControl" parent="controller.abstract" class="GSoares\Hydroponics\Application\Controller\QualityControlController"/>
+
+        <!-- Application -->
+        <service abstract="true" id="application.controller.api.abstract" class="GSoares\CweTop25\Application\Controller\Api\AbstractController">
+            <call method="setContainer">
+                <argument type="service" id="container" />
+            </call>
+        </service>
+        <service id="application.controller.api.greenhouse" parent="application.controller.api.abstract" class="GSoares\Hydroponics\Application\Controller\Api\GreenhouseController"/>
+        <service id="application.controller.api.system" parent="application.controller.api.abstract" class="GSoares\Hydroponics\Application\Controller\Api\SystemController"/>
     </services>
 </container>
