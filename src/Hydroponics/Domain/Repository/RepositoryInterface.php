@@ -4,20 +4,37 @@ namespace GSoares\Hydroponics\Domain\Repository;
 
 interface RepositoryInterface
 {
+
     /**
-     * @param array $parameters
+     * @param string $filter
+     * @param string $value
+     * @return $this
+     */
+    public function addFilter($filter, $value);
+
+    /**
+     * @param string $filter
+     * @return $this
+     */
+    public function clearFilter($filter);
+
+    /**
+     * @return $this
+     */
+    public function clearFilters();
+
+    /**
      * @return array
      */
-    public function find(array $parameters);
+    public function findAll();
 
     /**
-     * @param array $parameters
      * @return object
      */
-    public function findOne(array $parameters);
+    public function findOne();
 
     /**
-     * @param $object
+     * @param object $object
      * @return object
      */
     public function save($object);

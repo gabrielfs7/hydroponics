@@ -34,5 +34,11 @@ interface ControllerInterface extends ContainerAwareInterface
      * @param Request $request
      * @return JsonResponse
      */
+    public function getAll(Request $request);
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function delete(Request $request);
 }

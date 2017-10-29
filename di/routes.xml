@@ -22,30 +22,36 @@
     </route>
 
     <!-- API Greenhouse -->
-    <route id="api_greenhouse_get" path="api/greenhouse" methods="get">
+    <route id="api_greenhouse_get_by_id" path="api/greenhouses/{id}" methods="get">
         <default key="_controller">application.controller.api.greenhouse:get</default>
     </route>
-    <route id="api_greenhouse_post" path="api/greenhouse" methods="post">
-        <default key="_controller">application.controller.api.greenhouse:get</default>
+    <route id="api_greenhouse_get" path="api/greenhouses" methods="get">
+        <default key="_controller">application.controller.api.greenhouse:getAll</default>
     </route>
-    <route id="api_greenhouse_put" path="api/greenhouse" methods="put">
-        <default key="_controller">application.controller.api.greenhouse:get</default>
+    <route id="api_greenhouse_post" path="api/greenhouses" methods="post">
+        <default key="_controller">application.controller.api.greenhouse:post</default>
     </route>
-    <route id="api_greenhouse_delete" path="api/greenhouse" methods="delete">
-        <default key="_controller">application.controller.api.greenhouse:get</default>
+    <route id="api_greenhouse_put" path="api/greenhouses" methods="put">
+        <default key="_controller">application.controller.api.greenhouse:put</default>
+    </route>
+    <route id="api_greenhouse_delete" path="api/greenhouses" methods="delete">
+        <default key="_controller">application.controller.api.greenhouse:delete</default>
     </route>
 
-    <!-- API Greenhouse -->
+    <!-- API System -->
+    <route id="api_system_get_by_id" path="api/system/{id}" methods="get">
+        <default key="_controller">application.controller.api.system:get</default>
+    </route>
     <route id="api_system_get" path="api/system" methods="get">
         <default key="_controller">application.controller.api.system:get</default>
     </route>
     <route id="api_system_post" path="api/system" methods="post">
-        <default key="_controller">application.controller.api.system:get</default>
+        <default key="_controller">application.controller.api.system:post</default>
     </route>
     <route id="api_system_put" path="api/system" methods="put">
-        <default key="_controller">application.controller.api.system:get</default>
+        <default key="_controller">application.controller.api.system:put</default>
     </route>
     <route id="api_system_delete" path="api/system" methods="delete">
-        <default key="_controller">application.controller.api.system:get</default>
+        <default key="_controller">application.controller.api.system:delete</default>
     </route>
 </routes>

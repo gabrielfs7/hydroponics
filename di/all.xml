@@ -9,6 +9,7 @@
         <import resource="template.xml"/>
         <import resource="controllers.xml"/>
         <import resource="builder.xml"/>
+        <import resource="encoder.xml"/>
         <import resource="services.xml"/>
     </imports>
 </container>

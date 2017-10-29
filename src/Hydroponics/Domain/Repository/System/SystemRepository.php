@@ -2,23 +2,8 @@
 
 namespace GSoares\Hydroponics\Domain\Repository\System;
 
-use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
+use GSoares\Hydroponics\Domain\Repository\AbstractDoctrineRepository;
 
-class SystemRepository implements RepositoryInterface
+class SystemRepository extends AbstractDoctrineRepository
 {
-
-    public function find(array $parameters)
-    {
-        // TODO: Implement find() method.
-    }
-
-    public function findOne(array $parameters)
-    {
-        // TODO: Implement findOne() method.
-    }
-
-    public function save($object)
-    {
-        // TODO: Implement save() method.
-    }
 }

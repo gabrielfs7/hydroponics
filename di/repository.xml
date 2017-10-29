@@ -3,9 +3,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="repository.green_house" class="GSoares\Hydroponics\Domain\Repository\GreenHouseRepository">
+        <service id="repository.greenhouse" class="GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository">
             <factory service="doctrine.entity_manager" method="getRepository" />
-            <argument>GSoares\Hydroponics\Domain\Entity\GreenHouse</argument>
+            <argument>GSoares\Hydroponics\Domain\Entity\Greenhouse</argument>
+            <call method="setEntityAlias">
+                <argument>gh</argument>
+            </call>
+        </service>
+
+        <service id="repository.system" class="GSoares\Hydroponics\Domain\Repository\System\SystemRepository">
+            <factory service="doctrine.entity_manager" method="getRepository" />
+            <argument>GSoares\Hydroponics\Domain\Entity\System</argument>
+            <call method="setEntityAlias">
+                <argument>sys</argument>
+            </call>
         </service>
     </services>
 </container>

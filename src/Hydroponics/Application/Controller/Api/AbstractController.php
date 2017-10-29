@@ -45,6 +45,15 @@ class AbstractController implements ControllerInterface
      * @param Request $request
      * @return JsonResponse
      */
+    public function getAll(Request $request)
+    {
+        return $this->getDefaultResponse();
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function delete(Request $request)
     {
         return $this->getDefaultResponse();
@@ -53,13 +62,13 @@ class AbstractController implements ControllerInterface
     /**
      * @return JsonResponse
      */
-    private function getDefaultResponse()
+    protected function getDefaultResponse()
     {
         $errors = $this->getErrorCollectionDtoBuilder()
-            ->configCode(401)
-            ->configStatus(401)
-            ->configTitle('Access Denied')
-            ->configDetails('You do not have access for this resource')
+            ->configCode(404)
+            ->configStatus(404)
+            ->configTitle('Resource Not Found')
+            ->configDetails('Resource Not Found')
             ->configSourcePointer('')
             ->addError()
             ->build();
