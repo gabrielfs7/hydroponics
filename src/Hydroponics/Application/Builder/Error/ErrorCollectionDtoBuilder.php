@@ -6,7 +6,7 @@ use GSoares\Hydroponics\Application\Dto\Error\ErrorCollectionDto;
 use GSoares\Hydroponics\Application\Dto\Error\ErrorDto;
 use GSoares\Hydroponics\Application\Dto\Error\SourceDto;
 
-class ErrorCollectionDtoBuilder
+class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
 {
 
     /**

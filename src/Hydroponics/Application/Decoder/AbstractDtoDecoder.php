@@ -2,21 +2,29 @@
 
 namespace GSoares\Hydroponics\Application\Decoder;
 
-use GSoares\Hydroponics\Application\Dto\Greenhouse\GreenhouseDto;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDto;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
 
 abstract class AbstractDtoDecoder implements DecoderInterface
 {
 
-    abstract protected function getDtoInstance();
-
     /**
      * @param string $json
-     * @return GreenhouseDto
+     * @return ResourceDto
      */
     public function decode($json)
     {
         $stdClass = json_decode($json);
-        $dto = $this->getDtoInstance();
+        $dto = new ResourceDto(
+            '',
+            $this->getResourceType(),
+            new ResourceAttributesDto(),
+            new ResourceLinksDto('', ''),
+            [],
+            []
+        );
 
         $this->handleData($dto, $stdClass->data);
 
@@ -26,7 +34,7 @@ abstract class AbstractDtoDecoder implements DecoderInterface
     private function handleData(&$dto, $data)
     {
         foreach ($data as $property => $propertyValue) {
-            $propertyExists = is_object($dto) && property_exists($dto, $property);
+            $propertyExists = is_object($dto);//FIXME && property_exists($dto, $property);
             $propertyIsArray = is_array($propertyValue);
             $propertyIsObject = is_object($propertyValue);
 
@@ -73,10 +81,11 @@ abstract class AbstractDtoDecoder implements DecoderInterface
     }
 
     /**
-     * @param $dto
+     * @param ResourceDtoInterface $dto
      * @param $property
+     * @return \stdClass
      */
-    private function getClassByProperty($dto, $property)
+    private function getClassByProperty(ResourceDtoInterface $dto, $property)
     {
         $reflection = new \ReflectionProperty($dto, $property);
         $comment = str_replace(['\\', '@var'], ['_', ''], $reflection->getDocComment());
@@ -86,5 +95,12 @@ abstract class AbstractDtoDecoder implements DecoderInterface
         if (class_exists($comment)) {
             return new $comment;
         }
+
+        return new \stdClass();
     }
+
+    /**
+     * @return string
+     */
+    abstract protected function getResourceType();
 }

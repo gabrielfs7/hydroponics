@@ -18,7 +18,17 @@
                 <argument type="service" id="container" />
             </call>
         </service>
-        <service id="application.controller.api.greenhouse_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\GreenhouseController"/>
-        <service id="application.controller.api.system_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\SystemController"/>
+        <service id="application.controller.api.greenhouse_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\GreenhouseController">
+            <argument type="service" id="application.service.greenhouse.greenhouse_creator"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_updater"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_searcher"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_deleter"/>
+        </service>
+        <service id="application.controller.api.system_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\SystemController">
+            <argument type="service" id="application.service.greenhouse.greenhouse_creator"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_updater"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_searcher"/>
+            <argument type="service" id="domain.service.greenhouse.greenhouse_deleter"/>
+        </service>
     </services>
 </container>

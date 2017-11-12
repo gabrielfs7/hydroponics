@@ -2,28 +2,31 @@
 
 namespace GSoares\Hydroponics\Application\Service\Greenhouse;
 
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
+use GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceCreatorInterface;
 
-class GreenhouseCreator extends AbstractGreenhouseSaver
+class GreenhouseCreator extends AbstractResourceSaver implements ResourceCreatorInterface
 {
 
     /**
      * @param string $json
-     * @return string
+     * @return ResourceDtoInterface
      */
     public function create($json)
     {
-        $greenhouseDto = $this->decodeJson($json);
+        return parent::save($json);
+    }
 
-        $greenhouse = $this->greenhouseFactory
-            ->make($greenhouseDto->attributes->name);
+    /**
+     * @param ResourceDtoInterface $resourceDto
+     * @return \ArrayObject
+     */
+    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
+    {
+        $parameters = new \ArrayObject();
+        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
 
-        /** @var Greenhouse $greenhouse */
-        $greenhouse = $this->greenhouseRepository
-            ->save($greenhouse);
-
-        $this->fillAttributes($greenhouse, $greenhouseDto);
-
-        return $this->createResponseDto($greenhouse);
+        return $parameters;
     }
 }

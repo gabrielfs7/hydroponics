@@ -3,26 +3,28 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="application.service.greenhouse.abstract_greenhouse_saver" abstract="true" class="GSoares\Hydroponics\Application\Service\Greenhouse\AbstractGreenhouseSaver">
+        <service id="application.service.resource.abstract_greenhouse_saver" abstract="true" class="GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver">
             <argument type="service" id="application.decoder.greenhouse.greenhouse_dto_decoder"/>
             <argument type="service" id="application.encoder.greenhouse.greenhouse_dto_encoder"/>
             <argument type="service" id="domain.factory.greenhouse.greenhouse_factory"/>
             <argument type="service" id="domain.repository.greenhouse.greenhouse_repository"/>
             <argument type="service" id="application.service.greenhouse.greenhouse_attributes_filler"/>
+            <argument type="service" id="application.builder.error.error_collection_dto_builder"/>
         </service>
 
-        <service id="application.service.greenhouse.greenhouse_creator" parent="application.service.greenhouse.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseCreator">
-        </service>
-
-        <service id="application.service.greenhouse.greenhouse_updater" parent="application.service.greenhouse.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseUpdater">
-        </service>
-
-        <service id="application.service.greenhouse.greenhouse_attributes_filler" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseAttributesFiller">
-        </service>
-
-        <service id="application.service.greenhouse.greenhouse_searcher" parent="" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseSearcher">
+        <service id="application.service.resource.abstract_greenhouse_searcher" abstract="true" class="GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSearcher">
             <argument type="service" id="application.encoder.greenhouse.greenhouse_dto_encoder"/>
             <argument type="service" id="domain.repository.greenhouse.greenhouse_repository"/>
         </service>
+
+        <service id="application.service.greenhouse.greenhouse_deleter" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseDeleter">
+            <argument type="service" id="application.encoder.greenhouse.greenhouse_dto_encoder"/>
+            <argument type="service" id="domain.service.greenhouse.greenhouse_deleter"/>
+        </service>
+
+        <service id="application.service.greenhouse.greenhouse_creator" parent="application.service.resource.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseCreator" />
+        <service id="application.service.greenhouse.greenhouse_updater" parent="application.service.resource.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseUpdater" />
+        <service id="application.service.greenhouse.greenhouse_searcher" parent="application.service.resource.abstract_greenhouse_searcher" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseSearcher"/>
+        <service id="application.service.greenhouse.greenhouse_attributes_filler" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseAttributesFiller" />
     </services>
 </container>

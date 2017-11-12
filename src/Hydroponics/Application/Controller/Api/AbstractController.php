@@ -2,7 +2,10 @@
 
 namespace GSoares\Hydroponics\Application\Controller\Api;
 
-use GSoares\Hydroponics\Application\Builder\Error\ErrorCollectionDtoBuilder;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceCreatorInterface;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceDeleterInterface;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceSearcherInterface;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceUpdaterInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +18,47 @@ class AbstractController implements ControllerInterface
     use ContainerAwareTrait;
 
     /**
+     * @var ResourceCreatorInterface
+     */
+    private $resourceCreator;
+
+    /**
+     * @var ResourceUpdaterInterface
+     */
+    private $resourceUpdater;
+
+    /**
+     * @var ResourceSearcherInterface
+     */
+    private $resourceSearcher;
+
+    /**
+     * @var ResourceDeleterInterface
+     */
+    private $resourceDeleter;
+
+    public function __construct(
+        ResourceCreatorInterface $resourceCreator,
+        ResourceUpdaterInterface $resourceUpdater,
+        ResourceSearcherInterface $resourceSearcher,
+        ResourceDeleterInterface $resourceDeleter
+    ) {
+        $this->resourceCreator = $resourceCreator;
+        $this->resourceUpdater = $resourceUpdater;
+        $this->resourceSearcher = $resourceSearcher;
+        $this->resourceDeleter = $resourceDeleter;
+    }
+
+    /**
      * @param Request $request
      * @return JsonResponse
      */
     public function post(Request $request)
     {
-        return $this->getDefaultResponse();
+        $dto = $this->resourceCreator
+            ->create($request->getContent());
+
+        return new JsonResponse($dto);
     }
 
     /**
@@ -29,7 +67,10 @@ class AbstractController implements ControllerInterface
      */
     public function patch(Request $request)
     {
-        return $this->getDefaultResponse();
+        $dto = $this->resourceUpdater
+            ->update($request->getContent(), $request->get('id'));
+
+        return new JsonResponse($dto);
     }
 
     /**
@@ -38,7 +79,10 @@ class AbstractController implements ControllerInterface
      */
     public function get(Request $request)
     {
-        return $this->getDefaultResponse();
+        $responseDto = $this->resourceSearcher
+            ->searchById($request->get('id'));
+
+        return new JsonResponse($responseDto);
     }
 
     /**
@@ -47,7 +91,10 @@ class AbstractController implements ControllerInterface
      */
     public function getAll(Request $request)
     {
-        return $this->getDefaultResponse();
+        $responseDto = $this->resourceSearcher
+            ->search($request->query->all());
+
+        return new JsonResponse($responseDto);
     }
 
     /**
@@ -56,32 +103,9 @@ class AbstractController implements ControllerInterface
      */
     public function delete(Request $request)
     {
-        return $this->getDefaultResponse();
-    }
+        $responseDto = $this->resourceDeleter
+            ->delete($request->get('id'));
 
-    /**
-     * @return JsonResponse
-     */
-    protected function getDefaultResponse()
-    {
-        $errors = $this->getErrorCollectionDtoBuilder()
-            ->configCode(404)
-            ->configStatus(404)
-            ->configTitle('Resource Not Found')
-            ->configDetails('Resource Not Found')
-            ->configSourcePointer('')
-            ->addError()
-            ->build();
-
-        return new JsonResponse($errors);
-    }
-
-    /**
-     * @return ErrorCollectionDtoBuilder
-     */
-    private function getErrorCollectionDtoBuilder()
-    {
-         return $this->container
-            ->get('application.builder.error.error_collection_dto_builder');
+        return new JsonResponse($responseDto);
     }
 }

@@ -2,21 +2,21 @@
 
 namespace GSoares\Hydroponics\Application\Service\Greenhouse;
 
-use GSoares\Hydroponics\Application\Dto\Greenhouse\GreenhouseDto;
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceAttributesFillerInterface;
 
-class GreenhouseAttributesFiller
+class GreenhouseAttributesFiller implements ResourceAttributesFillerInterface
 {
 
     /**
-     * @param Greenhouse $greenhouse
-     * @param GreenhouseDto $greenhouseDto
-     * @return Greenhouse
+     * @param object $domainObject
+     * @param ResourceDtoInterface $resourceDto
+     * @return object
      */
-    public function fillAttributes(Greenhouse $greenhouse, GreenhouseDto $greenhouseDto)
+    public function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
     {
-        $greenhouse->changeName($greenhouseDto->attributes->name);
+        $domainObject->changeName($resourceDto->getAttributes()->name);
 
-        return $greenhouse;
+        return $domainObject;
     }
 }

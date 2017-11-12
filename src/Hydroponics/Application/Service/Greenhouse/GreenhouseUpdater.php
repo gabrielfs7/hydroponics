@@ -2,39 +2,32 @@
 
 namespace GSoares\Hydroponics\Application\Service\Greenhouse;
 
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
+use GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver;
+use GSoares\Hydroponics\Application\Service\Resource\ResourceUpdaterInterface;
 
-class GreenhouseUpdater extends AbstractGreenhouseSaver
+class GreenhouseUpdater extends AbstractResourceSaver implements ResourceUpdaterInterface
 {
 
     /**
      * @param string $json
-     * @param $greenhouseId
-     * @return \GSoares\Hydroponics\Application\Dto\Response\ResponseDto
+     * @param string $id
+     * @return ResourceDtoInterface
      */
-    public function update($json, $greenhouseId)
+    public function update($json, $id)
     {
-        $greenhouse =  $this->findGreenhouseById($greenhouseId);
-        $greenhouseDto = $this->decodeJson($json);
-
-        $this->fillAttributes($greenhouse, $greenhouseDto);
-
-        /** @var Greenhouse $greenhouse */
-        $greenhouse = $this->greenhouseRepository
-            ->save($greenhouse);
-
-        return $this->createResponseDto($greenhouse);
+        return parent::save($json, $this->findDomainObjectById($id));
     }
 
     /**
-     * @param int $greenhouseId
-     * @return \GSoares\Hydroponics\Domain\Entity\Greenhouse
+     * @param ResourceDtoInterface $resourceDto
+     * @return \ArrayObject
      */
-    private function findGreenhouseById($greenhouseId)
+    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
     {
-        return $this->greenhouseRepository
-            ->clearFilters()
-            ->addFilter('id', $greenhouseId)
-            ->findOne();
+        $parameters = new \ArrayObject();
+        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
+
+        return $parameters;
     }
 }

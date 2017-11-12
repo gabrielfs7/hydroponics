@@ -3,9 +3,10 @@
 namespace GSoares\Hydroponics\Domain\Factory\Greenhouse;
 
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Domain\Factory\FactoryInterface;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 
-class GreenhouseFactory
+class GreenhouseFactory implements FactoryInterface
 {
 
     /**
@@ -18,9 +19,13 @@ class GreenhouseFactory
         $this->dateTimeProvider = $dateTimeProvider;
     }
 
-    public function make($name)
+    /**
+     * @param \ArrayAccess $parameters
+     * @return object
+     */
+    public function make(\ArrayAccess $parameters)
     {
-        $greenhouse = new Greenhouse($name);
+        $greenhouse = new Greenhouse($parameters->offsetGet('name'));
         $greenhouse->changeCreatedAt($this->dateTimeProvider->current());
 
         return $greenhouse;

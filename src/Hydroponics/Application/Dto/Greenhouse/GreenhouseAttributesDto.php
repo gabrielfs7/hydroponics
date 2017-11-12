@@ -2,7 +2,9 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Greenhouse;
 
-class GreenhouseAttributesDto
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
+
+class GreenhouseAttributesDto extends ResourceAttributesDto
 {
 
     /**

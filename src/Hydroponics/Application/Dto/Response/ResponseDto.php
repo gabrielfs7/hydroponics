@@ -2,13 +2,13 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Response;
 
-use GSoares\Hydroponics\Application\Dto\Link\LinksDto;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface;
 
-class ResponseDto
+class ResponseDto implements ResponseDtoInterface
 {
 
     /**
-     * @var LinksDto
+     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
      */
     public $links;
 
@@ -16,4 +16,26 @@ class ResponseDto
      * @var object|array
      */
     public $data;
+
+    public function __construct(ResourceLinksDtoInterface $links, $data)
+    {
+        $this->links = $links;
+        $this->data = $data;
+    }
+
+    /**
+     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * @return object|array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
 }
