@@ -2,8 +2,6 @@
 
 namespace GSoares\Hydroponics\Application\Controller\Api;
 
-use GSoares\Hydroponics\Application\Dto\Response\ResponseDto;
-use GSoares\Hydroponics\Application\Dto\Response\SingleResponseDto;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,18 +15,52 @@ class GreenhouseController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
+    public function patch(Request $request)
+    {
+        $dto = $this->container
+            ->get('application.service.greenhouse.greenhouse_updater')
+            ->update($request->getContent(), $request->get('id'));
+
+        return new JsonResponse($dto);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function post(Request $request)
+    {
+        $dto = $this->container
+            ->get('application.service.greenhouse.greenhouse_creator')
+            ->create($request->getContent());
+
+        return new JsonResponse($dto);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        $this->container
+            ->get('domain.service.greenhouse.greenhouse_deleter')
+            ->delete($request->get('id'));
+
+        return new JsonResponse();
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function get(Request $request)
     {
-        $greenhouse = $this->container
-            ->get('repository.greenhouse')
-            ->addFilter('id', $request->get('id'))
-            ->findOne();
+        $responseDto = $this->container
+            ->get('application.service.greenhouse.greenhouse_searcher')
+            ->searchById($request->get('id'));
 
-        $greenhouseDto = $this->container
-            ->get('application.encoder.greenhouse.greenhouse_dto_encoder')
-            ->encode($greenhouse);
-
-        return new JsonResponse(['data' => $greenhouseDto]);
+        return new JsonResponse($responseDto);
     }
 
     /**
@@ -37,21 +69,9 @@ class GreenhouseController extends AbstractController
      */
     public function getAll(Request $request)
     {
-        $greenhouses = $this->container
-            ->get('repository.greenhouse')
-            ->findAll();
-
-        $encoder = $this->container
-            ->get('application.encoder.greenhouse.greenhouse_dto_encoder');
-
-        $greenhousesDto = [];
-
-        foreach ($greenhouses as $greenhouse) {
-            $greenhousesDto[] = $encoder->encode($greenhouse);
-        }
-
-        $responseDto = new ResponseDto();
-        $responseDto->data = $greenhousesDto;
+        $responseDto = $this->container
+            ->get('application.service.greenhouse.greenhouse_searcher')
+            ->search($request->query->all());
 
         return new JsonResponse($responseDto);
     }

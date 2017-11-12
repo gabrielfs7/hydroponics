@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Front-end -->
+        <service abstract="true" id="application.controller.abstract_controller" class="GSoares\CweTop25\Application\Controller\AbstractController">
+            <call method="setContainer">
+                <argument type="service" id="container" />
+            </call>
+        </service>
+        <service id="application.controller.index_controller" parent="application.controller.abstract_controller" class="GSoares\Hydroponics\Application\Controller\IndexController"/>
+        <service id="application.controller.quality_control_controller" parent="application.controller.abstract_controller" class="GSoares\Hydroponics\Application\Controller\QualityControlController"/>
+
+        <!-- API -->
+        <service abstract="true" id="application.controller.api.abstract_controller" class="GSoares\CweTop25\Application\Controller\Api\AbstractController">
+            <call method="setContainer">
+                <argument type="service" id="container" />
+            </call>
+        </service>
+        <service id="application.controller.api.greenhouse_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\GreenhouseController"/>
+        <service id="application.controller.api.system_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\SystemController"/>
+    </services>
+</container>

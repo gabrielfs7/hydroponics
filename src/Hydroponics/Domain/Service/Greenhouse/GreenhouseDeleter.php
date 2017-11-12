@@ -5,7 +5,7 @@ namespace GSoares\Hydroponics\Domain\Service\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
 
-class GreenhouseCreator
+class GreenhouseDeleter
 {
 
     /**
@@ -19,14 +19,19 @@ class GreenhouseCreator
     }
 
     /**
-     * @param Greenhouse $greenhouse
-     * @return Greenhouse
+     * @param int $greenhouseId
      */
-    public function create(Greenhouse $greenhouse)
+    public function delete($greenhouseId)
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->greenhouseRepository
-            ->save($greenhouse);
+            ->clearFilters()
+            ->addFilter('id', $greenhouseId)
+            ->findOne();
 
-        return $greenhouse;
+        $greenhouse->changeDeletedAt(new \DateTime());
+
+        $this->greenhouseRepository
+            ->save($greenhouse);
     }
 }

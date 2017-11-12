@@ -11,8 +11,10 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 try {
+    $request = Request::createFromGlobals();
+
     $locator = new FileLocator(array(__DIR__));
-    $requestContext = new RequestContext('/');
+    $requestContext = new RequestContext('/', $request->getMethod());
 
     $router = new Router(
         new XmlFileLoader($locator),
@@ -21,7 +23,6 @@ try {
         $requestContext
     );
 
-    $request = Request::createFromGlobals();
     $request->attributes
         ->add($router->matchRequest($request));
 

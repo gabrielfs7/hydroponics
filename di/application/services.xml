@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="application.service.greenhouse.abstract_greenhouse_saver" abstract="true" class="GSoares\Hydroponics\Application\Service\Greenhouse\AbstractGreenhouseSaver">
+            <argument type="service" id="application.decoder.greenhouse.greenhouse_dto_decoder"/>
+            <argument type="service" id="application.encoder.greenhouse.greenhouse_dto_encoder"/>
+            <argument type="service" id="domain.factory.greenhouse.greenhouse_factory"/>
+            <argument type="service" id="domain.repository.greenhouse.greenhouse_repository"/>
+            <argument type="service" id="application.service.greenhouse.greenhouse_attributes_filler"/>
+        </service>
+
+        <service id="application.service.greenhouse.greenhouse_creator" parent="application.service.greenhouse.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseCreator">
+        </service>
+
+        <service id="application.service.greenhouse.greenhouse_updater" parent="application.service.greenhouse.abstract_greenhouse_saver" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseUpdater">
+        </service>
+
+        <service id="application.service.greenhouse.greenhouse_attributes_filler" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseAttributesFiller">
+        </service>
+
+        <service id="application.service.greenhouse.greenhouse_searcher" parent="" class="GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseSearcher">
+            <argument type="service" id="application.encoder.greenhouse.greenhouse_dto_encoder"/>
+            <argument type="service" id="domain.repository.greenhouse.greenhouse_repository"/>
+        </service>
+    </services>
+</container>

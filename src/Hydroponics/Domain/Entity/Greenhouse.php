@@ -17,6 +17,5 @@ class Greenhouse
     public function __construct($name)
     {
         $this->name = $name;
-        $this->systems = new \ArrayObject();
     }
 }

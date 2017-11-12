@@ -16,7 +16,7 @@ interface ControllerInterface extends ContainerAwareInterface
      * @param Request $request
      * @return JsonResponse
      */
-    public function put(Request $request);
+    public function patch(Request $request);
 
     /**
      * @param Request $request

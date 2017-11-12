@@ -10,7 +10,7 @@ class GreenhouseDto
     /**
      * @var string
      */
-    public $type = 'greenhouse';
+    public $type = 'greenhouses';
 
     /**
      * @var string
@@ -18,12 +18,12 @@ class GreenhouseDto
     public $id;
 
     /**
-     * @var GreenhouseAttributesDto
+     * @var \GSoares\Hydroponics\Application\Dto\Greenhouse\GreenhouseAttributesDto
      */
     public $attributes;
 
     /**
-     * @var array
+     * @var \GSoares\Hydroponics\Application\Dto\Relationship\RelationshipDto[]
      */
     public $relationships;
 

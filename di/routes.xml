@@ -3,55 +3,53 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing
     http://symfony.com/schema/routing/routing-1.0.xsd">
+    <!-- Index -->
     <route id="index" path="/">
-        <default key="_controller">controller.index:indexAction</default>
+        <default key="_controller">application.controller.index:indexAction</default>
     </route>
-    <!--
-    <route id="cwe" path="/cwe-{id}">
-        <default key="_controller">controller.cwe:indexAction</default>
-    </route>
-    -->
+    
+    <!-- Quality control -->
     <route id="quality_control_phpunit" path="quality-control/phpunit">
-        <default key="_controller">controller.qualityControl:phpUnitAction</default>
+        <default key="_controller">application.controller.quality_control_controller:phpUnitAction</default>
     </route>
     <route id="quality_control_phpcs" path="quality-control/phpcs">
-        <default key="_controller">controller.qualityControl:phpCsAction</default>
+        <default key="_controller">application.controller.quality_control_controller:phpCsAction</default>
     </route>
     <route id="quality_control_phpmd" path="quality-control/phpmd">
-        <default key="_controller">controller.qualityControl:phpMdAction</default>
+        <default key="_controller">application.controller.quality_control_controller:phpMdAction</default>
     </route>
 
     <!-- API Greenhouse -->
-    <route id="api_greenhouse_get_by_id" path="api/greenhouses/{id}" methods="get">
-        <default key="_controller">application.controller.api.greenhouse:get</default>
+    <route id="api_greenhouse_get_by_id" path="api/greenhouses/{id}" methods="GET">
+        <default key="_controller">application.controller.api.greenhouse_controller:get</default>
     </route>
-    <route id="api_greenhouse_get" path="api/greenhouses" methods="get">
-        <default key="_controller">application.controller.api.greenhouse:getAll</default>
+    <route id="api_greenhouse_get" path="api/greenhouses" methods="GET">
+        <default key="_controller">application.controller.api.greenhouse_controller:getAll</default>
     </route>
-    <route id="api_greenhouse_post" path="api/greenhouses" methods="post">
-        <default key="_controller">application.controller.api.greenhouse:post</default>
+    <route id="api_greenhouse_post" path="api/greenhouses" methods="POST">
+        <default key="_controller">application.controller.api.greenhouse_controller:post</default>
     </route>
-    <route id="api_greenhouse_put" path="api/greenhouses" methods="put">
-        <default key="_controller">application.controller.api.greenhouse:put</default>
+    <route id="api_greenhouse_patch" path="api/greenhouses/{id}" methods="PATCH">
+        <default key="_controller">application.controller.api.greenhouse_controller:patch</default>
     </route>
-    <route id="api_greenhouse_delete" path="api/greenhouses" methods="delete">
-        <default key="_controller">application.controller.api.greenhouse:delete</default>
+    <route id="api_greenhouse_delete" path="api/greenhouses/{id}" methods="DELETE">
+        <default key="_controller">application.controller.api.greenhouse_controller:delete</default>
     </route>
 
     <!-- API System -->
-    <route id="api_system_get_by_id" path="api/system/{id}" methods="get">
-        <default key="_controller">application.controller.api.system:get</default>
+    <route id="api_system_get_by_id" path="api/system/{id}" methods="GET">
+        <default key="_controller">application.controller.api.system_controller:get</default>
     </route>
-    <route id="api_system_get" path="api/system" methods="get">
-        <default key="_controller">application.controller.api.system:get</default>
+    <route id="api_system_get" path="api/system" methods="GET">
+        <default key="_controller">application.controller.api.system_controller:get</default>
     </route>
-    <route id="api_system_post" path="api/system" methods="post">
-        <default key="_controller">application.controller.api.system:post</default>
+    <route id="api_system_post" path="api/system" methods="POST">
+        <default key="_controller">application.controller.api.system_controller:post</default>
     </route>
-    <route id="api_system_put" path="api/system" methods="put">
-        <default key="_controller">application.controller.api.system:put</default>
+    <route id="api_system_patch" path="api/system/{id}" methods="PATCH">
+        <default key="_controller">application.controller.api.system_controller:patch</default>
     </route>
-    <route id="api_system_delete" path="api/system" methods="delete">
-        <default key="_controller">application.controller.api.system:delete</default>
+    <route id="api_system_delete" path="api/system/{id}" methods="DELETE">
+        <default key="_controller">application.controller.api.system_controller:delete</default>
     </route>
 </routes>

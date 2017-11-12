@@ -17,4 +17,15 @@ trait NameTrait
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function changeName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 }

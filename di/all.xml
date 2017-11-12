@@ -3,13 +3,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <imports>
-        <import resource="environment.xml"/>
-        <import resource="database.xml"/>
-        <import resource="repository.xml"/>
-        <import resource="template.xml"/>
-        <import resource="controllers.xml"/>
-        <import resource="builder.xml"/>
-        <import resource="encoder.xml"/>
-        <import resource="services.xml"/>
+        <import resource="infrastructure/environment.xml"/>
+        <import resource="infrastructure/database.xml"/>
+        <import resource="infrastructure/datetime.xml"/>
+        <import resource="domain/repository.xml"/>
+        <import resource="domain/factory.xml"/>
+        <import resource="domain/services.xml"/>
+        <import resource="application/template.xml"/>
+        <import resource="application/controllers.xml"/>
+        <import resource="application/builder.xml"/>
+        <import resource="application/encoder.xml"/>
+        <import resource="application/decoder.xml"/>
+        <import resource="application/services.xml"/>
     </imports>
 </container>

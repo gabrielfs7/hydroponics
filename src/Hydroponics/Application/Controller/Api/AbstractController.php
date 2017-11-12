@@ -18,7 +18,7 @@ class AbstractController implements ControllerInterface
      * @param Request $request
      * @return JsonResponse
      */
-    public function put(Request $request)
+    public function post(Request $request)
     {
         return $this->getDefaultResponse();
     }
@@ -27,7 +27,7 @@ class AbstractController implements ControllerInterface
      * @param Request $request
      * @return JsonResponse
      */
-    public function post(Request $request)
+    public function patch(Request $request)
     {
         return $this->getDefaultResponse();
     }

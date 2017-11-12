@@ -2,23 +2,17 @@
 
 namespace GSoares\Hydroponics\Application\Decoder\Greenhouse;
 
-use GSoares\Hydroponics\Application\Decoder\DecoderInterface;
+use GSoares\Hydroponics\Application\Decoder\AbstractDtoDecoder;
 use GSoares\Hydroponics\Application\Dto\Greenhouse\GreenhouseDto;
 
-class GreenhouseDtoDecoder implements DecoderInterface
+class GreenhouseDtoDecoder extends AbstractDtoDecoder
 {
 
     /**
-     * @param string $json
      * @return GreenhouseDto
      */
-    public function decode($json)
+    protected function getDtoInstance()
     {
-        $stdClass = json_decode($json);
-
-        $dto = new GreenhouseDto();
-        $dto->name = $stdClass->name;
-
-        return $dto;
+        return new GreenhouseDto();
     }
 }
