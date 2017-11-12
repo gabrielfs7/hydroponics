@@ -18,5 +18,13 @@
                 <argument>sys</argument>
             </call>
         </service>
+
+        <service id="domain.repository.tank.tank_repository" class="GSoares\Hydroponics\Domain\Repository\Tank\TankRepository">
+            <factory service="doctrine.entity_manager" method="getRepository" />
+            <argument>GSoares\Hydroponics\Domain\Entity\Tank</argument>
+            <call method="setEntityAlias">
+                <argument>tnk</argument>
+            </call>
+        </service>
     </services>
 </container>

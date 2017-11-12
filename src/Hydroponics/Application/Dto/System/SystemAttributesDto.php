@@ -1,10 +1,10 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Dto\Greenhouse;
+namespace GSoares\Hydroponics\Application\Dto\System;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 
-class GreenhouseAttributesDto extends ResourceAttributesDto
+class SystemAttributesDto extends ResourceAttributesDto
 {
 
     /**

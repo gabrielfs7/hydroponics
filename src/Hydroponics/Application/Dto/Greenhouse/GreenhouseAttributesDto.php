@@ -15,5 +15,10 @@ class GreenhouseAttributesDto extends ResourceAttributesDto
     /**
      * @var string
      */
+    public $description;
+
+    /**
+     * @var string
+     */
     public $createdAt;
 }

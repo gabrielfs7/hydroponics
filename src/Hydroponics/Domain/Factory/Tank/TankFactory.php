@@ -1,12 +1,12 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\Factory\Greenhouse;
+namespace GSoares\Hydroponics\Domain\Factory\Tank;
 
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Factory\FactoryInterface;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 
-class GreenhouseFactory implements FactoryInterface
+class TankFactory implements FactoryInterface
 {
 
     /**
@@ -25,7 +25,10 @@ class GreenhouseFactory implements FactoryInterface
      */
     public function make(\ArrayAccess $parameters)
     {
-        $greenhouse = new Greenhouse($parameters->offsetGet('name'));
+        $greenhouse = new Tank(
+            $parameters->offsetGet('name'),
+            $parameters->offsetGet('volumeCapacity')
+        );
         $greenhouse->changeCreatedAt($this->dateTimeProvider->current());
 
         return $greenhouse;

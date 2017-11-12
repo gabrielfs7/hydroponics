@@ -1,10 +1,10 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Dto\Greenhouse;
+namespace GSoares\Hydroponics\Application\Dto\Tank;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 
-class GreenhouseAttributesDto extends ResourceAttributesDto
+class TankAttributesDto extends ResourceAttributesDto
 {
 
     /**
@@ -16,6 +16,11 @@ class GreenhouseAttributesDto extends ResourceAttributesDto
      * @var string
      */
     public $description;
+
+    /**
+     * @var float
+     */
+    public $volumeCapacity;
 
     /**
      * @var string

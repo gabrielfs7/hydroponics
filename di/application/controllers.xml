@@ -24,11 +24,17 @@
             <argument type="service" id="application.service.greenhouse.greenhouse_searcher"/>
             <argument type="service" id="application.service.greenhouse.greenhouse_deleter"/>
         </service>
+        <service id="application.controller.api.tank_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\TankController">
+            <argument type="service" id="application.service.tank.tank_creator"/>
+            <argument type="service" id="application.service.tank.tank_updater"/>
+            <argument type="service" id="application.service.tank.tank_searcher"/>
+            <argument type="service" id="application.service.tank.tank_deleter"/>
+        </service>
         <service id="application.controller.api.system_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\SystemController">
-            <argument type="service" id="application.service.greenhouse.greenhouse_creator"/>
-            <argument type="service" id="application.service.greenhouse.greenhouse_updater"/>
-            <argument type="service" id="application.service.greenhouse.greenhouse_searcher"/>
-            <argument type="service" id="domain.service.greenhouse.greenhouse_deleter"/>
+            <argument type="service" id="application.service.system.system_creator"/>
+            <argument type="service" id="application.service.system.system_updater"/>
+            <argument type="service" id="application.service.system.system_searcher"/>
+            <argument type="service" id="application.service.system.system_deleter"/>
         </service>
     </services>
 </container>

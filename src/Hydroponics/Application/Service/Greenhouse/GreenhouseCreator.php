@@ -17,16 +17,4 @@ class GreenhouseCreator extends AbstractResourceSaver implements ResourceCreator
     {
         return parent::save($json);
     }
-
-    /**
-     * @param ResourceDtoInterface $resourceDto
-     * @return \ArrayObject
-     */
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
-    {
-        $parameters = new \ArrayObject();
-        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
-
-        return $parameters;
-    }
 }

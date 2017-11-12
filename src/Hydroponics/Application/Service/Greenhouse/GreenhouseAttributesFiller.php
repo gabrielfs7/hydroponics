@@ -15,7 +15,9 @@ class GreenhouseAttributesFiller implements ResourceAttributesFillerInterface
      */
     public function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
     {
+        $domainObject->changeUpdatedAt(new \DateTime());
         $domainObject->changeName($resourceDto->getAttributes()->name);
+        $domainObject->changeDescription($resourceDto->getAttributes()->description);
 
         return $domainObject;
     }

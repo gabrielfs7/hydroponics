@@ -6,5 +6,13 @@
         <service id="domain.service.greenhouse.greenhouse_deleter" class="GSoares\Hydroponics\Domain\Service\Greenhouse\GreenhouseDeleter">
             <argument type="service" id="domain.repository.greenhouse.greenhouse_repository"/>
         </service>
+
+        <service id="domain.service.tank.tank_deleter" class="GSoares\Hydroponics\Domain\Service\Tank\TankDeleter">
+            <argument type="service" id="domain.repository.tank.tank_repository"/>
+        </service>
+        
+        <service id="domain.service.system.system_deleter" class="GSoares\Hydroponics\Domain\Service\System\SystemDeleter">
+            <argument type="service" id="domain.repository.system.system_repository"/>
+        </service>
     </services>
 </container>

@@ -1,9 +1,9 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Service\Greenhouse;
+namespace GSoares\Hydroponics\Application\Service\System;
 
 use GSoares\Hydroponics\Application\Service\Resource\AbstractResourceDeleter;
 
-class GreenhouseDeleter extends AbstractResourceDeleter
+class SystemDeleter extends AbstractResourceDeleter
 {
 }

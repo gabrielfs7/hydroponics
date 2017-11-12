@@ -25,7 +25,8 @@ class TankCreator extends AbstractResourceSaver implements ResourceCreatorInterf
     protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
     {
         $parameters = new \ArrayObject();
-        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
+        $parameters->offsetSet('name', $resourceDto->getAttributeValue('name'));
+        $parameters->offsetSet('volumeCapacity', $resourceDto->getAttributeValue('volumeCapacity'));
 
         return $parameters;
     }

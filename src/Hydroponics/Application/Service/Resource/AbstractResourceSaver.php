@@ -122,5 +122,16 @@ abstract class AbstractResourceSaver
      * @param ResourceDtoInterface $resourceDto
      * @return \ArrayAccess
      */
-    abstract protected function fillFactoryParameters(ResourceDtoInterface $resourceDto);
+    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
+    {
+        $parameters = new \ArrayObject();
+
+        foreach ($resourceDto as $name => $value) {
+            if (is_string($value) || is_numeric($value)) {
+                $parameters->offsetSet($name, $value);
+            }
+        }
+
+        return $parameters;
+    }
 }

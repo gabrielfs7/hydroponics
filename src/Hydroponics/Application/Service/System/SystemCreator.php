@@ -1,12 +1,12 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Service\Greenhouse;
+namespace GSoares\Hydroponics\Application\Service\System;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver;
 use GSoares\Hydroponics\Application\Service\Resource\ResourceCreatorInterface;
 
-class GreenhouseCreator extends AbstractResourceSaver implements ResourceCreatorInterface
+class SystemCreator extends AbstractResourceSaver implements ResourceCreatorInterface
 {
 
     /**
@@ -16,17 +16,5 @@ class GreenhouseCreator extends AbstractResourceSaver implements ResourceCreator
     public function create($json)
     {
         return parent::save($json);
-    }
-
-    /**
-     * @param ResourceDtoInterface $resourceDto
-     * @return \ArrayObject
-     */
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
-    {
-        $parameters = new \ArrayObject();
-        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
-
-        return $parameters;
     }
 }

@@ -3,8 +3,8 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="application.decoder.greenhouse.greenhouse_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Greenhouse\GreenhouseDtoDecoder">
-
-        </service>
+        <service id="application.decoder.greenhouse.greenhouse_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Greenhouse\GreenhouseDtoDecoder" />
+        <service id="application.decoder.system.system_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\System\SystemDtoDecoder" />
+        <service id="application.decoder.tank.tank_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Tank\TankDtoDecoder" />
     </services>
 </container>

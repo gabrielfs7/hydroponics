@@ -6,5 +6,13 @@
         <service id="domain.factory.greenhouse.greenhouse_factory" class="GSoares\Hydroponics\Domain\Factory\Greenhouse\GreenhouseFactory">
             <argument type="service" id="infrastructure.datetime.datetime_provider"/>
         </service>
+
+        <service id="domain.factory.tank.tank_factory" class="GSoares\Hydroponics\Domain\Factory\Tank\TankFactory">
+            <argument type="service" id="infrastructure.datetime.datetime_provider"/>
+        </service>
+
+        <service id="domain.factory.system.system_factory" class="GSoares\Hydroponics\Domain\Factory\System\SystemFactory">
+            <argument type="service" id="infrastructure.datetime.datetime_provider"/>
+        </service>
     </services>
 </container>

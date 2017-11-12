@@ -18,16 +18,4 @@ class TankUpdater extends AbstractResourceSaver implements ResourceUpdaterInterf
     {
         return parent::save($json, $this->findDomainObjectById($id));
     }
-
-    /**
-     * @param ResourceDtoInterface $resourceDto
-     * @return \ArrayObject
-     */
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
-    {
-        $parameters = new \ArrayObject();
-        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
-
-        return $parameters;
-    }
 }

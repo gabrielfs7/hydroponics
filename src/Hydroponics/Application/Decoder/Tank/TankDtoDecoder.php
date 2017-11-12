@@ -1,10 +1,10 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Decoder\System;
+namespace GSoares\Hydroponics\Application\Decoder\Tank;
 
 use GSoares\Hydroponics\Application\Decoder\AbstractDtoDecoder;
 
-class SystemDtoDecoder extends AbstractDtoDecoder
+class TankDtoDecoder extends AbstractDtoDecoder
 {
 
     /**
@@ -12,6 +12,6 @@ class SystemDtoDecoder extends AbstractDtoDecoder
      */
     protected function getResourceType()
     {
-        return 'system';
+        return 'tank';
     }
 }

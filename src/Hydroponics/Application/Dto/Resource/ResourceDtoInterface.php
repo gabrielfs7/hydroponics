@@ -21,6 +21,12 @@ interface ResourceDtoInterface
     public function getAttributes();
 
     /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getAttributeValue($name);
+
+    /**
      * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface[]
      */
     public function getRelationships();

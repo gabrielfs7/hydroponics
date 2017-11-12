@@ -36,20 +36,37 @@
         <default key="_controller">application.controller.api.greenhouse_controller:delete</default>
     </route>
 
+    <!-- API Tank -->
+    <route id="api_tank_get_by_id" path="api/tanks/{id}" methods="GET">
+        <default key="_controller">application.controller.api.tank_controller:get</default>
+    </route>
+    <route id="api_tank_get" path="api/tanks" methods="GET">
+        <default key="_controller">application.controller.api.tank_controller:get</default>
+    </route>
+    <route id="api_tank_post" path="api/tanks" methods="POST">
+        <default key="_controller">application.controller.api.tank_controller:post</default>
+    </route>
+    <route id="api_tank_patch" path="api/tanks/{id}" methods="PATCH">
+        <default key="_controller">application.controller.api.tank_controller:patch</default>
+    </route>
+    <route id="api_tank_delete" path="api/tanks/{id}" methods="DELETE">
+        <default key="_controller">application.controller.api.tank_controller:delete</default>
+    </route>
+    
     <!-- API System -->
-    <route id="api_system_get_by_id" path="api/system/{id}" methods="GET">
+    <route id="api_system_get_by_id" path="api/systems/{id}" methods="GET">
         <default key="_controller">application.controller.api.system_controller:get</default>
     </route>
-    <route id="api_system_get" path="api/system" methods="GET">
+    <route id="api_system_get" path="api/systems" methods="GET">
         <default key="_controller">application.controller.api.system_controller:get</default>
     </route>
-    <route id="api_system_post" path="api/system" methods="POST">
+    <route id="api_system_post" path="api/systems" methods="POST">
         <default key="_controller">application.controller.api.system_controller:post</default>
     </route>
-    <route id="api_system_patch" path="api/system/{id}" methods="PATCH">
+    <route id="api_system_patch" path="api/systems/{id}" methods="PATCH">
         <default key="_controller">application.controller.api.system_controller:patch</default>
     </route>
-    <route id="api_system_delete" path="api/system/{id}" methods="DELETE">
+    <route id="api_system_delete" path="api/systems/{id}" methods="DELETE">
         <default key="_controller">application.controller.api.system_controller:delete</default>
     </route>
 </routes>

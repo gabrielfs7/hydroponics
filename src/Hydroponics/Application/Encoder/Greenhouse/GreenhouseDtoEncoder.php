@@ -20,6 +20,7 @@ class GreenhouseDtoEncoder implements EncoderInterface
     {
         $attributes = new GreenhouseAttributesDto();
         $attributes->name = $object->getName();
+        $attributes->description = $object->getDescription();
         $attributes->createdAt = $object->getCreatedAt()->format('Y-m-d\TH:i:s');
 
         $dto = new ResourceDto(

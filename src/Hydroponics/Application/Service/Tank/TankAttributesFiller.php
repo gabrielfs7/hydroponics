@@ -15,8 +15,9 @@ class TankAttributesFiller implements ResourceAttributesFillerInterface
      */
     public function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
     {
-        $domainObject->changeName($resourceDto->getAttributes()->name);
-        $domainObject->changeDescription($resourceDto->getAttributes()->description);
+        $domainObject->changeUpdatedAt(new \DateTime());
+        $domainObject->changeName($resourceDto->getAttributeValue('name'));
+        $domainObject->changeDescription($resourceDto->getAttributeValue('description'));
 
         return $domainObject;
     }

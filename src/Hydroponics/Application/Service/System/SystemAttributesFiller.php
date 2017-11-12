@@ -1,11 +1,11 @@
 <?php
 
-namespace GSoares\Hydroponics\Application\Service\Greenhouse;
+namespace GSoares\Hydroponics\Application\Service\System;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Service\Resource\ResourceAttributesFillerInterface;
 
-class GreenhouseAttributesFiller implements ResourceAttributesFillerInterface
+class SystemAttributesFiller implements ResourceAttributesFillerInterface
 {
 
     /**
@@ -15,6 +15,7 @@ class GreenhouseAttributesFiller implements ResourceAttributesFillerInterface
      */
     public function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
     {
+        $domainObject->changeUpdatedAt(new \DateTime());
         $domainObject->changeName($resourceDto->getAttributes()->name);
         $domainObject->changeDescription($resourceDto->getAttributes()->description);
 

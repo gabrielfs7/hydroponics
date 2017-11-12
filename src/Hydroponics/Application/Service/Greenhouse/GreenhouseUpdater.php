@@ -18,16 +18,4 @@ class GreenhouseUpdater extends AbstractResourceSaver implements ResourceUpdater
     {
         return parent::save($json, $this->findDomainObjectById($id));
     }
-
-    /**
-     * @param ResourceDtoInterface $resourceDto
-     * @return \ArrayObject
-     */
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
-    {
-        $parameters = new \ArrayObject();
-        $parameters->offsetSet('name', $resourceDto->getAttributes()->name);
-
-        return $parameters;
-    }
 }

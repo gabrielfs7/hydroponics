@@ -76,6 +76,17 @@ class ResourceDto implements ResourceDtoInterface
     }
 
     /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getAttributeValue($name)
+    {
+        if (property_exists($this->attributes, $name)) {
+            return $this->attributes->{$name};
+        }
+    }
+
+    /**
      * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface[]
      */
     public function getRelationships()
