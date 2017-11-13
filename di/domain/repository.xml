@@ -26,5 +26,13 @@
                 <argument>tnk</argument>
             </call>
         </service>
+
+        <service id="domain.repository.tank.tank_version_repository" class="GSoares\Hydroponics\Domain\Repository\Tank\TankVersionRepository">
+            <factory service="doctrine.entity_manager" method="getRepository" />
+            <argument>GSoares\Hydroponics\Domain\Entity\TankVersion</argument>
+            <call method="setEntityAlias">
+                <argument>tkv</argument>
+            </call>
+        </service>
     </services>
 </container>
