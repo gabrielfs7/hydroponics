@@ -1,8 +1,8 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\ValueObject\Traits;
+namespace GSoares\Hydroponics\Domain\Entity\Traits;
 
-use GSoares\Hydroponics\Domain\ValueObject\Plant;
+use GSoares\Hydroponics\Domain\Entity\Plant;
 
 trait PlantTrait
 {

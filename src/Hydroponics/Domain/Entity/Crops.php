@@ -2,11 +2,10 @@
 
 namespace GSoares\Hydroponics\Domain\Entity;
 
+use GSoares\Hydroponics\Domain\Entity\Traits\PlantTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\SystemTrait;
-use GSoares\Hydroponics\Domain\ValueObject\Plant;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\NameTrait;
-use GSoares\Hydroponics\Domain\ValueObject\Traits\PlantTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\Time\ModifiedAtTrait;
 
 class Crops
