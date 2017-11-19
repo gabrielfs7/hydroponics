@@ -1,12 +1,12 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\Factory\System;
+namespace GSoares\Hydroponics\Domain\Factory\Plant;
 
-use GSoares\Hydroponics\Domain\Entity\System;
+use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Factory\FactoryInterface;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 
-class SystemFactory implements FactoryInterface
+class PlantFactory implements FactoryInterface
 {
 
     /**
@@ -19,12 +19,15 @@ class SystemFactory implements FactoryInterface
         $this->dateTimeProvider = $dateTimeProvider;
     }
 
+    /**
+     * @param \ArrayAccess $parameters
+     * @return object
+     */
     public function make(\ArrayAccess $parameters)
     {
-        $domainObject = new System(
+        $domainObject = new Plant(
             $parameters->offsetGet('name'),
-            $parameters->offsetGet('greenhouse'),
-            $parameters->offsetGet('tank')
+            $parameters->offsetGet('species')
         );
         $domainObject->changeCreatedAt($this->dateTimeProvider->current());
 

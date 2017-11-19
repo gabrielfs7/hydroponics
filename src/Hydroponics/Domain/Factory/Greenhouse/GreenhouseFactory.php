@@ -25,9 +25,9 @@ class GreenhouseFactory implements FactoryInterface
      */
     public function make(\ArrayAccess $parameters)
     {
-        $greenhouse = new Greenhouse($parameters->offsetGet('name'));
-        $greenhouse->changeCreatedAt($this->dateTimeProvider->current());
+        $domainObject = new Greenhouse($parameters->offsetGet('name'));
+        $domainObject->changeCreatedAt($this->dateTimeProvider->current());
 
-        return $greenhouse;
+        return $domainObject;
     }
 }

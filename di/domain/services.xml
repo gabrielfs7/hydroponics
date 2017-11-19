@@ -14,5 +14,13 @@
         <service id="domain.service.system.system_deleter" class="GSoares\Hydroponics\Domain\Service\System\SystemDeleter">
             <argument type="service" id="domain.repository.system.system_repository"/>
         </service>
+
+        <service id="domain.service.crops.crops_deleter" class="GSoares\Hydroponics\Domain\Service\Crops\CropsDeleter">
+            <argument type="service" id="domain.repository.crops.crops_repository"/>
+        </service>
+        
+        <service id="domain.service.plant.plant_deleter" class="GSoares\Hydroponics\Domain\Service\Plant\PlantDeleter">
+            <argument type="service" id="domain.repository.plant.plant_repository"/>
+        </service>
     </services>
 </container>

@@ -16,10 +16,35 @@ class Crops
     use SystemTrait;
     use PlantTrait;
 
+    /**
+     * @var int
+     */
+    private $quantity;
+
     public function __construct($name, System $system, Plant $plant)
     {
         $this->name = $name;
         $this->system = $system;
         $this->plant = $plant;
+        $this->quantity = 0;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param int $quantity
+     * @return $this;
+     */
+    public function changeQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
     }
 }

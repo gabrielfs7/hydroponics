@@ -6,5 +6,6 @@
         <service id="application.decoder.greenhouse.greenhouse_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Greenhouse\GreenhouseDtoDecoder" />
         <service id="application.decoder.system.system_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\System\SystemDtoDecoder" />
         <service id="application.decoder.tank.tank_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Tank\TankDtoDecoder" />
+        <service id="application.decoder.plant.plant_dto_decoder" class="GSoares\Hydroponics\Application\Decoder\Plant\PlantDtoDecoder" />
     </services>
 </container>

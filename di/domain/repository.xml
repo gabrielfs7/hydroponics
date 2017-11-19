@@ -34,5 +34,21 @@
                 <argument>tkv</argument>
             </call>
         </service>
+
+        <service id="domain.repository.plant.plant_repository" class="GSoares\Hydroponics\Domain\Repository\Plant\PlantRepository">
+            <factory service="doctrine.entity_manager" method="getRepository" />
+            <argument>GSoares\Hydroponics\Domain\Entity\Plant</argument>
+            <call method="setEntityAlias">
+                <argument>plt</argument>
+            </call>
+        </service>
+
+        <service id="domain.repository.crops.crops_repository" class="GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository">
+            <factory service="doctrine.entity_manager" method="getRepository" />
+            <argument>GSoares\Hydroponics\Domain\Entity\Crops</argument>
+            <call method="setEntityAlias">
+                <argument>plt</argument>
+            </call>
+        </service>
     </services>
 </container>

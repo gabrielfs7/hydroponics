@@ -36,5 +36,11 @@
             <argument type="service" id="application.service.system.system_searcher"/>
             <argument type="service" id="application.service.system.system_deleter"/>
         </service>
+        <service id="application.controller.api.plant_controller" parent="application.controller.api.abstract_controller" class="GSoares\Hydroponics\Application\Controller\Api\PlantController">
+            <argument type="service" id="application.service.plant.plant_creator"/>
+            <argument type="service" id="application.service.plant.plant_updater"/>
+            <argument type="service" id="application.service.plant.plant_searcher"/>
+            <argument type="service" id="application.service.plant.plant_deleter"/>
+        </service>
     </services>
 </container>

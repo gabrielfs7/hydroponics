@@ -77,5 +77,30 @@
         <service id="application.service.system.system_updater" parent="application.service.resource.abstract_system_saver" class="GSoares\Hydroponics\Application\Service\System\SystemUpdater" />
         <service id="application.service.system.system_searcher" parent="application.service.resource.abstract_system_searcher" class="GSoares\Hydroponics\Application\Service\System\SystemSearcher"/>
         <service id="application.service.system.system_attributes_filler" class="GSoares\Hydroponics\Application\Service\System\SystemAttributesFiller" />
+
+        <!-- Plant -->
+        <service id="application.service.resource.abstract_plant_saver" abstract="true" class="GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver">
+            <argument type="service" id="application.decoder.plant.plant_dto_decoder"/>
+            <argument type="service" id="application.encoder.plant.plant_dto_encoder"/>
+            <argument type="service" id="domain.factory.plant.plant_factory"/>
+            <argument type="service" id="domain.repository.plant.plant_repository"/>
+            <argument type="service" id="application.service.plant.plant_attributes_filler"/>
+            <argument type="service" id="application.builder.error.error_collection_dto_builder"/>
+        </service>
+
+        <service id="application.service.resource.abstract_plant_searcher" abstract="true" class="GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSearcher">
+            <argument type="service" id="application.encoder.plant.plant_dto_encoder"/>
+            <argument type="service" id="domain.repository.plant.plant_repository"/>
+        </service>
+
+        <service id="application.service.plant.plant_deleter" class="GSoares\Hydroponics\Application\Service\Plant\PlantDeleter">
+            <argument type="service" id="application.encoder.plant.plant_dto_encoder"/>
+            <argument type="service" id="domain.service.plant.plant_deleter"/>
+        </service>
+
+        <service id="application.service.plant.plant_creator" parent="application.service.resource.abstract_plant_saver" class="GSoares\Hydroponics\Application\Service\Plant\PlantCreator" />
+        <service id="application.service.plant.plant_updater" parent="application.service.resource.abstract_plant_saver" class="GSoares\Hydroponics\Application\Service\Plant\PlantUpdater" />
+        <service id="application.service.plant.plant_searcher" parent="application.service.resource.abstract_plant_searcher" class="GSoares\Hydroponics\Application\Service\Plant\PlantSearcher"/>
+        <service id="application.service.plant.plant_attributes_filler" class="GSoares\Hydroponics\Application\Service\Plant\PlantAttributesFiller" />
     </services>
 </container>

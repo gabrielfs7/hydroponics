@@ -69,4 +69,21 @@
     <route id="api_system_delete" path="api/systems/{id}" methods="DELETE">
         <default key="_controller">application.controller.api.system_controller:delete</default>
     </route>
+
+    <!-- API Plant -->
+    <route id="api_plant_get_by_id" path="api/plants/{id}" methods="GET">
+        <default key="_controller">application.controller.api.plant_controller:get</default>
+    </route>
+    <route id="api_plant_get" path="api/plants" methods="GET">
+        <default key="_controller">application.controller.api.plant_controller:get</default>
+    </route>
+    <route id="api_plant_post" path="api/plants" methods="POST">
+        <default key="_controller">application.controller.api.plant_controller:post</default>
+    </route>
+    <route id="api_plant_patch" path="api/plants/{id}" methods="PATCH">
+        <default key="_controller">application.controller.api.plant_controller:patch</default>
+    </route>
+    <route id="api_plant_delete" path="api/plants/{id}" methods="DELETE">
+        <default key="_controller">application.controller.api.plant_controller:delete</default>
+    </route>
 </routes>

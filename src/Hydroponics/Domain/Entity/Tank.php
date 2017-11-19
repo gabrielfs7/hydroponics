@@ -3,6 +3,7 @@
 namespace GSoares\Hydroponics\Domain\Entity;
 
 use GSoares\Hydroponics\Domain\Entity\Traits\GreenhouseTrait;
+use GSoares\Hydroponics\Domain\Entity\Traits\TankVersionsTrait;
 use GSoares\Hydroponics\Domain\ValueObject\NutritionalFormula;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;
@@ -16,6 +17,7 @@ class Tank
     use DescriptionTrait;
     use ModifiedAtTrait;
     use GreenhouseTrait;
+    use TankVersionsTrait;
 
     /**
      * @var float

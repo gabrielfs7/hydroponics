@@ -14,5 +14,9 @@
         <service id="domain.factory.system.system_factory" class="GSoares\Hydroponics\Domain\Factory\System\SystemFactory">
             <argument type="service" id="infrastructure.datetime.datetime_provider"/>
         </service>
+
+        <service id="domain.factory.plant.plant_factory" class="GSoares\Hydroponics\Domain\Factory\Plant\PlantFactory">
+            <argument type="service" id="infrastructure.datetime.datetime_provider"/>
+        </service>
     </services>
 </container>

@@ -25,12 +25,12 @@ class TankFactory implements FactoryInterface
      */
     public function make(\ArrayAccess $parameters)
     {
-        $greenhouse = new Tank(
+        $domainObject = new Tank(
             $parameters->offsetGet('name'),
             $parameters->offsetGet('volumeCapacity')
         );
-        $greenhouse->changeCreatedAt($this->dateTimeProvider->current());
+        $domainObject->changeCreatedAt($this->dateTimeProvider->current());
 
-        return $greenhouse;
+        return $domainObject;
     }
 }
