@@ -8,19 +8,50 @@ The main goal is to provide a management system to handle with day-by-day hydrop
 - Extract productivity reports and manage your costs.
 - Associate events for crops loss, generating important BI info for improve your productivity.
 
-
 ## Requirements
 
-- PHP 7.1+
-- MySQL 5.6+
+- PHP 7.2.9+
+- MySQL 5.7+
 - Apache or Nginx webserver
 
 ## Installation
 
+### Run docker
+
 ```
+docker-compose up -d
+```
+
+### Run composer inside container
+
+```
+docker container exec -it hydroponics_app bash
+cd /hydroponics
 composer install
 ```
 
+### Create db scheme
+
+```
+docker container exec -it hydroponics_app bash
+cd /hydroponics
+bin/doctrine migrations:migrate
+```
+
+### Initialize DB for development
+
+```
+mysql -u root -p root -P 3301 hydroponics < db/init-dev.sql
+```
+
+### To access the API
+
+To access
+
+```
+127.0.0.1:8001
+```
+ 
 ## Development
 
 It would be awesome some help with the project! To make easier the pull requests approval

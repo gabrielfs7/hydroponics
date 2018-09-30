@@ -6,10 +6,11 @@
         <parameter key="root.path"></parameter>
         <!-- Database -->
         <parameter key="database.driver">mysql</parameter>
-        <parameter key="database.host">dockerphp_mysql</parameter>
+        <parameter key="database.host">localhost</parameter>
+        <parameter key="database.port">3301</parameter>
         <parameter key="database.name">hydroponics</parameter>
         <parameter key="database.user">root</parameter>
-        <parameter key="database.pass">admin</parameter>
+        <parameter key="database.pass">root</parameter>
 
         <!-- Doctrine -->
         <parameter key="doctrine.mapping.dir">%root.path%/db/Doctrine/Mapping</parameter>

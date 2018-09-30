@@ -1,0 +1,51 @@
+version: '3.6'
+
+services:
+
+  # MySql Database
+  hydroponics_mysql:
+    container_name: hydroponics_mysql
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    image: hydroponics_mysql
+    ports:
+      - '3301:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    networks:
+      - hydroponics_network
+
+  # ElasticSearch server
+  hydroponics_elasticsearch:
+    container_name: hydroponics_elasticsearch
+    build:
+      context: .
+      dockerfile: docker/elasticsearch/Dockerfile
+    image: hydroponics_elasticsearch
+    ports:
+       - '9201:9200'
+       - '9301:9300'
+    networks:
+      - hydroponics_network
+
+  # Apache + PHP7 server
+  hydroponics_app:
+    container_name: hydroponics_app
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    image: hydroponics_app
+    ports:
+      - '8001:80'
+    networks:
+      - hydroponics_network
+
+    # Bind mount the volume, so changes made in this directory will be recognized by the container
+    volumes:
+      - ./:/hydroponics/
+
+networks:
+  hydroponics_network:
+    name: hydroponics_network

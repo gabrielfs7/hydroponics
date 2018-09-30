@@ -41,6 +41,7 @@
                 <argument key="user">%database.user%</argument>
                 <argument key="password">%database.pass%</argument>
                 <argument key="host">%database.host%</argument>
+                <argument key="port">%database.port%</argument>
                 <argument key="driver">pdo_%database.driver%</argument>
                 <argument key="charset">utf8</argument>
             </argument>
@@ -49,7 +50,7 @@
 
         <!-- DataBase Connection -->
         <service id="database.connection" class="\PDO">
-            <argument>%database.driver%:host=%database.host%;dbname=%database.name%</argument>
+            <argument>%database.driver%:host=%database.host%;dbname=%database.name%;port=%database.port%</argument>
             <argument>%database.user%</argument>
             <argument>%database.pass%</argument>
         </service>
