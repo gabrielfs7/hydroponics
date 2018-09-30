@@ -1,0 +1,41 @@
+GSoares\Hydroponics\Domain\Entity\TankVersion:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\Tank\TankVersionRepository
+  table: TankVersion
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: true
+    deletedAt:
+      type: datetime
+      column: deleted_at
+      nullable: true
+  embedded:
+    waterVolume:
+      class: GSoares\Hydroponics\Domain\ValueObject\WaterVolume
+    waterPh:
+      class: GSoares\Hydroponics\Domain\ValueObject\WaterPh
+    waterEc:
+      class: GSoares\Hydroponics\Domain\ValueObject\WaterEc
+    waterDbo:
+      class: GSoares\Hydroponics\Domain\ValueObject\WaterDbo
+    waterTemperature:
+      class: GSoares\Hydroponics\Domain\ValueObject\WaterTemperature
+  manyToOne:
+    tank:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\Tank
+      joinColumn:
+        name: tank_id
+        referencedColumnName: id
+        nullable: false
+

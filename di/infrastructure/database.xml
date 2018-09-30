@@ -8,10 +8,10 @@
             <argument type="collection">
                 <argument>%doctrine.mapping.dir%</argument>
             </argument>
-            <argument>.dcm.xml</argument>
+            <argument>.dcm.yml</argument>
         </service>
 
-        <service id="doctrine.mapping.driver" class="Doctrine\ORM\Mapping\Driver\XmlDriver">
+        <service id="doctrine.mapping.driver" class="Doctrine\ORM\Mapping\Driver\YamlDriver">
             <argument type="service" id="doctrine.mapping.locator"/>
         </service>
         <service id="doctrine.config" class="Doctrine\ORM\Configuration">

@@ -1,0 +1,12 @@
+GSoares\Hydroponics\Domain\ValueObject\WaterPh:
+  type: embeddable
+  fields:
+    ph:
+      type: decimal
+      column: water_ph
+    maxPh:
+      type: decimal
+      column: max_water_ph
+    minPh:
+      type: decimal
+      column: min_water_ph

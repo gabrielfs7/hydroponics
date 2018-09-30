@@ -6,8 +6,8 @@
         <parameter key="root.path"></parameter>
         <!-- Database -->
         <parameter key="database.driver">mysql</parameter>
-        <parameter key="database.host">localhost</parameter>
-        <parameter key="database.port">3301</parameter>
+        <parameter key="database.host">hydroponics_mysql</parameter>
+        <parameter key="database.port">3306</parameter>
         <parameter key="database.name">hydroponics</parameter>
         <parameter key="database.user">root</parameter>
         <parameter key="database.pass">root</parameter>

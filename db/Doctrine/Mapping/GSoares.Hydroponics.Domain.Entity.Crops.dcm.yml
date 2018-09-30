@@ -1,0 +1,33 @@
+GSoares\Hydroponics\Domain\Entity\Crops:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository
+  table: Crops
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    quantity:
+      type: integer
+      column: quantity
+      nullable: false
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: true
+    deletedAt:
+      type: datetime
+      column: deleted_at
+      nullable: true
+  manyToOne:
+    plant:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\Plant
+      joinColumn:
+        name: plant_id
+        referencedColumnName: id
+        nullable: false

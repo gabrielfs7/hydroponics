@@ -1,0 +1,41 @@
+GSoares\Hydroponics\Domain\Entity\Tank:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\Tank\TankRepository
+  table: Tank
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 250
+      column: name
+      nullable: false
+    description:
+      type: string
+      length: 1000
+      column: description
+      nullable: true
+    volumeCapacity:
+      type: decimal
+      column: volume_capacity
+      nullable: false
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: true
+    deletedAt:
+      type: datetime
+      column: deleted_at
+      nullable: true
+  oneToMany:
+    tankVersions:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\TankVersion
+      mappedBy: tank
+      cascade: ["persist", "merge"]

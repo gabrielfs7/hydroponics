@@ -1,0 +1,12 @@
+GSoares\Hydroponics\Domain\ValueObject\WaterDbo:
+  type: embeddable
+  fields:
+    dbo:
+      type: decimal
+      column: water_dbo
+    maxDbo:
+      type: decimal
+      column: max_water_dbo
+    minDbo:
+      type: decimal
+      column: min_water_dbo

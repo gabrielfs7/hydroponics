@@ -1,0 +1,12 @@
+GSoares\Hydroponics\Domain\ValueObject\WaterTemperature:
+  type: embeddable
+  fields:
+    temperature:
+      type: decimal
+      column: water_temperature
+    maxTemperature:
+      type: decimal
+      column: max_water_temperature
+    minTemperature:
+      type: decimal
+      column: min_water_temperature

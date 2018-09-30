@@ -8,12 +8,17 @@ RUN apt-get update \
 # Configure apache mod rewrite
 RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
+# Exit from html root, cause it will be removed
 WORKDIR /var/www
 
 # Create link for public application
 RUN rm -rf /var/www/html \
     && mkdir /hydroponics \
     && ln -sf /hydropnics/public /var/www/html
+    && chown -R www-data:www-data /var/www/html
+
+# Set new working dit for project root
+WORKDIR /hydroponics
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \

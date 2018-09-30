@@ -1,0 +1,9 @@
+GSoares\Hydroponics\Domain\ValueObject\WaterVolume:
+  type: embeddable
+  fields:
+    currentVolume:
+      type: decimal
+      column: current_volume
+    minVolume:
+      type: decimal
+      column: min_volume

@@ -1,0 +1,12 @@
+GSoares\Hydroponics\Domain\ValueObject\WaterEc:
+  type: embeddable
+  fields:
+    ec:
+      type: decimal
+      column: water_ec
+    maxEc:
+      type: decimal
+      column: max_water_ec
+    minEc:
+      type: decimal
+      column: min_water_ec

@@ -26,22 +26,28 @@ docker-compose up -d
 
 ```
 docker container exec -it hydroponics_app bash
-cd /hydroponics
 composer install
 ```
 
 ### Create db scheme
 
+Go inside the container:
+
 ```
 docker container exec -it hydroponics_app bash
-cd /hydroponics
-bin/doctrine migrations:migrate
 ```
 
-### Initialize DB for development
+Create database: 
 
 ```
-mysql -u root -p root -P 3301 hydroponics < db/init-dev.sql
+mysql -h hydroponics_mysql -u root -proot < db/create-database.sql
+bin/doctrine orm:schema-tool:create
+```
+
+Initialize DB for development:
+
+```
+mysql -h hydroponics_mysql -u root -proot < db/init-dev.sql
 ```
 
 ### To access the API

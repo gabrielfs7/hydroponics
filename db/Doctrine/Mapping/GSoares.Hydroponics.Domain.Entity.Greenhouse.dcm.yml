@@ -1,0 +1,37 @@
+GSoares\Hydroponics\Domain\Entity\Greenhouse:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository
+  table: Greenhouse
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 250
+      column: name
+      nullable: false
+    description:
+      type: string
+      length: 1000
+      column: description
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: true
+    deletedAt:
+      type: datetime
+      column: deleted_at
+      nullable: true
+  oneToMany:
+    systems:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\System
+      mappedBy: greenhouse
+      cascade: ["persist", "merge"]
