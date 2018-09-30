@@ -55,7 +55,7 @@ mysql -h hydroponics_mysql -u root -proot < db/init-dev.sql
 To access
 
 ```
-127.0.0.1:8001
+127.0.0.1:8001/public
 ```
  
 ## Development

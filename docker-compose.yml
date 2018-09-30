@@ -44,7 +44,7 @@ services:
 
     # Bind mount the volume, so changes made in this directory will be recognized by the container
     volumes:
-      - ./:/hydroponics/
+      - ./:/var/www/html/
 
 networks:
   hydroponics_network:

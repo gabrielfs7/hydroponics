@@ -2,7 +2,6 @@
 
 namespace GSoares\Hydroponics\Domain\ValueObject;
 
-
 class WaterTemperature
 {
 

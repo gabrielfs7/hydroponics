@@ -5,7 +5,7 @@
     http://symfony.com/schema/routing/routing-1.0.xsd">
     <!-- Index -->
     <route id="index" path="/">
-        <default key="_controller">application.controller.index:indexAction</default>
+        <default key="_controller">application.controller.index_controller:indexAction</default>
     </route>
     
     <!-- Quality control -->

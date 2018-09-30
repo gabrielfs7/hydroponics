@@ -29,5 +29,4 @@ class ErrorDto
      * @var string
      */
     public $details;
-
 }

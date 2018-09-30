@@ -9,5 +9,4 @@ class SourceDto
      * @var string
      */
     public $pointer;
-
 }

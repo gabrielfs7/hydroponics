@@ -2,7 +2,6 @@
 
 namespace GSoares\Hydroponics\Application\Encoder\Greenhouse;
 
-
 use GSoares\Hydroponics\Application\Dto\Greenhouse\GreenhouseAttributesDto;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDto;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
