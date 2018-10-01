@@ -58,6 +58,10 @@ To access
 127.0.0.1:8001/public
 ```
  
+# API Docs
+
+For API usages, please open the [swagger.yml](./swagger.yml) on [Swagger Online Editor](https://editor.swagger.io/).
+ 
 ## Development
 
 It would be awesome some help with the project! To make easier the pull requests approval

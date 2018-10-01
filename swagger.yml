@@ -1,0 +1,504 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Hydroponics API
+  description: API for hydroponics system management
+servers:
+  - url: https://localhost:8001/public/api
+security:
+  - BasicAuth: []
+paths:
+  #
+  # Greenhouse
+  #
+  /greenhouses:
+    get:
+      description: Returns a list of registries
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/Name'
+      responses:
+        '200':
+          description: Successfully returned the list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Greenhouse'
+        '400':
+          $ref: '#/components/responses/400Error'
+    post:
+      description: Create a new registry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Greenhouse'
+      responses:
+        '201':
+          description: Successfully created a new registry
+          content:
+            application/json:
+               schema:
+                 $ref: '#/components/schemas/Greenhouse'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /greenhouses/{id}:
+    get:
+      description: Get registry details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greenhouse'
+        '400':
+          $ref: '#/components/responses/400Error'
+    patch:
+      description: Update Registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Greenhouse'
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greenhouse'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      description: Delete registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          $ref: '#/components/responses/400Error'
+  #
+  # System
+  #
+  /systems:
+    get:
+      description: Returns a list of registries
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/Name'
+      responses:
+        '200':
+          description: Successfully returned the list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/System'
+        '400':
+          $ref: '#/components/responses/400Error'
+    post:
+      description: Create a new registry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/System'
+      responses:
+        '201':
+          description: Successfully created a new registry
+          content:
+            application/json:
+               schema:
+                 $ref: '#/components/schemas/System'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /systems/{id}:
+    get:
+      description: Get registry details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '400':
+          $ref: '#/components/responses/400Error'
+    patch:
+      description: Update Registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/System'
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      description: Delete registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          $ref: '#/components/responses/400Error'
+  #
+  # Tank
+  #
+  /tanks:
+    get:
+      description: Returns a list of registries
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/Name'
+      responses:
+        '200':
+          description: Successfully returned the list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tank'
+        '400':
+          $ref: '#/components/responses/400Error'
+    post:
+      description: Create a new registry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tank'
+      responses:
+        '201':
+          description: Successfully created a new registry
+          content:
+            application/json:
+               schema:
+                 $ref: '#/components/schemas/Tank'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /tanks/{id}:
+    get:
+      description: Get registry details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tank'
+        '400':
+          $ref: '#/components/responses/400Error'
+    patch:
+      description: Update Registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Tank'
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tank'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      description: Delete registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          $ref: '#/components/responses/400Error'
+  #
+  # Plant
+  #
+  /plants:
+    get:
+      description: Returns a list of registries
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/Name'
+      responses:
+        '200':
+          description: Successfully returned the list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Plant'
+        '400':
+          $ref: '#/components/responses/400Error'
+    post:
+      description: Create a new registry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plant'
+      responses:
+        '201':
+          description: Successfully created a new registry
+          content:
+            application/json:
+               schema:
+                 $ref: '#/components/schemas/Plant'
+        '400':
+          $ref: '#/components/responses/400Error'
+  /plants/{id}:
+    get:
+      description: Get registry details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plant'
+        '400':
+          $ref: '#/components/responses/400Error'
+    patch:
+      description: Update Registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Plant'
+      responses:
+        '200':
+          description: Successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plant'
+        '400':
+          $ref: '#/components/responses/400Error'
+    delete:
+      description: Delete registry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          $ref: '#/components/responses/400Error'
+#
+# Components
+#
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    #
+    # Entities
+    #
+    Greenhouse:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+    System:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+    Plant:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        species:
+          type: string
+        createdAt:
+          type: string
+    Tank:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        volumeCapacity:
+          type: string
+        currentVolume:
+          type: number
+        minVolume:
+          type: number
+        waterTemperature:
+          type: number
+        maxWaterTemperature:
+          type: number
+        minWaterTemperature:
+          type: number
+        waterPh:
+          type: number
+        maxWaterPh:
+          type: number
+        minWaterPh:
+          type: number
+        waterEc:
+          type: number
+        maxWaterEc:
+          type: number
+        minWaterEc:
+          type: number
+        waterDbo:
+          type: number
+        maxWaterDbo:
+          type: number
+        minWaterDbo:
+          type: number
+        createdAt:
+          type: string
+    #
+    # Helpers
+    #
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        offset:
+          type: integer
+        limit:
+          type: integer
+  #
+  # Parameters
+  #
+  parameters:
+    Name:
+      name: name
+      in: query
+      description: Name to search
+      schema:
+        type: string
+    PageLimit:
+      name: limit
+      in: query
+      description: Limits the number of items on a page
+      schema:
+        type: integer
+    PageOffset:
+      name: offset
+      in: query
+      description: Specifies the page number of registries displayed
+      schema:
+        type: integer
+  responses:
+    400Error:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
