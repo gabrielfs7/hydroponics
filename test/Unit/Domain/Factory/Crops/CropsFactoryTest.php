@@ -1,0 +1,53 @@
+<?php
+
+namespace GSoares\Hydroponics\Test\Unit\Domain\Factory\Crops;
+
+use GSoares\Hydroponics\Domain\Entity\Crops;
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Domain\Entity\System;
+use GSoares\Hydroponics\Domain\Entity\Tank;
+use GSoares\Hydroponics\Domain\Entity\Plant;
+use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
+use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
+use PHPUnit\Framework\TestCase;
+
+class CropsFactoryTest extends TestCase
+{
+
+    /**
+     * @var DateTimeProvider|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $dateTimeProvider;
+
+    /**
+     * @var CropsFactory
+     */
+    private $factory;
+
+    public function setUp()
+    {
+        $this->dateTimeProvider = $this->createMock(DateTimeProvider::class);
+        $this->factory = new CropsFactory($this->dateTimeProvider);
+    }
+
+    public function testMake()
+    {
+        $currentTime = new \DateTime('2010-10-10 10:10:10');
+
+        $dateProvider = $this->dateTimeProvider;
+        $invocationMocker = $dateProvider->expects($this->once());
+
+        $invocationMocker->method('current');
+        $invocationMocker->willReturn($currentTime);
+
+        $tank = new Tank('Tank', 1.5);
+        $greenhouse = new Greenhouse('Vegetables');
+        $system = new System('NFT', $greenhouse, $tank);
+        $plant = new Plant('Lettuce', 'Lactuca sativa');
+
+        $crops = new Crops('Lettuce Crops', $system, $plant);
+        $crops->changeCreatedAt($currentTime);
+
+        $this->assertEquals($crops, $this->factory->make('Lettuce Crops', $system, $plant));
+    }
+}

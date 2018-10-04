@@ -30,18 +30,6 @@
     <filter>
         <whitelist>
             <directory>src/</directory>
-            <!--<exclude>-->
-                <!--<directory>src/Hydroponics/Application</directory>-->
-            <!--</exclude>-->
         </whitelist>
     </filter>
-    <logging>
-        <log
-            type="testdox-html"
-            target="public/phpunit/testdox.html"
-            charset="UTF-8"
-            highlight="true"
-            lowUpperBound="10"
-            highLowerBound="30"/>
-    </logging>
 </phpunit>
