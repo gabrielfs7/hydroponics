@@ -10,7 +10,8 @@ class NameTraitTest extends TestCase
     public function testGetName()
     {
         $trait = $this->getMockForTrait(NameTrait::class);
+        $trait->changeName('Test');
 
-        $this->assertNull($trait->getName());
+        $this->assertSame('Test', $trait->getName());
     }
 }

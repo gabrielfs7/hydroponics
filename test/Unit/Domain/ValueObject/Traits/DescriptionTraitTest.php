@@ -7,10 +7,11 @@ use PHPUnit\Framework\TestCase;
 
 class DescriptionTraitTest extends TestCase
 {
-    public function testGetName()
+    public function testGetDescription()
     {
         $trait = $this->getMockForTrait(DescriptionTrait::class);
+        $trait->changeDescription('Test');
 
-        $this->assertNull($trait->getDescription());
+        $this->assertSame('Test', $trait->getDescription());
     }
 }

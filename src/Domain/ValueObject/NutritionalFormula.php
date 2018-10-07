@@ -12,9 +12,8 @@ class NutritionalFormula
     use NameTrait;
     use DescriptionTrait;
 
-    public function __construct(string $name, string $description)
+    public function __construct(string $name)
     {
         $this->changeName($name);
-        $this->changeDescription($description);
     }
 }

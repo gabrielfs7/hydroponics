@@ -27,6 +27,6 @@ class SystemInstallerTest extends TestCase
         $greenhouse = new Greenhouse('greenhouse');
         $system = new System('NFT', $greenhouse, $tank);
 
-        $this->assertEquals($system, $this->systemInstaller->install($greenhouse, $system));
+        $this->assertNull($this->systemInstaller->install($greenhouse, $system));
     }
 }

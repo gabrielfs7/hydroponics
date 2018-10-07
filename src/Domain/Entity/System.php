@@ -18,9 +18,6 @@ class System
     use GreenhouseTrait;
     use TankTrait;
 
-    /** @var Tank */
-    private $tank;
-
     public function __construct(string $name, Greenhouse $greenhouse, Tank $tank)
     {
         $this->changeName($name);

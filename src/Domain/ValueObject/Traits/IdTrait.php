@@ -7,7 +7,7 @@ trait IdTrait
     /** @var int */
     protected $id;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
