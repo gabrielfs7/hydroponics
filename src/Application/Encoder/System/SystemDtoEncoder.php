@@ -10,12 +10,7 @@ use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
 
 class SystemDtoEncoder implements EncoderInterface
 {
-
-    /**
-     * @param object $object
-     * @return ResourceDtoInterface
-     */
-    public function encode($object)
+    public function encode(object $object): ResourceDtoInterface
     {
         $attributes = new SystemAttributesDto();
         $attributes->name = $object->getName();

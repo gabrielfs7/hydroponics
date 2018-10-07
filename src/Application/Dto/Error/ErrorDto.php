@@ -4,29 +4,18 @@ namespace GSoares\Hydroponics\Application\Dto\Error;
 
 class ErrorDto
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $status;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $code;
 
-    /**
-     * @var SourceDto
-     */
+    /** @var SourceDto */
     public $source;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $title;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $details;
 }

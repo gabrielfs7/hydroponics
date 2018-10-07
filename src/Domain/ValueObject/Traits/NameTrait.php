@@ -4,25 +4,15 @@ namespace GSoares\Hydroponics\Domain\ValueObject\Traits;
 
 trait NameTrait
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function changeName($name)
+    public function changeName(string $name): self
     {
         $this->name = $name;
 

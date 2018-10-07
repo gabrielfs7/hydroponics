@@ -4,49 +4,33 @@ namespace GSoares\Hydroponics\Domain\ValueObject;
 
 class WaterTemperature
 {
-
-    /**
-     * @var float
-     */
+    /** @var float */
     private $temperature;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $maxTemperature;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $minTemperature;
 
-    public function __construct($temperature, $maxTemperature, $minTemperature)
+    public function __construct(float $temperature, float $maxTemperature, float $minTemperature)
     {
         $this->temperature = $temperature;
         $this->maxTemperature = $maxTemperature;
         $this->minTemperature = $minTemperature;
     }
 
-    /**
-     * @return float
-     */
-    public function getTemperature()
+    public function getTemperature(): float
     {
         return $this->temperature;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaxTemperature()
+    public function getMaxTemperature(): float
     {
         return $this->maxTemperature;
     }
 
-    /**
-     * @return float
-     */
-    public function getMinTemperature()
+    public function getMinTemperature(): float
     {
         return $this->minTemperature;
     }

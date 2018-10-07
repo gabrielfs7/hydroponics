@@ -2,13 +2,9 @@
 
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
+use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
+
 interface ResourceUpdaterInterface
 {
-
-    /**
-     * @param string $json
-     * @param string $id
-     * @return \GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface
-     */
-    public function update($json, $id);
+    public function update(string $json, string $id): ResponseDtoInterface;
 }

@@ -2,18 +2,11 @@
 
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
+use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
+
 interface ResourceSearcherInterface
 {
+    public function search(array $parameters): ResponseDtoInterface;
 
-    /**
-     * @param array $parameters
-     * @return \GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface
-     */
-    public function search(array $parameters);
-
-    /**
-     * @param int $id
-     * @return \GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface
-     */
-    public function searchById($id);
+    public function searchById(string $id): ResponseDtoInterface;
 }

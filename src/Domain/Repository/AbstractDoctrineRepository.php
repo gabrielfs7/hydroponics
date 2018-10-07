@@ -7,7 +7,6 @@ use Doctrine\ORM\QueryBuilder;
 
 abstract class AbstractDoctrineRepository extends EntityRepository implements RepositoryInterface
 {
-
     /** @var array */
     private $filters = [];
 
@@ -106,7 +105,7 @@ abstract class AbstractDoctrineRepository extends EntityRepository implements Re
                 ->andWhere("{$this->entityAlias}.description LIKE :description")
                 ->setParameter('description', "%$description%");
         }
-        
+
         if ($createdFrom = $this->getFilter('createdFrom')) {
             $this->queryBuilder
                 ->andWhere("{$this->entityAlias}.createdAt >= :createdFrom")

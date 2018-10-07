@@ -6,35 +6,25 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface;
 
 class ResponseDto implements ResponseDtoInterface
 {
-
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
-     */
+    /** @var ResourceLinksDtoInterface */
     public $links;
 
-    /**
-     * @var object|array
-     */
+    /** @var object|array */
     public $data;
 
-    public function __construct(ResourceLinksDtoInterface $links, $data)
+    public function __construct(ResourceLinksDtoInterface $links, mixed $data)
     {
         $this->links = $links;
         $this->data = $data;
     }
 
-    /**
-     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
-     */
-    public function getLinks()
+    public function getLinks(): ResourceLinksDtoInterface
     {
         return $this->links;
     }
 
-    /**
-     * @return object|array
-     */
-    public function getData()
+    /** @return object|array */
+    public function getData(): mixed
     {
         return $this->data;
     }

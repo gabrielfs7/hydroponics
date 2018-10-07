@@ -5,20 +5,16 @@ namespace GSoares\Hydroponics\Application\Service\Resource;
 use GSoares\Hydroponics\Application\Decoder\DecoderInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDto;
+use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
 use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
 
 abstract class AbstractResourceSearcher implements ResourceSearcherInterface
 {
-
-    /**
-     * @var DecoderInterface
-     */
+    /** @var DecoderInterface */
     private $encoder;
 
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $repository;
 
     public function __construct(EncoderInterface $encoder, RepositoryInterface $repository)
@@ -27,11 +23,7 @@ abstract class AbstractResourceSearcher implements ResourceSearcherInterface
         $this->repository = $repository;
     }
 
-    /**
-     * @param array $filters
-     * @return ResponseDto
-     */
-    public function search(array $filters)
+    public function search(array $filters): ResponseDtoInterface
     {
         $domainObjects = $this->setSearchFilters($filters)
             ->findAll();
@@ -46,11 +38,7 @@ abstract class AbstractResourceSearcher implements ResourceSearcherInterface
         return new ResponseDto(new ResourceLinksDto('', ''), $dtoList);
     }
 
-    /**
-     * @param int $id
-     * @return ResponseDto
-     */
-    public function searchById($id)
+    public function searchById(string $id): ResponseDtoInterface
     {
         $domainObject = $this->setSearchFilters(['id' => $id])
             ->findOne();
@@ -61,11 +49,7 @@ abstract class AbstractResourceSearcher implements ResourceSearcherInterface
         return new ResponseDto(new ResourceLinksDto('', ''), $dto);
     }
 
-    /**
-     * @param array $filters
-     * @return RepositoryInterface
-     */
-    private function setSearchFilters(array $filters)
+    private function setSearchFilters(array $filters): RepositoryInterface
     {
         $this->repository
             ->clearFilters();

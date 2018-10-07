@@ -4,14 +4,7 @@ namespace GSoares\Hydroponics\Application\Dto\Resource;
 
 interface ResourceLinksDtoInterface
 {
+    public function getSelf(): string;
 
-    /**
-     * @return string
-     */
-    public function getSelf();
-
-    /**
-     * @return string
-     */
-    public function getRelated();
+    public function getRelated(): string;
 }

@@ -4,50 +4,34 @@ namespace GSoares\Hydroponics\Domain\ValueObject;
 
 class WaterEc
 {
-
-    /**
-     * @var float
-     */
+    /** @var float */
     private $ec;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $maxEc;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $minEc;
 
-    public function __construct($ec, $maxEc, $minEc)
+    public function __construct(float $ec, float $maxEc, float $minEc)
     {
         $this->ec = $ec;
         $this->maxEc = $maxEc;
         $this->minEc = $minEc;
     }
 
-    /**
-     * @return float
-     */
-    public function getEc()
+    public function getEc(): float
     {
         return $this->ec;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaxEc()
-    {
-        return $this->maxEc;
-    }
-
-    /**
-     * @return float
-     */
-    public function getMinEc()
+    public function getMinEc(): float
     {
         return $this->minEc;
+    }
+
+    public function getMaxEc(): float
+    {
+        return $this->maxEc;
     }
 }

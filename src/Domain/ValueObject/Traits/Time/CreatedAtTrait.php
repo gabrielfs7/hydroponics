@@ -2,27 +2,19 @@
 
 namespace GSoares\Hydroponics\Domain\ValueObject\Traits\Time;
 
+use DateTimeInterface;
+
 trait CreatedAtTrait
 {
-
-    /**
-     * @var \DateTime
-     */
+    /** @var DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     * @return $this
-     */
-    public function changeCreatedAt(\DateTime $createdAt)
+    public function changeCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 

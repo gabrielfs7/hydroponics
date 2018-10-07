@@ -4,35 +4,24 @@ namespace GSoares\Hydroponics\Application\Dto\Resource;
 
 class ResourceLinksDto implements ResourceLinksDtoInterface
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $self;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $related;
 
-    public function __construct($self, $related)
+    public function __construct(string $self, string $related)
     {
         $this->self = $self;
         $this->related = $related;
     }
 
-    /**
-     * @return string
-     */
-    public function getSelf()
+    public function getSelf(): string
     {
         return $this->self;
     }
 
-    /**
-     * @return string
-     */
-    public function getRelated()
+    public function getRelated(): string
     {
         return $this->related;
     }

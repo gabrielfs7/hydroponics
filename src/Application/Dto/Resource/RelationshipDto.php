@@ -2,37 +2,26 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Resource;
 
-class RelationshipDto implements RelationshipDtoInterface
+class RelationshipDto implements ResourceRelationshipDtoInterface
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $type;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $id;
-    
-    public function __construct($id, $type)
+
+    public function __construct(string $id, string $type)
     {
         $this->id = $id;
         $this->type = $type;
     }
 
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }

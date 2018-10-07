@@ -10,12 +10,7 @@ use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
 
 class PlantDtoEncoder implements EncoderInterface
 {
-
-    /**
-     * @param object $object
-     * @return ResourceDtoInterface
-     */
-    public function encode($object)
+    public function encode(object $object): ResourceDtoInterface
     {
         $attributes = new PlantAttributesDto();
         $attributes->name = $object->getName();

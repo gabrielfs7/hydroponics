@@ -6,94 +6,57 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 
 class TankAttributesDto extends ResourceAttributesDto
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $description;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $volumeCapacity;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $currentVolume;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $minVolume;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $waterTemperature;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $maxWaterTemperature;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $minWaterTemperature;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $waterPh;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $maxWaterPh;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $minWaterPh;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $waterEc;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $maxWaterEc;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $minWaterEc;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $waterDbo;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $maxWaterDbo;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     public $minWaterDbo;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $createdAt;
 }

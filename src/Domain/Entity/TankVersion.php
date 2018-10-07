@@ -4,7 +4,8 @@ namespace GSoares\Hydroponics\Domain\Entity;
 
 use GSoares\Hydroponics\Domain\Entity\Traits\TankTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;
-use GSoares\Hydroponics\Domain\ValueObject\Traits\Time\ModifiedAtTrait;
+use GSoares\Hydroponics\Domain\ValueObject\Traits\Time\CreatedAtTrait;
+use GSoares\Hydroponics\Domain\ValueObject\Traits\Time\DeletedAtTrait;
 use GSoares\Hydroponics\Domain\ValueObject\WaterDbo;
 use GSoares\Hydroponics\Domain\ValueObject\WaterEc;
 use GSoares\Hydroponics\Domain\ValueObject\WaterPh;
@@ -14,7 +15,8 @@ use GSoares\Hydroponics\Domain\ValueObject\WaterVolume;
 class TankVersion
 {
     use IdTrait;
-    use ModifiedAtTrait;
+    use CreatedAtTrait;
+    use DeletedAtTrait;
     use TankTrait;
 
     /** @var WaterVolume */
@@ -31,10 +33,22 @@ class TankVersion
 
     /** @var WaterTemperature */
     private $waterTemperature;
-    
-    public function __construct(Tank $tank)
+
+    public function __construct(
+        Tank $tank,
+        WaterVolume $waterVolume,
+        WaterPh $waterPh,
+        WaterEc $waterEc,
+        WaterDbo $waterDbo,
+        WaterTemperature $waterTemperature
+    )
     {
         $this->tank = $tank;
+        $this->waterVolume = $waterVolume;
+        $this->waterPh = $waterPh;
+        $this->waterEc = $waterEc;
+        $this->waterDbo = $waterDbo;
+        $this->waterTemperature = $waterTemperature;
     }
 
     public function getWaterVolume(): WaterVolume
@@ -42,29 +56,14 @@ class TankVersion
         return $this->waterVolume;
     }
 
-    public function changeWaterVolume(WaterVolume $waterVolume): void
-    {
-        $this->waterVolume = $waterVolume;
-    }
-
     public function getWaterPh(): WaterPh
     {
         return $this->waterPh;
     }
 
-    public function changeWaterPh(WaterPh $waterPh): void
-    {
-        $this->waterPh = $waterPh;
-    }
-
-    public function getWaterEc()
+    public function getWaterEc(): WaterEc
     {
         return $this->waterEc;
-    }
-
-    public function changeWaterEc(WaterEc $waterEc): void
-    {
-        $this->waterEc = $waterEc;
     }
 
     public function getWaterDbo(): WaterDbo
@@ -72,18 +71,8 @@ class TankVersion
         return $this->waterDbo;
     }
 
-    public function changeWaterDbo(WaterDbo $waterDbo): void
-    {
-        $this->waterDbo = $waterDbo;
-    }
-
     public function getWaterTemperature(): WaterTemperature
     {
         return $this->waterTemperature;
-    }
-
-    public function changeWaterTemperature(WaterTemperature $waterTemperature): void
-    {
-        $this->waterTemperature = $waterTemperature;
     }
 }

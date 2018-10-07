@@ -6,19 +6,12 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 
 class PlantAttributesDto extends ResourceAttributesDto
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $species;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $createdAt;
 }

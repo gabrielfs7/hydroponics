@@ -6,44 +6,17 @@ use GSoares\Hydroponics\Application\Dto\Error\ErrorCollectionDto;
 
 interface ErrorCollectionDtoBuilderInterface
 {
+    public function configCode(int $code): self;
 
-    /**
-     * @param int $code
-     * @return $this
-     */
-    public function configCode($code);
+    public function configStatus(int $status): self;
 
-    /**
-     * @param int $status
-     * @return $this
-     */
-    public function configStatus($status);
+    public function configTitle(string $title): self;
 
-    /**
-     * @param string $title
-     * @return $this
-     */
-    public function configTitle($title);
+    public function configDetails(string $details): self;
 
-    /**
-     * @param string $details
-     * @return $this
-     */
-    public function configDetails($details);
+    public function configSourcePointer(string $sourcePointer): self;
 
-    /**
-     * @param string $sourcePointer
-     * @return $this
-     */
-    public function configSourcePointer($sourcePointer);
+    public function addError(): self;
 
-    /**
-     * @return $this
-     */
-    public function addError();
-
-    /**
-     * @return ErrorCollectionDto
-     */
-    public function build();
+    public function build(): ErrorCollectionDto;
 }

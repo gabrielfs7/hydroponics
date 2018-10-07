@@ -4,16 +4,10 @@ namespace GSoares\Hydroponics\Domain\ValueObject\Traits;
 
 trait IdTrait
 {
-
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }

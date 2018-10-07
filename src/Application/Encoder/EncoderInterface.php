@@ -6,10 +6,5 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 
 interface EncoderInterface
 {
-
-    /**
-     * @param object $object
-     * @return ResourceDtoInterface
-     */
-    public function encode($object);
+    public function encode(object $object): ResourceDtoInterface;
 }

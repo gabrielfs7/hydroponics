@@ -6,7 +6,6 @@ use GSoares\Hydroponics\Domain\Entity\System;
 
 trait SystemTrait
 {
-
     /** @var System */
     protected $system;
 

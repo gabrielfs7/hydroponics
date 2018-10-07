@@ -6,11 +6,7 @@ use GSoares\Hydroponics\Application\Decoder\AbstractDtoDecoder;
 
 class PlantsDtoDecoder extends AbstractDtoDecoder
 {
-
-    /**
-     * @return string
-     */
-    protected function getResourceType()
+    protected function getResourceType(): string
     {
         return 'plants';
     }

@@ -2,40 +2,31 @@
 
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
+use ArrayAccess;
 use GSoares\Hydroponics\Application\Decoder\DecoderInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDto;
+use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
 use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
 use GSoares\Hydroponics\Domain\Factory\FactoryInterface;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
 
 abstract class AbstractResourceSaver
 {
-
-    /**
-     * @var DecoderInterface
-     */
+    /** @var DecoderInterface */
     private $decoder;
 
-    /**
-     * @var EncoderInterface
-     */
+    /** @var EncoderInterface */
     private $encoder;
 
-    /**
-     * @var ResourceAttributesFillerInterface
-     */
+    /** @var ResourceAttributesFillerInterface */
     private $attributesFiller;
 
-    /**
-     * @var FactoryInterface
-     */
+    /** @var FactoryInterface */
     protected $factory;
 
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     protected $repository;
 
     public function __construct(
@@ -52,12 +43,7 @@ abstract class AbstractResourceSaver
         $this->attributesFiller = $attributesFiller;
     }
 
-    /**
-     * @param string $json
-     * @param object $domainObject
-     * @return ResourceDtoInterface
-     */
-    protected function save($json, $domainObject = null)
+    protected function save(string $json, object $domainObject = null): ResponseDtoInterface
     {
         $resourceDto = $this->decodeJson($json);
 
@@ -74,31 +60,19 @@ abstract class AbstractResourceSaver
         return $this->createResponseDto($domainObject);
     }
 
-    /**
-     * @param object $domainObject
-     * @param ResourceDtoInterface $resourceDto
-     */
-    protected function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
+    protected function fillAttributes(object $domainObject, ResourceDtoInterface $resourceDto): void
     {
         $this->attributesFiller
             ->fillAttributes($domainObject, $resourceDto);
     }
 
-    /**
-     * @param string $json
-     * @return ResourceDtoInterface
-     */
-    protected function decodeJson($json)
+    protected function decodeJson(string $json): ResourceDtoInterface
     {
         return $this->decoder
             ->decode($json);
     }
 
-    /**
-     * @param object $domainObject
-     * @return ResourceDtoInterface
-     */
-    protected function createResponseDto($domainObject)
+    protected function createResponseDto(object $domainObject): ResponseDtoInterface
     {
         $data = $this->encoder
             ->encode($domainObject);
@@ -106,11 +80,7 @@ abstract class AbstractResourceSaver
         return new ResponseDto(new ResourceLinksDto('', ''), $data);
     }
 
-    /**
-     * @param int $id
-     * @return object
-     */
-    protected function findDomainObjectById($id)
+    protected function findDomainObjectById(string $id): object
     {
         return $this->repository
             ->clearFilters()
@@ -118,11 +88,7 @@ abstract class AbstractResourceSaver
             ->findOne();
     }
 
-    /**
-     * @param ResourceDtoInterface $resourceDto
-     * @return \ArrayAccess
-     */
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto)
+    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto): ArrayAccess
     {
         $parameters = new \ArrayObject();
 

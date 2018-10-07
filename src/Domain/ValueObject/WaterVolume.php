@@ -4,35 +4,24 @@ namespace GSoares\Hydroponics\Domain\ValueObject;
 
 class WaterVolume
 {
-
-    /**
-     * @var float
-     */
+    /** @var float */
     private $currentVolume;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $minVolume;
 
-    public function __construct($currentVolume, $minVolume)
+    public function __construct(float $currentVolume, float $minVolume)
     {
         $this->currentVolume = $currentVolume;
         $this->minVolume = $minVolume;
     }
 
-    /**
-     * @return float
-     */
-    public function getCurrentVolume()
+    public function getCurrentVolume(): float
     {
         return $this->currentVolume;
     }
 
-    /**
-     * @return float
-     */
-    public function getMinVolume()
+    public function getMinVolume(): float
     {
         return $this->minVolume;
     }

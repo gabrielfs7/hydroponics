@@ -7,13 +7,7 @@ use GSoares\Hydroponics\Application\Service\Resource\ResourceAttributesFillerInt
 
 class SystemAttributesFiller implements ResourceAttributesFillerInterface
 {
-
-    /**
-     * @param object $domainObject
-     * @param ResourceDtoInterface $resourceDto
-     * @return object
-     */
-    public function fillAttributes($domainObject, ResourceDtoInterface $resourceDto)
+    public function fillAttributes(object $domainObject, ResourceDtoInterface $resourceDto): object
     {
         $domainObject->changeUpdatedAt(new \DateTime());
         $domainObject->changeName($resourceDto->getAttributes()->name);

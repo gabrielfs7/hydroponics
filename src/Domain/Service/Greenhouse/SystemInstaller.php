@@ -8,13 +8,7 @@ use GSoares\Hydroponics\Domain\Entity\System;
 class SystemInstaller
 {
 
-    /**
-     * @param Greenhouse $greenhouse
-     * @param System $system
-     * @return Greenhouse
-     */
-    public function install(Greenhouse $greenhouse, System $system)
+    public function install(Greenhouse $greenhouse, System $system): void
     {
-        return $system;
     }
 }

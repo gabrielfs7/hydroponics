@@ -2,37 +2,26 @@
 
 namespace GSoares\Hydroponics\Domain\ValueObject\Traits\Time;
 
+use DateTimeInterface;
+
 trait DeletedAtTrait
 {
-
-    /**
-     * @var \DateTime
-     */
+    /** @var DateTimeInterface */
     protected $deletedAt;
 
-    /**
-     * @return \DateTime
-     */
-    public function getDeletedAt()
+    public function getDeletedAt(): DateTimeInterface
     {
         return $this->deletedAt;
     }
 
-    /**
-     * @param \DateTime $deletedAt
-     * @return $this
-     */
-    public function changeDeletedAt(\DateTime $deletedAt)
+    public function changeDeletedAt(DateTimeInterface $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
 
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isDeleted()
+    public function isDeleted(): bool
     {
         return boolval($this->deletedAt);
     }

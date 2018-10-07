@@ -4,49 +4,33 @@ namespace GSoares\Hydroponics\Domain\ValueObject;
 
 class WaterPh
 {
-
-    /**
-     * @var float
-     */
+    /** @var float */
     private $ph;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $maxPh;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $minPh;
 
-    public function __construct($ph, $maxPh, $minPh)
+    public function __construct(float $ph, float $maxPh, float $minPh)
     {
         $this->ph = $ph;
         $this->maxPh = $maxPh;
         $this->minPh = $minPh;
     }
 
-    /**
-     * @return float
-     */
-    public function getPh()
+    public function getPh(): float
     {
         return $this->ph;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaxPh()
+    public function getMaxPh(): float
     {
         return $this->maxPh;
     }
 
-    /**
-     * @return float
-     */
-    public function getMinPh()
+    public function getMinPh(): float
     {
         return $this->minPh;
     }

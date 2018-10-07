@@ -9,21 +9,13 @@ use GSoares\Hydroponics\Application\Dto\Error\SourceDto;
 class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
 {
 
-    /**
-     * @var ErrorDto[]
-     */
+    /** @var ErrorDto[] */
     private $errors = [];
 
-    /**
-     * @var ErrorDto
-     */
+    /** @var ErrorDto */
     private $error;
 
-    /**
-     * @param int $code
-     * @return $this
-     */
-    public function configCode($code)
+    public function configCode(int $code): self
     {
         $this->getError()
             ->code = $code;
@@ -31,11 +23,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @param int $status
-     * @return $this
-     */
-    public function configStatus($status)
+    public function configStatus(int $status): self
     {
         $this->getError()
             ->status = $status;
@@ -43,11 +31,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @param string $title
-     * @return $this
-     */
-    public function configTitle($title)
+    public function configTitle(string $title): self
     {
         $this->getError()
             ->title = $title;
@@ -55,11 +39,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @param string $details
-     * @return $this
-     */
-    public function configDetails($details)
+    public function configDetails(string $details): self
     {
         $this->getError()
             ->details = $details;
@@ -67,11 +47,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @param string $sourcePointer
-     * @return $this
-     */
-    public function configSourcePointer($sourcePointer)
+    public function configSourcePointer(string $sourcePointer): self
     {
         $this->getError()
             ->source
@@ -80,10 +56,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function addError()
+    public function addError(): self
     {
         $this->errors[] = $this->error;
         $this->error = null;
@@ -91,10 +64,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    /**
-     * @return ErrorCollectionDto
-     */
-    public function build()
+    public function build(): ErrorCollectionDto
     {
         $errorCollection = new ErrorCollectionDto();
         $errorCollection->errors = $this->errors;
@@ -104,10 +74,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $errorCollection;
     }
 
-    /**
-     * @return ErrorDto
-     */
-    private function getError()
+    private function getError(): ErrorDto
     {
         if ($this->error) {
             return $this->error;

@@ -2,16 +2,12 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Response;
 
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface;
+
 interface ResponseDtoInterface
 {
+    public function getLinks(): ResourceLinksDtoInterface;
 
-    /**
-     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
-     */
-    public function getLinks();
-
-    /**
-     * @var object|array
-     */
-    public function getData();
+    /** @var object|array */
+    public function getData(): mixed;
 }

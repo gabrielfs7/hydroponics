@@ -2,12 +2,9 @@
 
 namespace GSoares\Hydroponics\Application\Decoder;
 
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
+
 interface DecoderInterface
 {
-
-    /**
-     * @param string $json
-     * @return object
-     */
-    public function decode($json);
+    public function decode(string $json): ResourceDtoInterface;
 }

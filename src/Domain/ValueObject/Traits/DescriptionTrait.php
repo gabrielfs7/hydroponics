@@ -4,25 +4,18 @@ namespace GSoares\Hydroponics\Domain\ValueObject\Traits;
 
 trait DescriptionTrait
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description;
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     */
-    public function changeDescription($description)
+    public function changeDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 }

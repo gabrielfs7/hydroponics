@@ -4,23 +4,14 @@ namespace GSoares\Hydroponics\Infrastructure\Transport;
 
 class ParameterBag extends \ArrayObject
 {
-
-    /**
-     * @param array $request
-     */
-    public function importFromArray(array $request)
+    public function importFromArray(array $request): void
     {
         foreach ($request as $key => $value) {
             $this->offsetSet($key, $value);
         }
     }
 
-    /**
-     * @param $index
-     * @param null $default
-     * @return mixed|null
-     */
-    public function get($index, $default = null)
+    public function get(string $index, mixed $default = null): ?mixed
     {
         if ($this->offsetExists($index)) {
             return $this->offsetGet($index);

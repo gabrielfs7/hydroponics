@@ -6,15 +6,11 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDto;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
+use stdClass;
 
 abstract class AbstractDtoDecoder implements DecoderInterface
 {
-
-    /**
-     * @param string $json
-     * @return ResourceDto
-     */
-    public function decode($json)
+    public function decode(string $json): ResourceDtoInterface
     {
         $stdClass = json_decode($json);
         $dto = new ResourceDto(
@@ -31,10 +27,10 @@ abstract class AbstractDtoDecoder implements DecoderInterface
         return $dto;
     }
 
-    private function handleData(&$dto, $data)
+    private function handleData(&$dto, $data): void
     {
         foreach ($data as $property => $propertyValue) {
-            $propertyExists = is_object($dto);//FIXME && property_exists($dto, $property);
+            $propertyExists = is_object($dto);//@FIXME @TODO && property_exists($dto, $property);
             $propertyIsArray = is_array($propertyValue);
             $propertyIsObject = is_object($propertyValue);
 
@@ -80,12 +76,7 @@ abstract class AbstractDtoDecoder implements DecoderInterface
         }
     }
 
-    /**
-     * @param ResourceDtoInterface $dto
-     * @param $property
-     * @return \stdClass
-     */
-    private function getClassByProperty(ResourceDtoInterface $dto, $property)
+    private function getClassByProperty(ResourceDtoInterface $dto, string $property): stdClass
     {
         $reflection = new \ReflectionProperty($dto, $property);
         $comment = str_replace(['\\', '@var'], ['_', ''], $reflection->getDocComment());
@@ -96,11 +87,8 @@ abstract class AbstractDtoDecoder implements DecoderInterface
             return new $comment;
         }
 
-        return new \stdClass();
+        return new stdClass();
     }
 
-    /**
-     * @return string
-     */
-    abstract protected function getResourceType();
+    abstract protected function getResourceType(): string;
 }

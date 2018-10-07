@@ -2,27 +2,19 @@
 
 namespace GSoares\Hydroponics\Domain\ValueObject\Traits\Time;
 
+use DateTimeInterface;
+
 trait UpdatedAtTrait
 {
-
-    /**
-     * @var \DateTime
-     */
+    /** @var DateTimeInterface */
     protected $updatedAt;
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime $updatedAt
-     * @return $this
-     */
-    public function changeUpdatedAt(\DateTime $updatedAt)
+    public function changeUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

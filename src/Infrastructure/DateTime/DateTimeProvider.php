@@ -2,14 +2,13 @@
 
 namespace GSoares\Hydroponics\Infrastructure\DateTime;
 
+use DateTimeImmutable;
+use DateTimeInterface;
+
 class DateTimeProvider
 {
-
-    /**
-     * @return \DateTime
-     */
-    public function current()
+    public function current(): DateTimeInterface
     {
-        return new \DateTime('now');
+        return new DateTimeImmutable('now');
     }
 }

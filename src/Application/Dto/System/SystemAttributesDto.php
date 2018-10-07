@@ -6,19 +6,12 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDto;
 
 class SystemAttributesDto extends ResourceAttributesDto
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $description;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $createdAt;
 }

@@ -4,49 +4,33 @@ namespace GSoares\Hydroponics\Domain\ValueObject;
 
 class WaterDbo
 {
-
-    /**
-     * @var float
-     */
+    /** @var float */
     private $dbo;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $maxDbo;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $minDbo;
 
-    public function __construct($dbo, $maxDbo, $minDbo)
+    public function __construct(float $dbo, float $maxDbo, float $minDbo)
     {
         $this->dbo = $dbo;
         $this->maxDbo = $maxDbo;
         $this->minDbo = $minDbo;
     }
 
-    /**
-     * @return float
-     */
-    public function getDbo()
+    public function getDbo(): float
     {
         return $this->dbo;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaxDbo()
+    public function getMaxDbo(): float
     {
         return $this->maxDbo;
     }
 
-    /**
-     * @return float
-     */
-    public function getMinDbo()
+    public function getMinDbo(): float
     {
         return $this->minDbo;
     }

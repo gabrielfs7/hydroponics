@@ -2,42 +2,23 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Resource;
 
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface;
+
 interface ResourceDtoInterface
 {
+    public function getId(): string;
 
-    /**
-     * @return string
-     */
-    public function getId();
+    public function getType(): string;
 
-    /**
-     * @return string
-     */
-    public function getType();
+    public function getAttributes(): ResourceAttributesDtoInterface;
 
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface
-     */
-    public function getAttributes();
+    public function getAttributeValue(string $name): mixed;
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function getAttributeValue($name);
+    /** @var ResourceRelationshipDtoInterface[] */
+    public function getRelationships(): array;
 
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface[]
-     */
-    public function getRelationships();
+    public function getLinks(): ResourceLinksDtoInterface;
 
-    /**
-     * @var LinksDto
-     */
-    public function getLinks();
-
-    /**
-     * @var array
-     */
-    public function getMeta();
+    public function getMeta(): array;
 }

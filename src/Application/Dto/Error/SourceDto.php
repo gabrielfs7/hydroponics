@@ -4,9 +4,6 @@ namespace GSoares\Hydroponics\Application\Dto\Error;
 
 class SourceDto
 {
-
-    /**
-     * @var string
-     */
+    /** @var string */
     public $pointer;
 }

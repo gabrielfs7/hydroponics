@@ -2,14 +2,12 @@
 
 namespace GSoares\Hydroponics\Domain\Service;
 
+use DateTimeImmutable;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
 
 abstract class AbstractDeleter implements DeleterInterface
 {
-
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $repository;
 
     public function __construct(RepositoryInterface $repository)
@@ -17,18 +15,14 @@ abstract class AbstractDeleter implements DeleterInterface
         $this->repository = $repository;
     }
 
-    /**
-     * @param int $id
-     * @return object
-     */
-    public function delete($id)
+    public function delete(int $id): object
     {
         $object = $this->repository
             ->clearFilters()
             ->addFilter('id', $id)
             ->findOne();
 
-        $object->changeDeletedAt(new \DateTime());
+        $object->changeDeletedAt(new DateTimeImmutable());
 
         return $this->repository
             ->save($object);

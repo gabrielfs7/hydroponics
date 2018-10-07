@@ -4,13 +4,7 @@ namespace GSoares\Hydroponics\Application\Dto\Resource;
 
 interface ResourceRelationshipDtoInterface
 {
-    /**
-     * @return string
-     */
-    public function getId();
+    public function getId(): string;
 
-    /**
-     * @return string
-     */
-    public function getType();
+    public function getType(): string;
 }

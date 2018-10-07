@@ -2,42 +2,34 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Resource;
 
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface;
+use GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface;
+
 class ResourceDto implements ResourceDtoInterface
 {
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $type;
 
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface
-     */
+    /** @var ResourceAttributesDtoInterface */
     public $attributes;
 
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface[]
-     */
+    /** @var ResourceRelationshipDtoInterface[] */
     public $relationships;
 
-    /**
-     * @var \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
-     */
+    /** @var ResourceLinksDtoInterface */
     public $links;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     public $meta;
 
     public function __construct(
-        $id,
-        $type,
+        string $id,
+        string $type,
         ResourceAttributesDtoInterface $attributes,
         ResourceLinksDtoInterface $links,
         array $relationships,
@@ -51,61 +43,40 @@ class ResourceDto implements ResourceDtoInterface
         $this->meta = $meta;
     }
 
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface
-     */
-    public function getAttributes()
+    public function getAttributes(): ResourceAttributesDtoInterface
     {
         return $this->attributes;
     }
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function getAttributeValue($name)
+    public function getAttributeValue(string $name): mixed
     {
         if (property_exists($this->attributes, $name)) {
             return $this->attributes->{$name};
         }
     }
 
-    /**
-     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface[]
-     */
-    public function getRelationships()
+    /** @return ResourceRelationshipDtoInterface[] */
+    public function getRelationships(): array
     {
         return $this->relationships;
     }
 
-    /**
-     * @return \GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface
-     */
-    public function getLinks()
+    public function getLinks(): ResourceLinksDtoInterface
     {
         return $this->links;
     }
 
-    /**
-     * @return array
-     */
-    public function getMeta()
+    public function getMeta(): array
     {
         return $this->meta;
     }
