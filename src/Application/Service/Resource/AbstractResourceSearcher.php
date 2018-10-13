@@ -7,6 +7,7 @@ use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDto;
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
 use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
+use GSoares\Hydroponics\Application\Exception\Http\NotFoundException;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
 
 abstract class AbstractResourceSearcher implements ResourceSearcherInterface
@@ -42,6 +43,10 @@ abstract class AbstractResourceSearcher implements ResourceSearcherInterface
     {
         $domainObject = $this->setSearchFilters(['id' => $id])
             ->findOne();
+
+        if (!$domainObject) {
+            throw new NotFoundException('Registry found');
+        }
 
         $dto = $this->encoder
             ->encode($domainObject);

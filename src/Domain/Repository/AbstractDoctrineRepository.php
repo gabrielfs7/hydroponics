@@ -38,7 +38,7 @@ abstract class AbstractDoctrineRepository extends EntityRepository implements Re
         return $this;
     }
 
-    public function findOne(): object
+    public function findOne(): ?object
     {
         $this->applyFilter();
 

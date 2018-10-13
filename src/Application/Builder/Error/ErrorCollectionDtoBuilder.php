@@ -15,7 +15,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
     /** @var ErrorDto */
     private $error;
 
-    public function configCode(int $code): self
+    public function configCode(int $code): ErrorCollectionDtoBuilderInterface
     {
         $this->getError()
             ->code = $code;
@@ -23,7 +23,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    public function configStatus(int $status): self
+    public function configStatus(int $status): ErrorCollectionDtoBuilderInterface
     {
         $this->getError()
             ->status = $status;
@@ -31,7 +31,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    public function configTitle(string $title): self
+    public function configTitle(string $title): ErrorCollectionDtoBuilderInterface
     {
         $this->getError()
             ->title = $title;
@@ -39,7 +39,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    public function configDetails(string $details): self
+    public function configDetails(string $details): ErrorCollectionDtoBuilderInterface
     {
         $this->getError()
             ->details = $details;
@@ -47,7 +47,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    public function configSourcePointer(string $sourcePointer): self
+    public function configSourcePointer(string $sourcePointer): ErrorCollectionDtoBuilderInterface
     {
         $this->getError()
             ->source
@@ -56,7 +56,7 @@ class ErrorCollectionDtoBuilder implements ErrorCollectionDtoBuilderInterface
         return $this;
     }
 
-    public function addError(): self
+    public function addError(): ErrorCollectionDtoBuilderInterface
     {
         $this->errors[] = $this->error;
         $this->error = null;

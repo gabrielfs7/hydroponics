@@ -12,7 +12,7 @@ interface RepositoryInterface
 
     public function findAll(): array;
 
-    public function findOne(): object;
+    public function findOne(): ?object;
 
     public function save($object): object;
 }
