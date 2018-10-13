@@ -12,10 +12,6 @@ GSoares\Hydroponics\Domain\Entity\TankVersion:
       type: datetime
       column: created_at
       nullable: false
-    updatedAt:
-      type: datetime
-      column: updated_at
-      nullable: true
     deletedAt:
       type: datetime
       column: deleted_at
