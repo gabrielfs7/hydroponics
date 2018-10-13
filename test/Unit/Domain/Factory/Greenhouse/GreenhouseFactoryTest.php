@@ -6,19 +6,15 @@ use ArrayObject;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Factory\Greenhouse\GreenhouseFactory;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GreenhouseFactoryTest extends TestCase
 {
-
-    /**
-     * @var DateTimeProvider|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var DateTimeProvider|MockObject */
     private $dateTimeProvider;
 
-    /**
-     * @var GreenhouseFactory
-     */
+    /** @var GreenhouseFactory */
     private $factory;
 
     public function setUp()

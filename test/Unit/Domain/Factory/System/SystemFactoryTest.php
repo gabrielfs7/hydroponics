@@ -9,19 +9,15 @@ use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Factory\System\SystemFactory;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SystemFactoryTest extends TestCase
 {
-
-    /**
-     * @var DateTimeProvider|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var DateTimeProvider|MockObject */
     private $dateTimeProvider;
 
-    /**
-     * @var SystemFactory
-     */
+    /** @var SystemFactory */
     private $factory;
 
     public function setUp()

@@ -12,7 +12,7 @@ class ResponseDto implements ResponseDtoInterface
     /** @var object|array */
     public $data;
 
-    public function __construct(ResourceLinksDtoInterface $links, mixed $data)
+    public function __construct(ResourceLinksDtoInterface $links, $data)
     {
         $this->links = $links;
         $this->data = $data;

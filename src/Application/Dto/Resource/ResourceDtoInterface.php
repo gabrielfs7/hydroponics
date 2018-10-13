@@ -4,6 +4,7 @@ namespace GSoares\Hydroponics\Application\Dto\Resource;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface;
+use stdClass;
 
 interface ResourceDtoInterface
 {
@@ -11,9 +12,9 @@ interface ResourceDtoInterface
 
     public function getType(): string;
 
-    public function getAttributes(): ResourceAttributesDtoInterface;
+    public function getAttributes(): stdClass;
 
-    public function getAttributeValue(string $name): mixed;
+    public function getAttributeValue(string $name): ?string;
 
     /** @var ResourceRelationshipDtoInterface[] */
     public function getRelationships(): array;

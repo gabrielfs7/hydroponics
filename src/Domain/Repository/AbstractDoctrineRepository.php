@@ -10,20 +10,17 @@ abstract class AbstractDoctrineRepository extends EntityRepository implements Re
     /** @var array */
     private $filters = [];
 
-    /** @var string */
-    private $entityAlias;
-
     /** @var QueryBuilder */
     private $queryBuilder;
 
-    public function addFilter(string $filter, string $value): self
+    public function addFilter(string $filter, string $value): RepositoryInterface
     {
         $this->filters[$filter] = $value;
 
         return $this;
     }
 
-    public function clearFilter(string $filter): self
+    public function clearFilter(string $filter): RepositoryInterface
     {
         if (array_key_exists($filter, $this->filters)) {
             $this->filters[$filter] = null;
@@ -34,14 +31,7 @@ abstract class AbstractDoctrineRepository extends EntityRepository implements Re
         return $this;
     }
 
-    public function setEntityAlias(string $entityAlias): self
-    {
-        $this->entityAlias = $entityAlias;
-
-        return $this;
-    }
-
-    public function clearFilters(): self
+    public function clearFilters(): RepositoryInterface
     {
         $this->filters = [];
 
@@ -77,68 +67,77 @@ abstract class AbstractDoctrineRepository extends EntityRepository implements Re
         return $object;
     }
 
-    protected function getFilter(string $filter): string
+    protected function getEntityAlias(): string
     {
-        if (array_key_exists($filter, $this->filters)) {
-            return $this->filters[$filter];
+        return str_replace('\\', '_', $this->_entityName);
+    }
+
+    protected function getFilter(string $filter): ?string
+    {
+        if (!array_key_exists($filter, $this->filters)) {
+            return null;
         }
+
+        return $this->filters[$filter];
     }
 
     protected function applyFilter(): self
     {
-        $this->queryBuilder = $this->createQueryBuilder($this->entityAlias);
+        $entityAlias = $this->getEntityAlias();
+
+        $this->queryBuilder = $this->createQueryBuilder($entityAlias);
 
         if ($id = $this->getFilter('id')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.id = :id")
+                ->andWhere("{$entityAlias}.id = :id")
                 ->setParameter('id', $id);
         }
 
         if ($name = $this->getFilter('name')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.name LIKE :name")
+                ->andWhere("{$entityAlias}.name LIKE :name")
                 ->setParameter('name', "%$name%");
         }
 
         if ($description = $this->getFilter('description')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.description LIKE :description")
+                ->andWhere("{$entityAlias}.description LIKE :description")
                 ->setParameter('description', "%$description%");
         }
 
         if ($createdFrom = $this->getFilter('createdFrom')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.createdAt >= :createdFrom")
+                ->andWhere("{$entityAlias}.createdAt >= :createdFrom")
                 ->setParameter('createdFrom', $createdFrom);
         }
 
         if ($createdTo = $this->getFilter('createdTo')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.createdAt <= :createdTo")
+                ->andWhere("{$entityAlias}.createdAt <= :createdTo")
                 ->setParameter('createdTo', $createdTo);
         }
 
         if ($updatedFrom = $this->getFilter('updatedFrom')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.updatedAt >= :updatedFrom")
+                ->andWhere("{$entityAlias}.updatedAt >= :updatedFrom")
                 ->setParameter('updatedFrom', $updatedFrom);
         }
 
         if ($updatedTo = $this->getFilter('updatedTo')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.updatedAt <= :updatedTo")
+                ->andWhere("{$entityAlias}.updatedAt <= :updatedTo")
                 ->setParameter('updatedTo', $updatedTo);
         }
 
         if ($deletedFrom = $this->getFilter('deletedFrom')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.deletedAt >= :deletedFrom")
+                ->andWhere("{$entityAlias}.deletedAt >= :deletedFrom")
                 ->setParameter('deletedFrom', $deletedFrom);
         }
 
         if ($deletedTo = $this->getFilter('deletedTo')) {
             $this->queryBuilder
-                ->andWhere("{$this->entityAlias}.deletedAt <= :deletedTo")
+                ->andWhere("{$entityAlias}.deletedAt <= :deletedTo")
                 ->setParameter('deletedTo', $deletedTo);
         }
 

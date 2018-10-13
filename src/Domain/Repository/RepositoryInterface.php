@@ -4,11 +4,11 @@ namespace GSoares\Hydroponics\Domain\Repository;
 
 interface RepositoryInterface
 {
-    public function addFilter(string $filter, string $value): self;
+    public function addFilter(string $filter, string $value): RepositoryInterface;
 
-    public function clearFilter(string $filter): self;
+    public function clearFilter(string $filter): RepositoryInterface;
 
-    public function clearFilters(): self;
+    public function clearFilters(): RepositoryInterface;
 
     public function findAll(): array;
 

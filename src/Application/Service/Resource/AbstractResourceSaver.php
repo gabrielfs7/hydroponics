@@ -3,6 +3,7 @@
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
 use ArrayAccess;
+use ArrayObject;
 use GSoares\Hydroponics\Application\Decoder\DecoderInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDto;
@@ -90,12 +91,10 @@ abstract class AbstractResourceSaver
 
     protected function fillFactoryParameters(ResourceDtoInterface $resourceDto): ArrayAccess
     {
-        $parameters = new \ArrayObject();
+        $parameters = new ArrayObject();
 
-        foreach ($resourceDto as $name => $value) {
-            if (is_string($value) || is_numeric($value)) {
-                $parameters->offsetSet($name, $value);
-            }
+        foreach ($resourceDto->getAttributes() as $name => $value) {
+            $parameters->offsetSet($name, $value);
         }
 
         return $parameters;

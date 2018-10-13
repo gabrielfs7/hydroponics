@@ -30,7 +30,7 @@ abstract class AbstractDtoDecoder implements DecoderInterface
     private function handleData(&$dto, $data): void
     {
         foreach ($data as $property => $propertyValue) {
-            $propertyExists = is_object($dto);//@FIXME @TODO && property_exists($dto, $property);
+            $propertyExists = is_object($dto);// FIXME @TODO && property_exists($dto, $property);
             $propertyIsArray = is_array($propertyValue);
             $propertyIsObject = is_object($propertyValue);
 
@@ -69,7 +69,7 @@ abstract class AbstractDtoDecoder implements DecoderInterface
             if ($propertyExists && $propertyIsObject) {
                 $dto->{$property} = $this->getClassByProperty($dto, $property);
 
-                $this->handleData($dto->{$property}, $propertyValue);
+                $this->handleData($dto->{$property}, (array) $propertyValue);
 
                 continue;
             }

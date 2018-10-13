@@ -6,8 +6,7 @@ use stdClass;
 
 class ResourceAttributesDto implements ResourceAttributesDtoInterface
 {
-    /** @return stdClass[] */
-    public function getAttributes(): array
+    public function getAttributes(): stdClass
     {
         $attributes = [];
 

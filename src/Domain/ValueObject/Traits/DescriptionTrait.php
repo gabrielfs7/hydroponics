@@ -7,7 +7,7 @@ trait DescriptionTrait
     /** @var string */
     protected $description;
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

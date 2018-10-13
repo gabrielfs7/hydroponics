@@ -1,20 +1,20 @@
 <?php
 
+use Slim\App;
+
+define('APP_ROOT', realpath(__DIR__));
+
 require 'vendor/autoload.php';
 
-use \Symfony\Component\DependencyInjection\ContainerBuilder;
-use \Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use \Symfony\Component\Config\FileLocator;
+$settings = require 'config/settings.php';
+$dependencies = require 'config/dependencies.php';
 
-$fileLocator = new FileLocator(realpath(__DIR__ . '/di'));
+$app = new App(
+    array_merge(
+        $settings,
+        $dependencies
+    )
+);
 
-$containerBuilder = new ContainerBuilder();
-
-$loader = new XmlFileLoader($containerBuilder, $fileLocator);
-$loader->load('all.xml');
-
-$containerBuilder->setParameter('root.path', __DIR__);
-$containerBuilder->set('container', $containerBuilder);
-$containerBuilder->compile();
-
-return $containerBuilder;
+require 'config/middleware.php';
+require 'config/routes.php';

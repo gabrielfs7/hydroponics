@@ -1,6 +1,6 @@
-/scopes
 .idea
+/scopes
 /vendor
 /bin
 /coverage
-!/bin/db
+/var

@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class SystemInstallerTest extends TestCase
 {
-
-    /**
-     * @var SystemInstaller
-     */
+    /** @var SystemInstaller */
     private $systemInstaller;
 
     public function setUp()

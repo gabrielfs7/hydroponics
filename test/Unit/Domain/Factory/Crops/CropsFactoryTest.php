@@ -9,19 +9,15 @@ use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CropsFactoryTest extends TestCase
 {
-
-    /**
-     * @var DateTimeProvider|\PHPUnit_Framework_MockObject_MockObject
-     */
+    /** @var DateTimeProvider|MockObject */
     private $dateTimeProvider;
 
-    /**
-     * @var CropsFactory
-     */
+    /** @var CropsFactory */
     private $factory;
 
     public function setUp()
