@@ -281,25 +281,25 @@ return [
     #
     GreenhouseApplicationDeleter::class => function (ContainerInterface $container): GreenhouseApplicationDeleter {
         return new GreenhouseApplicationDeleter(
-            $container->get(GreenhouseDtoDecoder::class),
+            $container->get(GreenhouseDtoEncoder::class),
             $container->get(GreenhouseDeleter::class)
         );
     },
     SystemApplicationDeleter::class => function (ContainerInterface $container): SystemApplicationDeleter {
         return new SystemApplicationDeleter(
-            $container->get(SystemDtoDecoder::class),
+            $container->get(SystemDtoEncoder::class),
             $container->get(SystemDeleter::class)
         );
     },
     TankApplicationDeleter::class => function (ContainerInterface $container): TankApplicationDeleter {
         return new TankApplicationDeleter(
-            $container->get(TankDtoDecoder::class),
+            $container->get(TankDtoEncoder::class),
             $container->get(TankDeleter::class)
         );
     },
     PlantApplicationDeleter::class => function (ContainerInterface $container): PlantApplicationDeleter {
         return new PlantApplicationDeleter(
-            $container->get(PlantDtoDecoder::class),
+            $container->get(PlantDtoEncoder::class),
             $container->get(PlantDeleter::class)
         );
     },

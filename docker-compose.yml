@@ -14,19 +14,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
-    networks:
-      - hydroponics_network
-
-  # ElasticSearch server
-  hydroponics_elasticsearch:
-    container_name: hydroponics_elasticsearch
-    build:
-      context: .
-      dockerfile: docker/elasticsearch/Dockerfile
-    image: hydroponics_elasticsearch
-    ports:
-       - '9201:9200'
-       - '9301:9300'
+    volumes:
+      - hydroponics_mysql_volume:/var/www/html/
     networks:
       - hydroponics_network
 
@@ -45,7 +34,28 @@ services:
     # Bind mount the volume, so changes made in this directory will be recognized by the container
     volumes:
       - ./:/var/www/html/
+    depends_on:
+      - 'hydroponics_mysql'
+
+  # ElasticSearch server
+  hydroponics_elasticsearch:
+    container_name: hydroponics_elasticsearch
+    build:
+      context: .
+      dockerfile: docker/elasticsearch/Dockerfile
+    image: hydroponics_elasticsearch
+    ports:
+       - '9201:9200'
+       - '9301:9300'
+    networks:
+      - hydroponics_network
+    depends_on:
+      - 'hydroponics_mysql'
+      - 'hydroponics_app'
 
 networks:
   hydroponics_network:
     name: hydroponics_network
+
+volumes:
+  hydroponics_mysql_volume:

@@ -37,11 +37,12 @@ Go inside the container:
 docker container exec -it hydroponics_app bash
 ```
 
-Create database: 
+Create Dev database: 
+
+**ATTENTION: It will delete your db and create new one with test entries**.
 
 ```
-mysql -h hydroponics_mysql -u root -proot < db/create-database.sql
-bin/doctrine orm:schema-tool:create
+php db/recreate-dev.php
 ```
 
 Initialize DB for development:
