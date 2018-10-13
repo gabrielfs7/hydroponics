@@ -31,24 +31,10 @@ composer install
 
 ### Create db scheme
 
-Go inside the container:
-
-```
-docker container exec -it hydroponics_app bash
-```
-
-Create Dev database: 
-
 **ATTENTION: It will delete your db and create new one with test entries**.
 
 ```
-php db/recreate-dev.php
-```
-
-Initialize DB for development:
-
-```
-mysql -h hydroponics_mysql -u root -proot < db/init-dev.sql
+docker container exec -it hydroponics_app php db/recreate-dev.php
 ```
 
 ### To access the API
