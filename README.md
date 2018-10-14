@@ -8,6 +8,20 @@ The main goal is to provide a management system to handle with day-by-day hydrop
 - Extract productivity reports and manage your costs.
 - Associate events for crops loss, generating important BI info for improve your productivity.
 
+# Remaining tasks to first tests
+
+- Create Functional tests for all API endpoints. _(In progress)_
+- Change API swagger and implementation to use [JsonApi](http://jsonapi.org)
+- Create API for manage crops.
+- Implement tank version when updating tanks.
+- Create missing endpoints for manage relation between systems/greenhouses/tanks/plants/crops.
+- Implement Event-bus to manage API requests using RabbitMQ.
+- Create ElasticSearch mapping to persist data and provide BI information
+- Create script to populate ElasticSearch based on database data.
+- Create **Progressive Web Application** to provide UI to monitor system.
+- Create authentication based on user/pass and JWT.
+- ...More tasks will be added
+
 ## Requirements
 
 - PHP 7.2.9+
