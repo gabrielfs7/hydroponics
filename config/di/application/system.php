@@ -1,6 +1,5 @@
 <?php
 
-use GSoares\Hydroponics\Application\Builder\Error\ErrorCollectionDtoBuilder;
 use GSoares\Hydroponics\Application\Decoder\System\SystemDtoDecoder;
 use GSoares\Hydroponics\Application\Encoder\System\SystemDtoEncoder;
 use GSoares\Hydroponics\Application\Service\System\SystemApplicationDeleter;
@@ -26,13 +25,6 @@ return [
     #
     SystemDtoEncoder::class => function (ContainerInterface $container): SystemDtoEncoder {
         return new SystemDtoEncoder();
-    },
-
-    #
-    # Application - Builders
-    #
-    ErrorCollectionDtoBuilder::class => function (ContainerInterface $container): ErrorCollectionDtoBuilder {
-        return new ErrorCollectionDtoBuilder();
     },
 
     #

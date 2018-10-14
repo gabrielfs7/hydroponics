@@ -5,7 +5,6 @@ use GSoares\Hydroponics\Application\Action\Greenhouse\DeleteGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\GetGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\ListGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\UpdateGreenhouseAction;
-use GSoares\Hydroponics\Application\Builder\Error\ErrorCollectionDtoBuilder;
 use GSoares\Hydroponics\Application\Decoder\Greenhouse\GreenhouseDtoDecoder;
 use GSoares\Hydroponics\Application\Encoder\Greenhouse\GreenhouseDtoEncoder;
 use GSoares\Hydroponics\Application\Service\Greenhouse\GreenhouseApplicationDeleter;
@@ -31,13 +30,6 @@ return [
     #
     GreenhouseDtoEncoder::class => function (ContainerInterface $container): GreenhouseDtoEncoder {
         return new GreenhouseDtoEncoder();
-    },
-
-    #
-    # Application - Builders
-    #
-    ErrorCollectionDtoBuilder::class => function (ContainerInterface $container): ErrorCollectionDtoBuilder {
-        return new ErrorCollectionDtoBuilder();
     },
 
     #
