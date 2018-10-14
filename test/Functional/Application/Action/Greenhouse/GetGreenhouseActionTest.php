@@ -5,17 +5,31 @@ namespace GSoares\Hydroponics\Test\Functional\Application\Action\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
+use GSoares\Hydroponics\Test\Mock\ErrorResponseMock;
+use GSoares\Hydroponics\Test\Mock\GreenhouseMock;
 
 class GetGreenhouseActionTest extends WebTestCase
 {
+    /** @var GreenhouseRepository */
+    private $greenhouseRepository;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->greenhouseRepository = $this->getContainer()
+            ->get(GreenhouseRepository::class);
+    }
+
     public function testCanGetGreenhouseWhenProvidingExistentId() : void
     {
-        $entity = $this->getFixtureFactory()->create(Greenhouse::class);
+        $entity = $this->fixtureFactory
+            ->create(Greenhouse::class);
 
         $this->runApp('GET', '/api/greenhouses/1');
 
         $this->assertResponseHasStatusCode(200);
-        $this->assertResponseHasBody($this->getGreenhouseResponseBody($entity));
+        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
     }
 
     public function testCannotGetGreenhouseWhenProvidingNoExistentId() : void
@@ -23,75 +37,53 @@ class GetGreenhouseActionTest extends WebTestCase
         $this->runApp('GET', '/api/greenhouses/2');
 
         $this->assertResponseHasStatusCode(404);
-        $this->assertResponseHasBody($this->getResponseError(404, 'Registry found'));
+        $this->assertResponseHasBody(ErrorResponseMock::getErrorResponseBody(404, 'Registry found'));
     }
 
     public function testCreateAGreenhouseWhenProvidingCorrectRequest() : void
     {
+        $entity = $this->greenhouseRepository
+            ->findOne();
+
+        $this->assertNull($entity);
+
         $this->runApp(
             'POST',
             '/api/greenhouses',
-            $this->getRequestBody()
+            GreenhouseMock::getPostRequestBody()
         );
 
-        $entity = $this->getContainer()->get(GreenhouseRepository::class)->findOne(1);
+        $entity = $this->greenhouseRepository
+            ->findOne();
 
         $this->assertResponseHasStatusCode(200);
-        $this->assertResponseHasBody($this->getGreenhouseResponseBody($entity));
+        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+        $this->assertNotNull($entity);
     }
 
-    private function getRequestBody(): array
+    public function testCanRemoveGreenhouseWhenProvidingExistentId() : void
     {
-        return [
-            'data' => [
-                'type' => 'greenhouse',
-                'attributes' => [
-                    'name' => 'Name test',
-                    'description' => 'Description test',
-                ]
-            ]
-        ];
-    }
+        $entity = $this->fixtureFactory
+            ->create(Greenhouse::class, ['name' => ' ABC ']);
 
-    private function getGreenhouseResponseBody(Greenhouse $greenhouse)
-    {
-        return [
-            'links' => [
-                'self' => '',
-                'related' => '',
-            ],
-            'data' => [
-                'id' => (string) $greenhouse->getId(),
-                'type' => 'greenhouse',
-                'attributes' => [
-                    'name' => $greenhouse->getName(),
-                    'description' => $greenhouse->getDescription(),
-                    'createdAt' => $greenhouse->getCreatedAt()->format(DATE_ATOM),
-                ],
-                'relationships' => [],
-                'links' => [
-                    'self' => '',
-                    'related' => '',
-                ],
-                'meta' => []
-            ]
-        ];
-    }
+        $entityFound = $this->greenhouseRepository
+            ->addFilter('id', $entity->getId())
+            ->findOne();
 
-    protected function getResponseError(int $statusCode, string $details): array
-    {
-        return [
-            'errors' => [
-                [
-                    'status' => $statusCode,
-                    'code' => 0,
-                    'source' => [
-                        'pointer' => null
-                    ],
-                    'title' => 'Application error',
-                    'details' => $details
-                ]
-            ]
-        ];
+        $this->assertEquals($entity->getId(), $entityFound->getId());
+        $this->assertNull($entityFound->getDeletedAt());
+
+        $this->runApp(
+            'DELETE',
+            '/api/greenhouses/'. $entityFound->getId()
+        );
+
+        $entity = $this->greenhouseRepository
+            ->addFilter('id', $entityFound->getId())
+            ->findOne();
+
+        $this->assertNotNull($entity->getDeletedAt());
+        $this->assertResponseHasStatusCode(200);
+        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
     }
 }

@@ -21,8 +21,11 @@ class GetSystemAction extends AbstractAction
         $this->resourceSearcher = $resourceSearcher;
     }
 
-    protected function process(RequestInterface $request, ResponseInterface $response, array $args): ResponseDtoInterface
-    {
+    protected function process(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ): ResponseDtoInterface {
         return $this->get($this->resourceSearcher, $request);
     }
 }

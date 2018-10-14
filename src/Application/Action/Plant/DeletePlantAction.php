@@ -21,8 +21,11 @@ class DeletePlantAction extends AbstractAction
         $this->resourceDeleter = $resourceDeleter;
     }
 
-    protected function process(RequestInterface $request, ResponseInterface $response, array $args): ResponseDtoInterface
-    {
+    protected function process(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ): ResponseDtoInterface {
         return $this->delete($this->resourceDeleter, $request);
     }
 }

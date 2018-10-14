@@ -21,8 +21,11 @@ class CreateGreenhouseAction extends AbstractAction
         $this->resourceCreator = $resourceCreator;
     }
 
-    protected function process(RequestInterface $request, ResponseInterface $response, array $args): ResponseDtoInterface
-    {
+    protected function process(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ): ResponseDtoInterface {
         return $this->post($this->resourceCreator, $request);
     }
 }

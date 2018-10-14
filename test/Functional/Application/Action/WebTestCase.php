@@ -19,12 +19,21 @@ class WebTestCase extends TestCase
     /** @var Response */
     private $response;
 
+    /** @var FixtureFactory */
+    protected $fixtureFactory;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->fixtureFactory = new FixtureFactory($this->getApp()->getContainer()->get(EntityManager::class));
+    }
+
     public function runApp(
         string $requestMethod,
         string $requestUri,
         array $requestData = null
-    ) : ResponseInterface
-    {
+    ) : ResponseInterface {
         $request = $this->createRequest($requestMethod, $requestUri, $requestData);
 
         return $this->response = $this->getApp()->process($request, new Response());
@@ -46,8 +55,7 @@ class WebTestCase extends TestCase
         string $requestMethod,
         string $requestUri,
         array $requestData = null
-    ): RequestInterface
-    {
+    ): RequestInterface {
         $request = Request::createFromEnvironment(
             Environment::mock(
                 [
@@ -62,21 +70,6 @@ class WebTestCase extends TestCase
         }
 
         return $request;
-    }
-
-    protected function getFixtureFactory(): FixtureFactory
-    {
-        static $cache;
-
-        if ($cache) {
-            return $cache;
-        }
-
-        $entityManager = $this->getApp()
-            ->getContainer()
-            ->get(EntityManager::class);
-
-        return $cache = new FixtureFactory($entityManager);
     }
 
     protected function getContainer(): ContainerInterface
@@ -102,6 +95,8 @@ class WebTestCase extends TestCase
             'charset' => 'utf8',
             'memory' => true,
         ];
+
+
 
         $app = new App(
             array_merge(
@@ -129,8 +124,7 @@ class WebTestCase extends TestCase
         $entityManager = $app->getContainer()->get(EntityManager::class);
 
         $schemaTool = new SchemaTool($entityManager);
-        $classes = $entityManager->getMetadataFactory()->getAllMetadata();
-        $schemaTool->createSchema($classes);
+        $schemaTool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
 
         $cacheDb = true;
     }

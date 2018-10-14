@@ -9,7 +9,7 @@ trait DeletedAtTrait
     /** @var DateTimeInterface */
     protected $deletedAt;
 
-    public function getDeletedAt(): DateTimeInterface
+    public function getDeletedAt(): ?DateTimeInterface
     {
         return $this->deletedAt;
     }

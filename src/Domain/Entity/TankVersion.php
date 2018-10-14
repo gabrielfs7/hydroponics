@@ -41,8 +41,7 @@ class TankVersion
         WaterEc $waterEc,
         WaterDbo $waterDbo,
         WaterTemperature $waterTemperature
-    )
-    {
+    ) {
         $this->tank = $tank;
         $this->waterVolume = $waterVolume;
         $this->waterPh = $waterPh;

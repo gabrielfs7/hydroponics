@@ -37,16 +37,14 @@ abstract class AbstractAction
     protected function post(
         ResourceCreatorInterface $resourceCreator,
         RequestInterface $request
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $resourceCreator->create((string) $request->getBody());
     }
 
     protected function patch(
         ResourceUpdaterInterface $resourceUpdater,
         RequestInterface $request
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $resourceUpdater->update(
             (string) $request->getBody(),
             $this->getRequestParameter($request, 'id')
@@ -56,32 +54,28 @@ abstract class AbstractAction
     protected function delete(
         ResourceDeleterInterface $resourceDeleter,
         RequestInterface $request
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $resourceDeleter->delete($this->getRequestParameter($request, 'id'));
     }
 
     protected function get(
         ResourceSearcherInterface $resourceSearcher,
         RequestInterface $request
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $resourceSearcher->searchById($this->getRequestParameter($request, 'id'));
     }
 
     protected function getAll(
         ResourceSearcherInterface $resourceSearcher,
         RequestInterface $request
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $resourceSearcher->search($this->getRequestParameters($request));
     }
 
     private function getRequestParameter(
         RequestInterface $request,
         string $parameter
-    ): string
-    {
+    ): string {
         /** @var Request $request */
         return $request->getAttribute($parameter);
     }

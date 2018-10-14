@@ -21,7 +21,11 @@ class UpdateTankAction extends AbstractAction
         $this->resourceUpdater = $resourceUpdater;
     }
 
-    protected function process(RequestInterface $request, ResponseInterface $response, array $args): ResponseDtoInterface
+    protected function process(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ): ResponseDtoInterface
     {
         return $this->patch($this->resourceUpdater, $request);
     }
