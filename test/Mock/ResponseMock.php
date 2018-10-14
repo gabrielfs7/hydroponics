@@ -2,7 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Mock;
 
-class ErrorResponseMock
+class ResponseMock
 {
     public static function getErrorResponseBody(int $statusCode, string $details): array
     {
@@ -17,6 +17,24 @@ class ErrorResponseMock
                     'title' => 'Application error',
                     'details' => $details
                 ]
+            ]
+        ];
+    }
+
+    public static function getPaginationResponse(array $data): array
+    {
+        return [
+            'links' => [
+                'self' => '',
+                'related' => '',
+                'first' => '',
+                'prev' => '',
+                'next' => '',
+                'last' => '',
+            ],
+            'data' => $data['data'],
+            'meta' => [
+                'totalEntries' => $data['meta.totalEntries']
             ]
         ];
     }

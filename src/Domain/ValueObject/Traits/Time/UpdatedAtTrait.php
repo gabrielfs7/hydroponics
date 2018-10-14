@@ -9,7 +9,7 @@ trait UpdatedAtTrait
     /** @var DateTimeInterface */
     protected $updatedAt;
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }

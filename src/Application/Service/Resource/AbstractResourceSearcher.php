@@ -36,7 +36,21 @@ abstract class AbstractResourceSearcher implements ResourceSearcherInterface
                 ->encode($domainObject);
         }
 
-        return new ResponseDto(new ResourceLinksDto('', ''), $dtoList);
+        // @TODO Must fill the links with pagination
+        $links = new ResourceLinksDto('', '');
+        $links->addLink('first', '');
+        $links->addLink('prev', '');
+        $links->addLink('next', '');
+        $links->addLink('last', '');
+
+        $responseDto = new ResponseDto($links, $dtoList);
+        $responseDto->changeMeta(
+            [
+                'totalEntries' => count($dtoList)
+            ]
+        );
+
+        return $responseDto;
     }
 
     public function searchById(string $id): ResponseDtoInterface

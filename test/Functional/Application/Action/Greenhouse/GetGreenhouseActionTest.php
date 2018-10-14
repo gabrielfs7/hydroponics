@@ -2,11 +2,12 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Greenhouse;
 
+use DateTime;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
-use GSoares\Hydroponics\Test\Mock\ErrorResponseMock;
 use GSoares\Hydroponics\Test\Mock\GreenhouseMock;
+use GSoares\Hydroponics\Test\Mock\ResponseMock;
 
 class GetGreenhouseActionTest extends WebTestCase
 {
@@ -37,7 +38,7 @@ class GetGreenhouseActionTest extends WebTestCase
         $this->runApp('GET', '/api/greenhouses/2');
 
         $this->assertResponseHasStatusCode(404);
-        $this->assertResponseHasBody(ErrorResponseMock::getErrorResponseBody(404, 'Registry found'));
+        $this->assertResponseHasBody(ResponseMock::getErrorResponseBody(404, 'Registry found'));
     }
 
     public function testCreateAGreenhouseWhenProvidingCorrectRequest() : void
@@ -85,5 +86,85 @@ class GetGreenhouseActionTest extends WebTestCase
         $this->assertNotNull($entity->getDeletedAt());
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+    }
+
+    public function testCanUpdateGreenhouseWhenProvidingExistentId() : void
+    {
+        $entity = $this->fixtureFactory
+            ->create(
+                Greenhouse::class,
+                [
+                    'name' => 'ABC',
+                    'description' => 'Created',
+                ]
+            );
+
+        $entityFound = $this->greenhouseRepository
+            ->addFilter('id', $entity->getId())
+            ->findOne();
+
+        $this->assertEquals('ABC', $entityFound->getName());
+        $this->assertEquals('Created', $entityFound->getDescription());
+        $this->assertNull($entityFound->getUpdatedAt());
+
+        $this->runApp(
+            'PATCH',
+            '/api/greenhouses/'. $entityFound->getId(),
+            GreenhouseMock::getPatchRequestBody(
+                [
+                    'name' => 'DEF',
+                    'description' => 'Updated',
+                ]
+            )
+        );
+
+        $entity = $this->greenhouseRepository
+            ->addFilter('id', $entityFound->getId())
+            ->findOne();
+
+        $this->assertEquals('DEF', $entity->getName());
+        $this->assertEquals('Updated', $entity->getDescription());
+        $this->assertInstanceOf(DateTime::class, $entity->getUpdatedAt());
+        $this->assertResponseHasStatusCode(200);
+        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+    }
+
+    public function testCanGetAllGreenhouses() : void
+    {
+        $entity1 = $this->fixtureFactory
+            ->create(
+                Greenhouse::class,
+                [
+                    'name' => 'ABC',
+                    'description' => 'I am 1',
+                ]
+            );
+
+        $entity2 = $this->fixtureFactory
+            ->create(
+                Greenhouse::class,
+                [
+                    'name' => 'DEF',
+                    'description' => 'I am 2',
+                ]
+            );
+
+        $this->runApp(
+            'GET',
+            '/api/greenhouses'
+        );
+
+        $expectedResponse = ResponseMock::getPaginationResponse(
+            [
+                'meta.totalEntries' => 2,
+                'data' => [
+                    GreenhouseMock::getGreenhousePaginationResponseBody($entity1),
+                    GreenhouseMock::getGreenhousePaginationResponseBody($entity2),
+                ]
+            ]
+        );
+
+        $this->assertResponseHasStatusCode(200);
+        $this->assertResponseHasBody($expectedResponse);
     }
 }

@@ -19,6 +19,19 @@ class GreenhouseMock
         ];
     }
 
+    public static function getPatchRequestBody(array $params): array
+    {
+        return [
+            'data' => [
+                'type' => 'greenhouse',
+                'attributes' => [
+                    'name' => $params['name'],
+                    'description' => $params['description'],
+                ]
+            ]
+        ];
+    }
+
     public static function getGreenhouseResponseBody(Greenhouse $greenhouse): array
     {
         return [
@@ -26,21 +39,26 @@ class GreenhouseMock
                 'self' => '',
                 'related' => '',
             ],
-            'data' => [
-                'id' => (string) $greenhouse->getId(),
-                'type' => 'greenhouse',
-                'attributes' => [
-                    'name' => $greenhouse->getName(),
-                    'description' => $greenhouse->getDescription(),
-                    'createdAt' => $greenhouse->getCreatedAt()->format(DATE_ATOM),
-                ],
-                'relationships' => [],
-                'links' => [
-                    'self' => '',
-                    'related' => '',
-                ],
-                'meta' => []
-            ]
+            'data' => self::getGreenhousePaginationResponseBody($greenhouse)
+        ];
+    }
+
+    public static function getGreenhousePaginationResponseBody(Greenhouse $greenhouse): array
+    {
+        return [
+            'id' => (string) $greenhouse->getId(),
+            'type' => 'greenhouse',
+            'attributes' => [
+                'name' => $greenhouse->getName(),
+                'description' => $greenhouse->getDescription(),
+                'createdAt' => $greenhouse->getCreatedAt()->format(DATE_ATOM),
+            ],
+            'relationships' => [],
+            'links' => [
+                'self' => '',
+                'related' => '',
+            ],
+            'meta' => []
         ];
     }
 }

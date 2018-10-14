@@ -25,4 +25,11 @@ class ResourceLinksDto implements ResourceLinksDtoInterface
     {
         return $this->related;
     }
+
+    public function addLink(string $name, string $link): self
+    {
+        $this->{$name} = $link;
+
+        return $this;
+    }
 }

@@ -42,6 +42,8 @@ class Fixture extends AbstractFixture
         }
 
         $manager->flush();
+
+        $this->entities = [];
     }
 
     private function getMapping()
@@ -50,6 +52,7 @@ class Fixture extends AbstractFixture
             Greenhouse::class => function (array $params) {
                 $entity = new Greenhouse($params['name'] ?? ('Test ' . rand(0, 9999)));
                 $entity->changeCreatedAt(new DateTimeImmutable());
+                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
 
                 return $entity;
             }

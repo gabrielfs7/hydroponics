@@ -25,8 +25,7 @@ class UpdateTankAction extends AbstractAction
         RequestInterface $request,
         ResponseInterface $response,
         array $args
-    ): ResponseDtoInterface
-    {
+    ): ResponseDtoInterface {
         return $this->patch($this->resourceUpdater, $request);
     }
 }

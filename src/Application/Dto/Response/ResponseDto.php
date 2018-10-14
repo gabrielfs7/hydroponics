@@ -18,12 +18,23 @@ class ResponseDto implements ResponseDtoInterface
         $this->data = $data;
     }
 
+    public function getMeta(): ?array
+    {
+        return $this->{'meta'};
+    }
+
+    public function changeMeta(array $meta)
+    {
+        $this->{'meta'} = $meta;
+
+        return $this;
+    }
+
     public function getLinks(): ResourceLinksDtoInterface
     {
         return $this->links;
     }
 
-    /** @return object|array */
     public function getData(): mixed
     {
         return $this->data;
