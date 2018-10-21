@@ -21,11 +21,6 @@ class WebTestCase extends TestCase
     /** @var Response */
     private $response;
 
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
     public function runApp(
         string $requestMethod,
         string $requestUri,
@@ -110,17 +105,9 @@ class WebTestCase extends TestCase
 
     private function createSchema(App $app): void
     {
-        static $cacheDb;
-
-        if ($cacheDb) {
-            return;
-        }
-
         $entityManager = $app->getContainer()->get(EntityManager::class);
 
         $schemaTool = new SchemaTool($entityManager);
         $schemaTool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
-
-        $cacheDb = true;
     }
 }

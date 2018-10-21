@@ -15,18 +15,13 @@ return [
         return new DateTimeProvider();
     },
     EntityManager::class => function (ContainerInterface $container): EntityManager {
-        $settings = $container->get('settings');
+        $settings = $container->get('settings')['doctrine'];
 
-        $driver = new SimplifiedYamlDriver($settings['doctrine']['prefixes']);
+        $driver = new SimplifiedYamlDriver($settings['prefixes']);
 
-        $config = Setup::createConfiguration(
-            $settings['doctrine']['dev_mode'],
-            null,
-            new FilesystemCache($settings['doctrine']['cache_dir'])
-        );
-
+        $config = Setup::createConfiguration($settings['dev_mode'],null, new FilesystemCache($settings['cache_dir']));
         $config->setMetadataDriverImpl($driver);
 
-        return EntityManager::create($settings['doctrine']['connection'], $config);
+        return EntityManager::create($settings['connection'], $config);
     },
 ];
