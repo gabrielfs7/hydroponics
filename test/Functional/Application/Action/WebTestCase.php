@@ -4,7 +4,7 @@ namespace GSoares\Hydroponics\Test\Functional\Application\Action;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use GSoares\Hydroponics\Test\FixtureFactory;
+use GSoares\Hydroponics\Test\Fixture\FixtureTrait;
 use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Http\Request;
@@ -16,17 +16,14 @@ use Psr\Http\Message\ResponseInterface;
 
 class WebTestCase extends TestCase
 {
+    use FixtureTrait;
+
     /** @var Response */
     private $response;
-
-    /** @var FixtureFactory */
-    protected $fixtureFactory;
 
     public function setUp()
     {
         parent::setUp();
-
-        $this->fixtureFactory = new FixtureFactory($this->getApp()->getContainer()->get(EntityManager::class));
     }
 
     public function runApp(
@@ -95,8 +92,6 @@ class WebTestCase extends TestCase
             'charset' => 'utf8',
             'memory' => true,
         ];
-
-
 
         $app = new App(
             array_merge(

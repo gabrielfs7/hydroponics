@@ -24,8 +24,7 @@ class GetGreenhouseActionTest extends WebTestCase
 
     public function testCanGetGreenhouseWhenProvidingExistentId() : void
     {
-        $entity = $this->fixtureFactory
-            ->create(Greenhouse::class);
+        $entity = $this->createFixture(Greenhouse::class);
 
         $this->runApp('GET', '/api/greenhouses/1');
 
@@ -64,8 +63,7 @@ class GetGreenhouseActionTest extends WebTestCase
 
     public function testCanRemoveGreenhouseWhenProvidingExistentId() : void
     {
-        $entity = $this->fixtureFactory
-            ->create(Greenhouse::class, ['name' => ' ABC ']);
+        $entity = $this->createFixture(Greenhouse::class, ['name' => ' ABC ']);
 
         $entityFound = $this->greenhouseRepository
             ->addFilter('id', $entity->getId())
@@ -90,8 +88,7 @@ class GetGreenhouseActionTest extends WebTestCase
 
     public function testCanUpdateGreenhouseWhenProvidingExistentId() : void
     {
-        $entity = $this->fixtureFactory
-            ->create(
+        $entity = $this->createFixture(
                 Greenhouse::class,
                 [
                     'name' => 'ABC',
@@ -131,17 +128,15 @@ class GetGreenhouseActionTest extends WebTestCase
 
     public function testCanGetAllGreenhouses() : void
     {
-        $entity1 = $this->fixtureFactory
-            ->create(
-                Greenhouse::class,
+        $entity1 = $this->createFixture(
+            Greenhouse::class,
                 [
                     'name' => 'ABC',
                     'description' => 'I am 1',
                 ]
             );
 
-        $entity2 = $this->fixtureFactory
-            ->create(
+        $entity2 = $this->createFixture(
                 Greenhouse::class,
                 [
                     'name' => 'DEF',

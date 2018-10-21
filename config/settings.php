@@ -9,11 +9,9 @@ return [
         'doctrine' => [
             'dev_mode' => true, // if true, metadata caching is forcefully disabled
             'cache_dir' => APP_ROOT . '/var/doctrine',
-            'metadata_dirs' => [
-                APP_ROOT . '/config/orm'
-            ],
-            'entity_dirs' => [
-                APP_ROOT . '/src/Domain/Entity'
+            'prefixes' => [
+                APP_ROOT . '/config/orm' => 'GSoares\Hydroponics\Domain',
+                //APP_ROOT . '/config/orm' => 'GSoares\Hydroponics\Domain\ValueObject'
             ],
             'connection' => [
                 'driver' => 'pdo_mysql',

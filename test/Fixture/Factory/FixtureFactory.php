@@ -1,10 +1,11 @@
 <?php
 
-namespace GSoares\Hydroponics\Test;
+namespace GSoares\Hydroponics\Test\Fixture\Factory;
 
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use GSoares\Hydroponics\Test\Fixture\Fixture;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\ORM\EntityManager;
 
 class FixtureFactory

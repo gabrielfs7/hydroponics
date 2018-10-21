@@ -1,6 +1,6 @@
 <?php
 
-namespace GSoares\Hydroponics\Test;
+namespace GSoares\Hydroponics\Test\Fixture;
 
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
