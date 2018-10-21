@@ -2,10 +2,8 @@
 
 namespace GSoares\Hydroponics\Test\Fixture;
 
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 
 class Fixture extends AbstractFixture
 {
@@ -30,7 +28,7 @@ class Fixture extends AbstractFixture
         return $this->lastEntity;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach ($this->entities as $entity) {
             $mapping = $this->getMapping();
@@ -46,16 +44,8 @@ class Fixture extends AbstractFixture
         $this->entities = [];
     }
 
-    private function getMapping()
+    private function getMapping(): array
     {
-        return [
-            Greenhouse::class => function (array $params) {
-                $entity = new Greenhouse($params['name'] ?? ('Test ' . rand(0, 9999)));
-                $entity->changeCreatedAt(new DateTimeImmutable());
-                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
-
-                return $entity;
-            }
-        ];
+        return (new FixtureMapping())->getMapping();
     }
 }

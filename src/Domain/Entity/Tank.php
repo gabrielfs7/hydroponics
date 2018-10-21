@@ -25,7 +25,7 @@ class Tank
     /** @var NutritionalFormula */
     private $nutritionalFormula;
 
-    public function __construct(string $name, float $volumeCapacity, NutritionalFormula $nutritionalFormula = null)
+    public function __construct(string $name, float $volumeCapacity, ?NutritionalFormula $nutritionalFormula)
     {
         $this->name = $name;
         $this->volumeCapacity = $volumeCapacity;

@@ -48,8 +48,8 @@ class ListGreenhouseActionTest extends WebTestCase
             [
                 'meta.totalEntries' => 2,
                 'data' => [
-                    GreenhouseMock::getGreenhousePaginationResponseBody($entity1),
-                    GreenhouseMock::getGreenhousePaginationResponseBody($entity2),
+                    GreenhouseMock::getPaginationResponseBody($entity1),
+                    GreenhouseMock::getPaginationResponseBody($entity2),
                 ]
             ]
         );

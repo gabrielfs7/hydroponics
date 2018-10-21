@@ -2,15 +2,15 @@
 
 namespace GSoares\Hydroponics\Test\Mock;
 
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Domain\Entity\System;
 
-class GreenhouseMock
+class SystemMock
 {
     public static function getPostRequestBody(): array
     {
         return [
             'data' => [
-                'type' => 'greenhouse',
+                'type' => 'system',
                 'attributes' => [
                     'name' => 'Name test',
                     'description' => 'Description test',
@@ -23,7 +23,7 @@ class GreenhouseMock
     {
         return [
             'data' => [
-                'type' => 'greenhouse',
+                'type' => 'system',
                 'attributes' => [
                     'name' => $params['name'],
                     'description' => $params['description'],
@@ -32,26 +32,26 @@ class GreenhouseMock
         ];
     }
 
-    public static function getResponseBody(Greenhouse $greenhouse): array
+    public static function getResponseBody(System $system): array
     {
         return [
             'links' => [
                 'self' => '',
                 'related' => '',
             ],
-            'data' => self::getPaginationResponseBody($greenhouse)
+            'data' => self::getPaginationResponseBody($system)
         ];
     }
 
-    public static function getPaginationResponseBody(Greenhouse $greenhouse): array
+    public static function getPaginationResponseBody(System $system): array
     {
         return [
-            'id' => (string) $greenhouse->getId(),
-            'type' => 'greenhouse',
+            'id' => (string) $system->getId(),
+            'type' => 'system',
             'attributes' => [
-                'name' => $greenhouse->getName(),
-                'description' => $greenhouse->getDescription(),
-                'createdAt' => $greenhouse->getCreatedAt()->format(DATE_ATOM),
+                'name' => $system->getName(),
+                'description' => $system->getDescription(),
+                'createdAt' => $system->getCreatedAt()->format(DATE_ATOM),
             ],
             'relationships' => [],
             'links' => [

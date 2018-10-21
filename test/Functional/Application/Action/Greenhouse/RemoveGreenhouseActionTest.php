@@ -42,6 +42,6 @@ class RemoveGreenhouseActionTest extends WebTestCase
 
         $this->assertNotNull($entity->getDeletedAt());
         $this->assertResponseHasStatusCode(200);
-        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+        $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
     }
 }

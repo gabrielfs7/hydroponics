@@ -28,7 +28,7 @@ class GetGreenhouseActionTest extends WebTestCase
         $this->runApp('GET', '/api/greenhouses/1');
 
         $this->assertResponseHasStatusCode(200);
-        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+        $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
     }
 
     public function testCannotGetGreenhouseWhenProvidingNoExistentId() : void

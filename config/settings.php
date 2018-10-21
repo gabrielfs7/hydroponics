@@ -11,7 +11,6 @@ return [
             'cache_dir' => APP_ROOT . '/var/doctrine',
             'prefixes' => [
                 APP_ROOT . '/config/orm' => 'GSoares\Hydroponics\Domain',
-                //APP_ROOT . '/config/orm' => 'GSoares\Hydroponics\Domain\ValueObject'
             ],
             'connection' => [
                 'driver' => 'pdo_mysql',
@@ -20,7 +19,7 @@ return [
                 'dbname' => 'hydroponics',
                 'user' => 'root',
                 'password' => 'root',
-                'charset' => 'utf8'
+                'charset' => 'utf8',
             ]
         ]
     ],

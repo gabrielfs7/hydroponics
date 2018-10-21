@@ -58,6 +58,6 @@ class UpdateGreenhouseActionTest extends WebTestCase
         $this->assertEquals('Updated', $entity->getDescription());
         $this->assertInstanceOf(DateTime::class, $entity->getUpdatedAt());
         $this->assertResponseHasStatusCode(200);
-        $this->assertResponseHasBody(GreenhouseMock::getGreenhouseResponseBody($entity));
+        $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
     }
 }
