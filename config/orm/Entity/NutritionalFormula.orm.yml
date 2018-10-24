@@ -1,0 +1,20 @@
+GSoares\Hydroponics\Domain\Entity\NutritionalFormula:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\NutritionalFormula\NutritionalFormulaRepository
+  table: NutritionalFormula
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 250
+      column: name
+      nullable: false
+    description:
+      type: string
+      length: 1000
+      column: description
+      nullable: true

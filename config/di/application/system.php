@@ -1,5 +1,10 @@
 <?php
 
+use GSoares\Hydroponics\Application\Action\System\CreateSystemAction;
+use GSoares\Hydroponics\Application\Action\System\DeleteSystemAction;
+use GSoares\Hydroponics\Application\Action\System\GetSystemAction;
+use GSoares\Hydroponics\Application\Action\System\ListSystemAction;
+use GSoares\Hydroponics\Application\Action\System\UpdateSystemAction;
 use GSoares\Hydroponics\Application\Decoder\System\SystemDtoDecoder;
 use GSoares\Hydroponics\Application\Encoder\System\SystemDtoEncoder;
 use GSoares\Hydroponics\Application\Service\System\SystemApplicationDeleter;
@@ -78,5 +83,24 @@ return [
     #
     SystemAttributesFiller::class => function (ContainerInterface $container): SystemAttributesFiller {
         return new SystemAttributesFiller();
+    },
+
+    #
+    # Application - Action
+    #
+    ListSystemAction::class => function (ContainerInterface $container): ListSystemAction {
+        return new ListSystemAction($container->get(SystemApplicationSearcher::class));
+    },
+    GetSystemAction::class => function (ContainerInterface $container): GetSystemAction {
+        return new GetSystemAction($container->get(SystemApplicationSearcher::class));
+    },
+    CreateSystemAction::class => function (ContainerInterface $container): CreateSystemAction {
+        return new CreateSystemAction($container->get(SystemApplicationCreator::class));
+    },
+    UpdateSystemAction::class => function (ContainerInterface $container): UpdateSystemAction {
+        return new UpdateSystemAction($container->get(SystemApplicationUpdater::class));
+    },
+    DeleteSystemAction::class => function (ContainerInterface $container): DeleteSystemAction {
+        return new DeleteSystemAction($container->get(SystemApplicationDeleter::class));
     },
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace GSoares\Hydroponics\Domain\ValueObject;
+namespace GSoares\Hydroponics\Domain\Entity;
 
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;

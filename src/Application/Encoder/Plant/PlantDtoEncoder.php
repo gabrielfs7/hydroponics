@@ -15,7 +15,7 @@ class PlantDtoEncoder implements EncoderInterface
         $attributes = new PlantAttributesDto();
         $attributes->name = $object->getName();
         $attributes->species = $object->getSpecies();
-        $attributes->createdAt = $object->getCreatedAt()->format('Y-m-d\TH:i:s');
+        $attributes->createdAt = $object->getCreatedAt()->format(DATE_ATOM);
 
         $dto = new ResourceDto(
             $object->getId(),

@@ -31,8 +31,7 @@ class Fixture extends AbstractFixture
     public function load(ObjectManager $manager): void
     {
         foreach ($this->entities as $entity) {
-            $mapping = $this->getMapping();
-            $entity = $mapping[$entity['name']]($entity['params']);
+            $entity = $this->getMapping($manager)[$entity['name']]($entity['params']);
 
             $manager->persist($entity);
 
@@ -44,8 +43,8 @@ class Fixture extends AbstractFixture
         $this->entities = [];
     }
 
-    private function getMapping(): array
+    private function getMapping(ObjectManager $manager): array
     {
-        return (new FixtureMapping())->getMapping();
+        return (new FixtureMapping())->getMapping($manager);
     }
 }

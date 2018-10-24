@@ -10,7 +10,8 @@ return [
             'dev_mode' => true, // if true, metadata caching is forcefully disabled
             'cache_dir' => APP_ROOT . '/var/doctrine',
             'prefixes' => [
-                APP_ROOT . '/config/orm' => 'GSoares\Hydroponics\Domain',
+                APP_ROOT . '/config/orm/Entity' => 'GSoares\Hydroponics\Domain\Entity',
+                APP_ROOT . '/config/orm/ValueObject' => 'GSoares\Hydroponics\Domain\ValueObject',
             ],
             'connection' => [
                 'driver' => 'pdo_mysql',

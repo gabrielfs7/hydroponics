@@ -15,7 +15,7 @@ class SystemDtoEncoder implements EncoderInterface
         $attributes = new SystemAttributesDto();
         $attributes->name = $object->getName();
         $attributes->description = $object->getDescription();
-        $attributes->createdAt = $object->getCreatedAt()->format('Y-m-d\TH:i:s');
+        $attributes->createdAt = $object->getCreatedAt()->format(DATE_ATOM);
 
         $dto = new ResourceDto(
             $object->getId(),

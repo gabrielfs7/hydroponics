@@ -3,14 +3,15 @@
 namespace GSoares\Hydroponics\Test\Fixture;
 
 use DateTimeImmutable;
+use Doctrine\Common\Persistence\ObjectManager;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Entity\Tank;
-use GSoares\Hydroponics\Domain\ValueObject\NutritionalFormula;
+use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
 
 class FixtureMapping
 {
-    public function getMapping(): array
+    public function getMapping(ObjectManager $objectManager): array
     {
         $mapping = [
             Greenhouse::class => function (array $params, array $mapping) {
@@ -20,22 +21,41 @@ class FixtureMapping
 
                 return $entity;
             },
-            System::class => function (array $params, array $mapping) {
+            System::class => function (array $params, array $mapping) use ($objectManager) {
+                $greenhouse = $params['greenhouse'] ?? $mapping[Greenhouse::class]($params, $mapping);
+                $tank = $params['tank'] ?? $mapping[Tank::class]($params, $mapping);
+
+                if (!$greenhouse->getId()) {
+                    $objectManager->persist($greenhouse);
+                }
+
+                if (!$tank->getId()) {
+                    $objectManager->persist($tank);
+                }
+
                 $entity = new System(
                     $params['name'] ?? ('Test ' . rand(0, 9999)),
-                    $params['greenhouse'] ?? $mapping['greenhouse'],
-                    $params['tank'] ?? $mapping['tank']
+                    $greenhouse,
+                    $tank
                 );
+
                 $entity->changeCreatedAt(new DateTimeImmutable());
                 $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
 
                 return $entity;
             },
-            Tank::class => function (array $params, array $mapping) {
+            Tank::class => function (array $params, array $mapping) use ($objectManager) {
+                $nutritionalFormula = $params['nutritionalFormula'] ?? $mapping[NutritionalFormula::class]($params, $mapping);
+
+                if (!$nutritionalFormula->getId()) {
+                    $objectManager->persist($nutritionalFormula);
+                }
+
                 $entity = new Tank(
                     $params['name'] ?? ('Test ' . rand(0, 9999)),
                     $params['volumeCapacity'] ?? 0,
-                    $params['nutritionalFormula'] ?? $mapping['nutritionalFormula']
+                    $nutritionalFormula
+
                 );
                 $entity->changeCreatedAt(new DateTimeImmutable());
                 $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));

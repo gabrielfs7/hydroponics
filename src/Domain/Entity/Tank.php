@@ -4,7 +4,6 @@ namespace GSoares\Hydroponics\Domain\Entity;
 
 use GSoares\Hydroponics\Domain\Entity\Traits\GreenhouseTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\TankVersionsTrait;
-use GSoares\Hydroponics\Domain\ValueObject\NutritionalFormula;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\NameTrait;
@@ -37,7 +36,7 @@ class Tank
         return $this->volumeCapacity;
     }
 
-    public function getNutritionalFormula(): NutritionalFormula
+    public function getNutritionalFormula(): ?NutritionalFormula
     {
         return $this->nutritionalFormula;
     }
