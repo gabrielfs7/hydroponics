@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -23,6 +24,8 @@ class ListSystemActionTest extends WebTestCase
 
     public function testCanListSystems() : void
     {
+        $greenhouse = $this->createFixture(Greenhouse::class);
+
         $entity1 = $this->createFixture(
             System::class,
                 [
@@ -41,7 +44,7 @@ class ListSystemActionTest extends WebTestCase
 
         $this->runApp(
             'GET',
-            '/api/systems'
+            sprintf('/api/greenhouses/%s/systems', $greenhouse->getId())
         );
 
         $expectedResponse = ResponseMock::getPaginationResponse(

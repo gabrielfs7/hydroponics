@@ -20,6 +20,7 @@ use GSoares\Hydroponics\Application\Action\Tank\DeleteTankAction;
 use GSoares\Hydroponics\Application\Action\Tank\GetTankAction;
 use GSoares\Hydroponics\Application\Action\Tank\ListTankAction;
 use GSoares\Hydroponics\Application\Action\Tank\UpdateTankAction;
+use GSoares\Hydroponics\Application\Middleware\Greenhouse\GreenhouseMiddleware;
 use Psr\Container\ContainerInterface;
 
 /** @var ContainerInterface $container */
@@ -39,7 +40,7 @@ $app->group(
             }
         );
         $app->group(
-            '/systems',
+            '/greenhouses/{greenhouseId}/systems',
             function () use ($app) {
                 $app->get('[/]', ListSystemAction::class);
                 $app->get('/{id}', GetSystemAction::class);
@@ -47,7 +48,7 @@ $app->group(
                 $app->patch('/{id}', UpdateSystemAction::class);
                 $app->delete('/{id}', DeleteSystemAction::class);
             }
-        );
+        )->add(GreenhouseMiddleware::class);
         $app->group(
             '/tanks',
             function () use ($app) {

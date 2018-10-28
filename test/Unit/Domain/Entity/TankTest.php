@@ -2,8 +2,8 @@
 
 namespace GSoares\Hydroponics\Test\Unit\Domain\Entity;
 
+use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
 use GSoares\Hydroponics\Domain\Entity\Tank;
-use GSoares\Hydroponics\Domain\ValueObject\NutritionalFormula;
 use PHPUnit\Framework\TestCase;
 
 class TankTest extends TestCase
@@ -20,7 +20,7 @@ class TankTest extends TestCase
 
     public function testNewTankCreated()
     {
-        $tank = new Tank('Nutrient Tank', 1.5);
+        $tank = new Tank('Nutrient Tank', 1.5, null);
 
         $this->assertEquals('Nutrient Tank', $tank->getName());
         $this->assertEquals(1.5, $tank->getVolumeCapacity());

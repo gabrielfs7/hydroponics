@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -23,9 +24,17 @@ class GetSystemActionTest extends WebTestCase
 
     public function testCanGetSystemWhenProvidingExistentId() : void
     {
+        $greenhouse = $this->createFixture(Greenhouse::class);
         $entity = $this->createFixture(System::class);
 
-        $this->runApp('GET', '/api/systems/1');
+        $this->runApp(
+            'GET',
+            sprintf(
+                '/api/greenhouses/%s/systems/%s',
+                $greenhouse->getId(),
+                $entity->getId()
+            )
+        );
 
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(SystemMock::getResponseBody($entity));
@@ -33,7 +42,12 @@ class GetSystemActionTest extends WebTestCase
 
     public function testCannotGetSystemWhenProvidingNoExistentId() : void
     {
-        $this->runApp('GET', '/api/systems/2');
+        $greenhouse = $this->createFixture(Greenhouse::class);
+
+        $this->runApp(
+            'GET',
+            sprintf('/api/greenhouses/%s/systems/2', $greenhouse->getId())
+        );
 
         $this->assertResponseHasStatusCode(404);
         $this->assertResponseHasBody(ResponseMock::getErrorResponseBody(404, 'Registry found'));

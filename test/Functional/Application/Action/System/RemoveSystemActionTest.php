@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -22,6 +23,7 @@ class RemoveSystemActionTest extends WebTestCase
 
     public function testCanRemoveSystemWhenProvidingExistentId() : void
     {
+        $greenhouse = $this->createFixture(Greenhouse::class);
         $entity = $this->createFixture(System::class, ['name' => ' ABC ']);
 
         $entityFound = $this->systemRepository
@@ -33,7 +35,10 @@ class RemoveSystemActionTest extends WebTestCase
 
         $this->runApp(
             'DELETE',
-            '/api/systems/'. $entityFound->getId()
+            sprintf('/api/greenhouses/%s/systems/%s',
+                $greenhouse->getId(),
+                $entityFound->getId()
+            )
         );
 
         $entity = $this->systemRepository

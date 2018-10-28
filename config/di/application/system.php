@@ -14,6 +14,7 @@ use GSoares\Hydroponics\Application\Service\System\SystemApplicationCreator;
 use GSoares\Hydroponics\Application\Service\System\SystemApplicationUpdater;
 use GSoares\Hydroponics\Domain\Factory\System\SystemFactory;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
+use GSoares\Hydroponics\Domain\Repository\Tank\TankRepository;
 use GSoares\Hydroponics\Domain\Service\System\SystemDeleter;
 use Psr\Container\ContainerInterface;
 
@@ -36,13 +37,17 @@ return [
     # Application - Service - Creator
     #
     SystemApplicationCreator::class => function (ContainerInterface $container): SystemApplicationCreator {
-        return new SystemApplicationCreator(
+        $creator = new SystemApplicationCreator(
             $container->get(SystemDtoDecoder::class),
             $container->get(SystemDtoEncoder::class),
             $container->get(SystemFactory::class),
             $container->get(SystemRepository::class),
             $container->get(SystemAttributesFiller::class)
         );
+
+        $creator->setTankRepository($container->get(TankRepository::class));
+
+        return $creator;
     },
 
     #

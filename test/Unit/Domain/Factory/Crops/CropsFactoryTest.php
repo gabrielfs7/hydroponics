@@ -36,7 +36,7 @@ class CropsFactoryTest extends TestCase
         $invocationMocker->method('current');
         $invocationMocker->willReturn($currentTime);
 
-        $tank = new Tank('Tank', 1.5);
+        $tank = new Tank('Tank', 1.5, null);
         $greenhouse = new Greenhouse('Vegetables');
         $system = new System('NFT', $greenhouse, $tank);
         $plant = new Plant('Lettuce', 'Lactuca sativa');

@@ -3,8 +3,9 @@
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
+use Psr\Http\Message\RequestInterface;
 
 interface ResourceUpdaterInterface
 {
-    public function update(string $json, string $id): ResponseDtoInterface;
+    public function update(RequestInterface $request, string $id): ResponseDtoInterface;
 }

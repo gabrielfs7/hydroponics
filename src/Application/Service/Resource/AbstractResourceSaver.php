@@ -12,6 +12,8 @@ use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
 use GSoares\Hydroponics\Application\Encoder\EncoderInterface;
 use GSoares\Hydroponics\Domain\Factory\FactoryInterface;
 use GSoares\Hydroponics\Domain\Repository\RepositoryInterface;
+use Psr\Http\Message\RequestInterface;
+use Slim\Http\Request;
 
 abstract class AbstractResourceSaver
 {
@@ -44,37 +46,22 @@ abstract class AbstractResourceSaver
         $this->attributesFiller = $attributesFiller;
     }
 
-    protected function save(string $json, object $domainObject = null): ResponseDtoInterface
+    protected function save(RequestInterface $request, object $domainObject = null): ResponseDtoInterface
     {
-        $resourceDto = $this->decodeJson($json);
+        $resourceDto = $this->decoder
+            ->decode((string)$request->getBody());
 
         if (!$domainObject) {
             $domainObject = $this->factory
-                ->make($this->fillFactoryParameters($resourceDto));
+                ->make($this->buildFactoryParameters($request, $resourceDto));
         }
 
-        $this->fillAttributes($domainObject, $resourceDto);
+        $this->attributesFiller
+            ->fillAttributes($domainObject, $resourceDto);
 
         $domainObject = $this->repository
             ->save($domainObject);
 
-        return $this->createResponseDto($domainObject);
-    }
-
-    protected function fillAttributes(object $domainObject, ResourceDtoInterface $resourceDto): void
-    {
-        $this->attributesFiller
-            ->fillAttributes($domainObject, $resourceDto);
-    }
-
-    protected function decodeJson(string $json): ResourceDtoInterface
-    {
-        return $this->decoder
-            ->decode($json);
-    }
-
-    protected function createResponseDto(object $domainObject): ResponseDtoInterface
-    {
         $data = $this->encoder
             ->encode($domainObject);
 
@@ -89,12 +76,34 @@ abstract class AbstractResourceSaver
             ->findOne();
     }
 
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto): ArrayAccess
+    /**
+     * @param Request|RequestInterface $request
+     * @param ResourceDtoInterface $resourceDto
+     *
+     * @return ArrayAccess
+     */
+    protected function buildFactoryParameters(
+        RequestInterface $request,
+        ResourceDtoInterface $resourceDto
+    ): ArrayAccess
     {
         $parameters = new ArrayObject();
 
         foreach ($resourceDto->getAttributes() as $name => $value) {
             $parameters->offsetSet($name, $value);
+        }
+
+        foreach ($resourceDto->getRelationships() as $name => $value) {
+            $parameters->offsetSet('relationship.' . $name, $value);
+        }
+
+        # @TODO Proper handle how inject request attribute objects in factories
+        foreach ($request->getAttributes() as $attributeName => $attributeValue) {
+            $prefix = 'requested-';
+
+            if (strpos($attributeName, $prefix) == 0) {
+                $parameters->offsetSet(str_replace($prefix, '', $attributeName), $attributeValue);
+            }
         }
 
         return $parameters;

@@ -12,7 +12,7 @@ abstract class AbstractDtoDecoder implements DecoderInterface
 {
     public function decode(string $json): ResourceDtoInterface
     {
-        $stdClass = json_decode($json);
+        $map = json_decode($json, true);
         $dto = new ResourceDto(
             '',
             $this->getResourceType(),
@@ -22,7 +22,23 @@ abstract class AbstractDtoDecoder implements DecoderInterface
             []
         );
 
-        $this->handleData($dto, $stdClass->data);
+        //$this->handleData($dto, $stdClass->data); //FIXME @TODO I will skip resource validation for now. I have to handle mapping later.
+
+        if (isset($map['data']['type'])) {
+            $dto->type = $map['data']['type'];
+        }
+
+        if (isset($map['data']['attributes'])) {
+            $dto->attributes = (object) $map['data']['attributes'];
+        }
+
+        if (isset($map['data']['relationships'])) {
+            $dto->relationships = $map['data']['relationships'];
+        }
+
+        if (isset($map['data']['id'])) {
+            $dto->id = $map['data']['id'];
+        }
 
         return $dto;
     }

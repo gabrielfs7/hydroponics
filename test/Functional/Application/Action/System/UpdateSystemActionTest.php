@@ -3,7 +3,9 @@
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
 use DateTime;
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
+use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
 use GSoares\Hydroponics\Test\Mock\SystemMock;
@@ -23,6 +25,9 @@ class UpdateSystemActionTest extends WebTestCase
 
     public function testCanUpdateSystemWhenProvidingExistentId() : void
     {
+        $greenhouse = $this->createFixture(Greenhouse::class);
+        $tank = $this->createFixture(Tank::class);
+
         $entity = $this->createFixture(
                 System::class,
                 [
@@ -41,11 +46,17 @@ class UpdateSystemActionTest extends WebTestCase
 
         $this->runApp(
             'PATCH',
-            '/api/systems/'. $entityFound->getId(),
+            sprintf(
+                '/api/greenhouses/%s/systems/%s',
+                $greenhouse->getId(),
+                $entityFound->getId()
+            ),
             SystemMock::getPatchRequestBody(
                 [
                     'name' => 'DEF',
                     'description' => 'Updated',
+                    'greenhouseId' => $greenhouse->getId(),
+                    'tankId' => $tank->getId()
                 ]
             )
         );

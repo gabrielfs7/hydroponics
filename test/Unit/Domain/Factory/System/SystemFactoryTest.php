@@ -36,7 +36,7 @@ class SystemFactoryTest extends TestCase
         $invocationMocker->method('current');
         $invocationMocker->willReturn($currentTime);
 
-        $tank = new Tank('Tank', 1.5);
+        $tank = new Tank('Tank', 1.5, null);
         $greenhouse = new Greenhouse('Fruits');
 
         $system = new System('Fruits', $greenhouse, $tank);

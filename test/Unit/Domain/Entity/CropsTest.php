@@ -13,7 +13,7 @@ class CropsTest extends TestCase
 {
     public function testNewCropsCreated()
     {
-        $tank = new Tank('Tank', 1.5);
+        $tank = new Tank('Tank', 1.5, null);
         $plant = new Plant('Lettuce', 'Lactuca sativa');
         $greenhouse = new Greenhouse('greenhouse');
         $system = new System('NFT', $greenhouse, $tank);

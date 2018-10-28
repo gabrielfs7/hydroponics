@@ -38,7 +38,7 @@ abstract class AbstractAction
         ResourceCreatorInterface $resourceCreator,
         RequestInterface $request
     ): ResponseDtoInterface {
-        return $resourceCreator->create((string) $request->getBody());
+        return $resourceCreator->create($request);
     }
 
     protected function patch(
@@ -46,7 +46,7 @@ abstract class AbstractAction
         RequestInterface $request
     ): ResponseDtoInterface {
         return $resourceUpdater->update(
-            (string) $request->getBody(),
+            $request,
             $this->getRequestParameter($request, 'id')
         );
     }

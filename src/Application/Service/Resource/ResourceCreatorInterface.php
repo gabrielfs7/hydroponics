@@ -3,8 +3,9 @@
 namespace GSoares\Hydroponics\Application\Service\Resource;
 
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
+use Psr\Http\Message\RequestInterface;
 
 interface ResourceCreatorInterface
 {
-    public function create(string $json): ResponseDtoInterface;
+    public function create(RequestInterface $request): ResponseDtoInterface;
 }

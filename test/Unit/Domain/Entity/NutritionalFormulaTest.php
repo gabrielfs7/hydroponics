@@ -1,8 +1,8 @@
 <?php
 
-namespace GSoares\Hydroponics\Test\Unit\Domain\ValueObject;
+namespace GSoares\Hydroponics\Test\Unit\Domain\Entity;
 
-use GSoares\Hydroponics\Domain\ValueObject\NutritionalFormula;
+use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
 use PHPUnit\Framework\TestCase;
 
 class NutritionalFormulaTest extends TestCase

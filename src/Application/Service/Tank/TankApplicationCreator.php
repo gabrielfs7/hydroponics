@@ -16,7 +16,7 @@ class TankApplicationCreator extends AbstractResourceSaver implements ResourceCr
         return parent::save($json);
     }
 
-    protected function fillFactoryParameters(ResourceDtoInterface $resourceDto): ArrayAccess
+    protected function buildFactoryParameters(ResourceDtoInterface $resourceDto): ArrayAccess
     {
         $parameters = new ArrayObject();
         $parameters->offsetSet('name', $resourceDto->getAttributeValue('name'));

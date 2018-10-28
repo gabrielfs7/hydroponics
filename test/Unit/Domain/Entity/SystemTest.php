@@ -11,7 +11,7 @@ class SystemTest extends TestCase
 {
     public function testNewGreenhouseCreated()
     {
-        $tank = new Tank('Tank', 1.5);
+        $tank = new Tank('Tank', 1.5, null);
         $greenhouse = new Greenhouse('greenhouse');
         $system = new System('NFT', $greenhouse, $tank);
 

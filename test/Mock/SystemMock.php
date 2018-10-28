@@ -6,7 +6,7 @@ use GSoares\Hydroponics\Domain\Entity\System;
 
 class SystemMock
 {
-    public static function getPostRequestBody(): array
+    public static function getPostRequestBody(int $tankId): array
     {
         return [
             'data' => [
@@ -14,6 +14,16 @@ class SystemMock
                 'attributes' => [
                     'name' => 'Name test',
                     'description' => 'Description test',
+                ],
+                'relationships' => [
+                    'tanks' => [
+                        [
+                            'data' => [
+                                'type' => 'tank',
+                                'id' => $tankId,
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ];
@@ -27,6 +37,22 @@ class SystemMock
                 'attributes' => [
                     'name' => $params['name'],
                     'description' => $params['description'],
+                ],
+                'relationships' => [
+                    'greenhouse' => [
+                        'data' => [
+                            'type' => 'greenhouse',
+                            'id' => $params['greenhouseId'],
+                        ]
+                    ],
+                    'tanks' => [
+                        [
+                            'data' => [
+                                'type' => 'tank',
+                                'id' => $params['tankId'],
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ];

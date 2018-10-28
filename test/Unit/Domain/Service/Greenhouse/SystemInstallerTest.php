@@ -20,7 +20,7 @@ class SystemInstallerTest extends TestCase
 
     public function testInstall()
     {
-        $tank = new Tank('Tank', 1.5);
+        $tank = new Tank('Tank', 1.5, null);
         $greenhouse = new Greenhouse('greenhouse');
         $system = new System('NFT', $greenhouse, $tank);
 
