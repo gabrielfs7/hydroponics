@@ -25,19 +25,19 @@ class ListGreenhouseActionTest extends WebTestCase
     {
         $entity1 = $this->createFixture(
             Greenhouse::class,
-                [
+            [
                     'name' => 'ABC',
                     'description' => 'I am 1',
                 ]
-            );
+        );
 
         $entity2 = $this->createFixture(
-                Greenhouse::class,
-                [
+            Greenhouse::class,
+            [
                     'name' => 'DEF',
                     'description' => 'I am 2',
                 ]
-            );
+        );
 
         $this->runApp(
             'GET',

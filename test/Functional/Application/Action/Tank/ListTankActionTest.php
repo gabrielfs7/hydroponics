@@ -25,19 +25,19 @@ class ListTankActionTest extends WebTestCase
     {
         $entity1 = $this->createFixture(
             Tank::class,
-                [
+            [
                     'name' => 'ABC',
                     'description' => 'I am 1',
                 ]
-            );
+        );
 
         $entity2 = $this->createFixture(
-                Tank::class,
-                [
+            Tank::class,
+            [
                     'name' => 'DEF',
                     'description' => 'I am 2',
                 ]
-            );
+        );
 
         $respose = $this->runApp(
             'GET',

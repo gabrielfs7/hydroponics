@@ -35,7 +35,8 @@ class RemoveSystemActionTest extends WebTestCase
 
         $this->runApp(
             'DELETE',
-            sprintf('/api/greenhouses/%s/systems/%s',
+            sprintf(
+                '/api/greenhouses/%s/systems/%s',
                 $greenhouse->getId(),
                 $entityFound->getId()
             )

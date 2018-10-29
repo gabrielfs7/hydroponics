@@ -51,7 +51,8 @@ class FixtureMapping
                 return $entity;
             },
             Tank::class => function (array $params, array $mapping) use ($objectManager) {
-                $nutritionalFormula = $params['nutritionalFormula'] ?? $mapping[NutritionalFormula::class]($params, $mapping);
+                $nutritionalFormula = $params['nutritionalFormula'] ??
+                    $mapping[NutritionalFormula::class]($params, $mapping);
 
                 if (!$nutritionalFormula->getId()) {
                     $objectManager->persist($nutritionalFormula);
@@ -61,7 +62,6 @@ class FixtureMapping
                     $params['name'] ?? ('Test ' . rand(0, 9999)),
                     $params['volumeCapacity'] ?? 0,
                     $nutritionalFormula
-
                 );
                 $entity->changeCreatedAt(new DateTimeImmutable());
                 $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));

@@ -29,8 +29,7 @@ class Tank
         string $name,
         float $volumeCapacity,
         ?NutritionalFormula $nutritionalFormula
-    )
-    {
+    ) {
         $this->name = $name;
         $this->volumeCapacity = $volumeCapacity;
         $this->nutritionalFormula = $nutritionalFormula;

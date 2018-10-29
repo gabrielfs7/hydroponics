@@ -29,12 +29,12 @@ class UpdateSystemActionTest extends WebTestCase
         $tank = $this->createFixture(Tank::class);
 
         $entity = $this->createFixture(
-                System::class,
-                [
+            System::class,
+            [
                     'name' => 'ABC',
                     'description' => 'Created',
                 ]
-            );
+        );
 
         $entityFound = $this->systemRepository
             ->addFilter('id', $entity->getId())

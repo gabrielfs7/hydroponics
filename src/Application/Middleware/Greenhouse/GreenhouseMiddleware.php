@@ -27,8 +27,7 @@ class GreenhouseMiddleware implements MiddlewareInterface
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
-    ): ResponseInterface
-    {
+    ): ResponseInterface {
         if ($greenhouse = $this->getGreenhouse($request)) {
             $request = $request->withAttribute(self::REQUESTED_GREENHOUSE, $greenhouse);
         }

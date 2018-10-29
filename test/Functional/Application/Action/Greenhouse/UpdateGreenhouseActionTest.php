@@ -24,12 +24,12 @@ class UpdateGreenhouseActionTest extends WebTestCase
     public function testCanUpdateGreenhouseWhenProvidingExistentId() : void
     {
         $entity = $this->createFixture(
-                Greenhouse::class,
-                [
+            Greenhouse::class,
+            [
                     'name' => 'ABC',
                     'description' => 'Created',
                 ]
-            );
+        );
 
         $entityFound = $this->greenhouseRepository
             ->addFilter('id', $entity->getId())

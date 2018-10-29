@@ -85,8 +85,7 @@ abstract class AbstractResourceSaver
     protected function buildFactoryParameters(
         RequestInterface $request,
         ResourceDtoInterface $resourceDto
-    ): ArrayAccess
-    {
+    ): ArrayAccess {
         $parameters = new ArrayObject();
 
         foreach ($resourceDto->getAttributes() as $name => $value) {

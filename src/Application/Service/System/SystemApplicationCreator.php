@@ -22,8 +22,7 @@ class SystemApplicationCreator extends AbstractResourceSaver implements Resource
     protected function buildFactoryParameters(
         RequestInterface $request,
         ResourceDtoInterface $resourceDto
-    ): ArrayAccess
-    {
+    ): ArrayAccess {
         # @TODO Improve relationship handling here
         $tankId = $resourceDto->getRelationships()['tanks'][0]['data']['id'];
 

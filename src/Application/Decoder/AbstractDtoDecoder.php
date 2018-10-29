@@ -22,7 +22,8 @@ abstract class AbstractDtoDecoder implements DecoderInterface
             []
         );
 
-        //$this->handleData($dto, $stdClass->data); //FIXME @TODO I will skip resource validation for now. I have to handle mapping later.
+        //FIXME @TODO I will skip resource validation for now. I have to handle mapping later.
+        //$this->handleData($dto, $stdClass->data);
 
         if (isset($map['data']['type'])) {
             $dto->type = $map['data']['type'];

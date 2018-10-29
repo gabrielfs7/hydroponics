@@ -28,19 +28,19 @@ class ListSystemActionTest extends WebTestCase
 
         $entity1 = $this->createFixture(
             System::class,
-                [
+            [
                     'name' => 'ABC',
                     'description' => 'I am 1',
                 ]
-            );
+        );
 
         $entity2 = $this->createFixture(
-                System::class,
-                [
+            System::class,
+            [
                     'name' => 'DEF',
                     'description' => 'I am 2',
                 ]
-            );
+        );
 
         $this->runApp(
             'GET',

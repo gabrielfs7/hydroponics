@@ -23,7 +23,7 @@ class CreateTankActionTest extends WebTestCase
     {
         $this->assertCount(0, $this->tankRepository->findAll());
 
-        $this->runApp('POST','/api/tanks', TankMock::getPostRequestBody());
+        $this->runApp('POST', '/api/tanks', TankMock::getPostRequestBody());
 
         $entity = $this->tankRepository
             ->findOne();
