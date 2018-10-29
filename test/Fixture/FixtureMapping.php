@@ -21,9 +21,9 @@ class FixtureMapping
     {
         $mapping = [
             Greenhouse::class => function (array $params, array $mapping) {
-                $entity = new Greenhouse($params['name'] ?? ('Test ' . rand(0, 9999)));
+                $entity = new Greenhouse($params['name'] ?? self::randomName());
                 $entity->changeCreatedAt(new DateTimeImmutable());
-                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
+                $entity->changeDescription($params['description'] ?? self::randomName());
 
                 return $entity;
             },
@@ -40,13 +40,13 @@ class FixtureMapping
                 }
 
                 $entity = new System(
-                    $params['name'] ?? ('Test ' . rand(0, 9999)),
+                    $params['name'] ?? self::randomName(),
                     $greenhouse,
                     $tank
                 );
 
                 $entity->changeCreatedAt(new DateTimeImmutable());
-                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
+                $entity->changeDescription($params['description'] ?? self::randomName());
 
                 return $entity;
             },
@@ -59,38 +59,38 @@ class FixtureMapping
                 }
 
                 $entity = new Tank(
-                    $params['name'] ?? ('Test ' . rand(0, 9999)),
-                    $params['volumeCapacity'] ?? 0,
+                    $params['name'] ?? self::randomName(),
+                    $params['volumeCapacity'] ?? self::randomInt(),
                     $nutritionalFormula
                 );
                 $entity->changeCreatedAt(new DateTimeImmutable());
-                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
+                $entity->changeDescription($params['description'] ?? self::randomName());
 
                 $tankVersion = new TankVersion(
                     $entity,
                     new WaterVolume(
-                        $params['currentVolume'] ?? 1,
-                        $params['minVolume'] ?? 1
+                        $params['currentVolume'] ?? self::randomInt(),
+                        $params['minVolume'] ?? self::randomInt()
                     ),
                     new WaterPh(
-                        $params['waterPh'] ?? 1,
-                        $params['maxWaterPh'] ?? 1,
-                        $params['minWaterPh'] ?? 1
+                        $params['waterPh'] ?? self::randomInt(),
+                        $params['maxWaterPh'] ?? self::randomInt(),
+                        $params['minWaterPh'] ?? self::randomInt()
                     ),
                     new WaterEc(
-                        $params['waterEc'] ?? 1,
-                        $params['maxWaterEc'] ?? 1,
-                        $params['minWaterEc'] ?? 1
+                        $params['waterEc'] ?? self::randomInt(),
+                        $params['maxWaterEc'] ?? self::randomInt(),
+                        $params['minWaterEc'] ?? self::randomInt()
                     ),
                     new WaterDbo(
-                        $params['waterDbo'] ?? 1,
-                        $params['maxWaterDbo'] ?? 1,
-                        $params['minWaterDbo'] ?? 1
+                        $params['waterDbo'] ?? self::randomInt(),
+                        $params['maxWaterDbo'] ?? self::randomInt(),
+                        $params['minWaterDbo'] ?? self::randomInt()
                     ),
                     new WaterTemperature(
-                        $params['waterTemperature'] ?? 1,
-                        $params['maxWaterTemperature'] ?? 1,
-                        $params['minWaterTemperature'] ?? 1
+                        $params['waterTemperature'] ?? self::randomInt(),
+                        $params['maxWaterTemperature'] ?? self::randomInt(),
+                        $params['minWaterTemperature'] ?? self::randomInt()
                     )
                 );
 
@@ -101,8 +101,8 @@ class FixtureMapping
                 return $entity;
             },
             NutritionalFormula::class => function (array $params, array $mapping) {
-                $entity = new NutritionalFormula($params['name'] ?? ('Test ' . rand(0, 9999)));
-                $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
+                $entity = new NutritionalFormula($params['name'] ?? self::randomName());
+                $entity->changeDescription($params['description'] ?? self::randomName());
 
                 return $entity;
             }
@@ -117,5 +117,15 @@ class FixtureMapping
         }
 
         return $recursiveMapping;
+    }
+
+    private static function randomInt(int $min = 1, int $max = 999): int
+    {
+        return rand($min, $max);
+    }
+
+    private static function randomName(int $maxLength = 25): string
+    {
+        return substr(str_repeat(implode('', range('A', 'Z', rand(1, 23))), $maxLength), 0, $maxLength);
     }
 }
