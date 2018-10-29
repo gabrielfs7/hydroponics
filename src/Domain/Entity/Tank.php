@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Domain\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use GSoares\Hydroponics\Domain\Entity\Traits\GreenhouseTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\TankVersionsTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
@@ -24,11 +25,16 @@ class Tank
     /** @var NutritionalFormula */
     private $nutritionalFormula;
 
-    public function __construct(string $name, float $volumeCapacity, ?NutritionalFormula $nutritionalFormula)
+    public function __construct(
+        string $name,
+        float $volumeCapacity,
+        ?NutritionalFormula $nutritionalFormula
+    )
     {
         $this->name = $name;
         $this->volumeCapacity = $volumeCapacity;
         $this->nutritionalFormula = $nutritionalFormula;
+        $this->tankVersions = new ArrayCollection();
     }
 
     public function getVolumeCapacity(): float

@@ -1,5 +1,10 @@
 <?php
 
+use GSoares\Hydroponics\Application\Action\Tank\CreateTankAction;
+use GSoares\Hydroponics\Application\Action\Tank\DeleteTankAction;
+use GSoares\Hydroponics\Application\Action\Tank\GetTankAction;
+use GSoares\Hydroponics\Application\Action\Tank\ListTankAction;
+use GSoares\Hydroponics\Application\Action\Tank\UpdateTankAction;
 use GSoares\Hydroponics\Application\Decoder\Tank\TankDtoDecoder;
 use GSoares\Hydroponics\Application\Encoder\Tank\TankDtoEncoder;
 use GSoares\Hydroponics\Application\Service\Tank\TankApplicationDeleter;
@@ -78,5 +83,24 @@ return [
     #
     TankAttributesFiller::class => function (ContainerInterface $container): TankAttributesFiller {
         return new TankAttributesFiller();
+    },
+
+    #
+    # Application - Action
+    #
+    ListTankAction::class => function (ContainerInterface $container): ListTankAction {
+        return new ListTankAction($container->get(TankApplicationSearcher::class));
+    },
+    GetTankAction::class => function (ContainerInterface $container): GetTankAction {
+        return new GetTankAction($container->get(TankApplicationSearcher::class));
+    },
+    CreateTankAction::class => function (ContainerInterface $container): CreateTankAction {
+        return new CreateTankAction($container->get(TankApplicationCreator::class));
+    },
+    UpdateTankAction::class => function (ContainerInterface $container): UpdateTankAction {
+        return new UpdateTankAction($container->get(TankApplicationUpdater::class));
+    },
+    DeleteTankAction::class => function (ContainerInterface $container): DeleteTankAction {
+        return new DeleteTankAction($container->get(TankApplicationDeleter::class));
     },
 ];

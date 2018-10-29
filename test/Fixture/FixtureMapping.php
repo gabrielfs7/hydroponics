@@ -8,6 +8,12 @@ use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
+use GSoares\Hydroponics\Domain\Entity\TankVersion;
+use GSoares\Hydroponics\Domain\ValueObject\WaterDbo;
+use GSoares\Hydroponics\Domain\ValueObject\WaterEc;
+use GSoares\Hydroponics\Domain\ValueObject\WaterPh;
+use GSoares\Hydroponics\Domain\ValueObject\WaterTemperature;
+use GSoares\Hydroponics\Domain\ValueObject\WaterVolume;
 
 class FixtureMapping
 {
@@ -59,6 +65,38 @@ class FixtureMapping
                 );
                 $entity->changeCreatedAt(new DateTimeImmutable());
                 $entity->changeDescription($params['description'] ?? ('description ' . rand(0, 9999)));
+
+                $tankVersion = new TankVersion(
+                    $entity,
+                    new WaterVolume(
+                        $params['currentVolume'] ?? 1,
+                        $params['minVolume'] ?? 1
+                    ),
+                    new WaterPh(
+                        $params['waterPh'] ?? 1,
+                        $params['maxWaterPh'] ?? 1,
+                        $params['minWaterPh'] ?? 1
+                    ),
+                    new WaterEc(
+                        $params['waterEc'] ?? 1,
+                        $params['maxWaterEc'] ?? 1,
+                        $params['minWaterEc'] ?? 1
+                    ),
+                    new WaterDbo(
+                        $params['waterDbo'] ?? 1,
+                        $params['maxWaterDbo'] ?? 1,
+                        $params['minWaterDbo'] ?? 1
+                    ),
+                    new WaterTemperature(
+                        $params['waterTemperature'] ?? 1,
+                        $params['maxWaterTemperature'] ?? 1,
+                        $params['minWaterTemperature'] ?? 1
+                    )
+                );
+
+                $tankVersion->changeCreatedAt(new DateTimeImmutable());
+
+                $entity->addVersion($tankVersion);
 
                 return $entity;
             },

@@ -26,6 +26,6 @@ class ListPlantAction extends AbstractAction
         ResponseInterface $response,
         array $args
     ): ResponseDtoInterface {
-        $this->getAll($this->resourceSearcher, $request);
+        return $this->getAll($this->resourceSearcher, $request);
     }
 }

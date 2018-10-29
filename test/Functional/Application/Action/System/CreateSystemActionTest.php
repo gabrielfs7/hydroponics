@@ -38,8 +38,6 @@ class CreateSystemActionTest extends WebTestCase
         $entity = $this->systemRepository
             ->findOne();
 
-        // {"links":{"self":"","related":""},"data":{"id":"1","type":"system","attributes":{"name":"Name test","description":"Description test","createdAt":"2018-10-28T19:04:49+00:00"},"relationships":[],"links":{"self":"","related":""},"meta":[]}}
-
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(SystemMock::getResponseBody($entity));
         $this->assertNotNull($entity);
