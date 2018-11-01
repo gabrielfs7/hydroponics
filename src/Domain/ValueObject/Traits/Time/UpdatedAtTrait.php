@@ -14,7 +14,7 @@ trait UpdatedAtTrait
         return $this->updatedAt;
     }
 
-    public function changeUpdatedAt(\DateTime $updatedAt): self
+    public function changeUpdatedAt(DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

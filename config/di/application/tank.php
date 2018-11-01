@@ -15,6 +15,7 @@ use GSoares\Hydroponics\Application\Service\Tank\TankApplicationUpdater;
 use GSoares\Hydroponics\Domain\Factory\Tank\TankFactory;
 use GSoares\Hydroponics\Domain\Repository\Tank\TankRepository;
 use GSoares\Hydroponics\Domain\Service\Tank\TankDeleter;
+use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -82,7 +83,7 @@ return [
     # Application - Service - AttributesFiller
     #
     TankAttributesFiller::class => function (ContainerInterface $container): TankAttributesFiller {
-        return new TankAttributesFiller();
+        return new TankAttributesFiller($container->get(DateTimeProvider::class));
     },
 
     #

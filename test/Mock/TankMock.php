@@ -11,38 +11,20 @@ class TankMock
         return [
             'data' => [
                 'type' => 'tanks',
-                'attributes' => [
-                    'name' => 'Name test',
-                    'description' => 'Description test',
-                    'volumeCapacity' => 1000,
-                    'currentVolume' => 999.99,
-                    'minVolume' => 100.00,
-                    'waterTemperature' => 23.55,
-                    'maxWaterTemperature' => 27.77,
-                    'minWaterTemperature' => 18.64,
-                    'waterPh' => 6.55,
-                    'maxWaterPh' => 7.55,
-                    'minWaterPh' => 5.54,
-                    'waterEc' => 1.33,
-                    'maxWaterEc' => 3.44,
-                    'minWaterEc' => 0.73,
-                    'waterDbo' => 5.2,
-                    'maxWaterDbo' => 6.8,
-                    'minWaterDbo' => 3.67,
-                ]
+                'attributes' => self::getDefaultAttributes()
             ]
         ];
     }
 
     public static function getPatchRequestBody(array $params): array
     {
+        $attributes = self::getDefaultAttributes();
+        $attributes = array_merge($attributes, $params);
+
         return [
             'data' => [
                 'type' => 'tanks',
-                'attributes' => [
-                    'name' => $params['name'],
-                    'description' => $params['description'],
-                ]
+                'attributes' => $attributes
             ]
         ];
     }
@@ -91,6 +73,29 @@ class TankMock
                 'related' => '',
             ],
             'meta' => []
+        ];
+    }
+
+    private static function getDefaultAttributes(): array
+    {
+        return [
+            'name' => 'Name test',
+            'description' => 'Description test',
+            'volumeCapacity' => 1000,
+            'currentVolume' => 999.99,
+            'minVolume' => 100.00,
+            'waterTemperature' => 23.55,
+            'maxWaterTemperature' => 27.77,
+            'minWaterTemperature' => 18.64,
+            'waterPh' => 6.55,
+            'maxWaterPh' => 7.55,
+            'minWaterPh' => 5.54,
+            'waterEc' => 1.33,
+            'maxWaterEc' => 3.44,
+            'minWaterEc' => 0.73,
+            'waterDbo' => 5.2,
+            'maxWaterDbo' => 6.8,
+            'minWaterDbo' => 3.67,
         ];
     }
 }

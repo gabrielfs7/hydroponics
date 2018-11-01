@@ -5,11 +5,12 @@ namespace GSoares\Hydroponics\Application\Service\Tank;
 use GSoares\Hydroponics\Application\Dto\Response\ResponseDtoInterface;
 use GSoares\Hydroponics\Application\Service\Resource\AbstractResourceSaver;
 use GSoares\Hydroponics\Application\Service\Resource\ResourceUpdaterInterface;
+use Psr\Http\Message\RequestInterface;
 
 class TankApplicationUpdater extends AbstractResourceSaver implements ResourceUpdaterInterface
 {
-    public function update(string $json, string $id): ResponseDtoInterface
+    public function update(RequestInterface $request, string $id): ResponseDtoInterface
     {
-        return parent::save($json, $this->findDomainObjectById($id));
+        return parent::save($request, $this->findDomainObjectById($id));
     }
 }
