@@ -23,21 +23,11 @@ class ListGreenhouseActionTest extends WebTestCase
 
     public function testCanListGreenhouses() : void
     {
-        $entity1 = $this->createFixture(
-            Greenhouse::class,
-            [
-                    'name' => 'ABC',
-                    'description' => 'I am 1',
-                ]
-        );
+        /** @var Greenhouse $entity1 */
+        $entity1 = $this->createFixture(Greenhouse::class);
 
-        $entity2 = $this->createFixture(
-            Greenhouse::class,
-            [
-                    'name' => 'DEF',
-                    'description' => 'I am 2',
-                ]
-        );
+        /** @var Greenhouse $entity2 */
+        $entity2 = $this->createFixture(Greenhouse::class);
 
         $this->runApp(
             'GET',

@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Greenhouse;
 
+use DateTimeInterface;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -22,25 +23,22 @@ class RemoveGreenhouseActionTest extends WebTestCase
 
     public function testCanRemoveGreenhouseWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $entity */
         $entity = $this->createFixture(Greenhouse::class, ['name' => ' ABC ']);
 
-        $entityFound = $this->greenhouseRepository
-            ->addFilter('id', $entity->getId())
-            ->findOne();
-
-        $this->assertEquals($entity->getId(), $entityFound->getId());
-        $this->assertNull($entityFound->getDeletedAt());
+        $this->assertNull($entity->getDeletedAt());
 
         $this->runApp(
             'DELETE',
-            '/api/greenhouses/'. $entityFound->getId()
+            '/api/greenhouses/'. $entity->getId()
         );
 
+        /** @var Greenhouse $entity */
         $entity = $this->greenhouseRepository
-            ->addFilter('id', $entityFound->getId())
+            ->addFilter('id', $entity->getId())
             ->findOne();
 
-        $this->assertNotNull($entity->getDeletedAt());
+        $this->assertInstanceOf(DateTimeInterface::class, $entity->getDeletedAt());
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
     }

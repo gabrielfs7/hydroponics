@@ -23,26 +23,13 @@ class ListTankActionTest extends WebTestCase
 
     public function testCanListTanks() : void
     {
-        $entity1 = $this->createFixture(
-            Tank::class,
-            [
-                    'name' => 'ABC',
-                    'description' => 'I am 1',
-                ]
-        );
+        /** @var Tank $entity1 */
+        $entity1 = $this->createFixture(Tank::class);
 
-        $entity2 = $this->createFixture(
-            Tank::class,
-            [
-                    'name' => 'DEF',
-                    'description' => 'I am 2',
-                ]
-        );
+        /** @var Tank $entity2 */
+        $entity2 = $this->createFixture(Tank::class);
 
-        $respose = $this->runApp(
-            'GET',
-            '/api/tanks'
-        );
+        $this->runApp('GET', '/api/tanks');
 
         $expectedResponse = ResponseMock::getPaginationResponse(
             [

@@ -24,7 +24,10 @@ class GetSystemActionTest extends WebTestCase
 
     public function testCanGetSystemWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
+
+        /** @var System $entity */
         $entity = $this->createFixture(System::class);
 
         $this->runApp(
@@ -42,6 +45,7 @@ class GetSystemActionTest extends WebTestCase
 
     public function testCannotGetSystemWhenProvidingNoExistentId() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
 
         $this->runApp(

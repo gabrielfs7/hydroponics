@@ -24,23 +24,14 @@ class ListSystemActionTest extends WebTestCase
 
     public function testCanListSystems() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
 
-        $entity1 = $this->createFixture(
-            System::class,
-            [
-                    'name' => 'ABC',
-                    'description' => 'I am 1',
-                ]
-        );
+        /** @var System $entity1 */
+        $entity1 = $this->createFixture(System::class);
 
-        $entity2 = $this->createFixture(
-            System::class,
-            [
-                    'name' => 'DEF',
-                    'description' => 'I am 2',
-                ]
-        );
+        /** @var System $entity2 */
+        $entity2 = $this->createFixture(System::class);
 
         $this->runApp(
             'GET',

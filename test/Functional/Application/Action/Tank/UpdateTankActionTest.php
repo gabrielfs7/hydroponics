@@ -24,8 +24,8 @@ class UpdateTankActionTest extends WebTestCase
 
     public function testCanUpdateTankWhenProvidingExistentId() : void
     {
+        /** @var Tank $entity */
         $entity = $this->createFixture(Tank::class);
-        ;
 
         $this->assertNull($entity->getUpdatedAt());
 

@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Repository\Tank\TankRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
 use GSoares\Hydroponics\Test\Mock\TankMock;
@@ -25,6 +26,7 @@ class CreateTankActionTest extends WebTestCase
 
         $this->runApp('POST', '/api/tanks', TankMock::getPostRequestBody());
 
+        /** @var Tank $entity */
         $entity = $this->tankRepository
             ->findOne();
 

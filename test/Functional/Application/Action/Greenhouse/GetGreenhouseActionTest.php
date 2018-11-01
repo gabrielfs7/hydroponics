@@ -23,6 +23,7 @@ class GetGreenhouseActionTest extends WebTestCase
 
     public function testCanGetGreenhouseWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $entity */
         $entity = $this->createFixture(Greenhouse::class);
 
         $this->runApp('GET', '/api/greenhouses/1');

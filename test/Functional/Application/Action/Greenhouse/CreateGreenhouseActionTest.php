@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Greenhouse;
 
+use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
 use GSoares\Hydroponics\Test\Mock\GreenhouseMock;
@@ -21,6 +22,7 @@ class CreateGreenhouseActionTest extends WebTestCase
 
     public function testCreateAGreenhouseWhenProvidingCorrectRequest() : void
     {
+        /** @var Greenhouse $entity */
         $entity = $this->greenhouseRepository
             ->findOne();
 
@@ -32,6 +34,7 @@ class CreateGreenhouseActionTest extends WebTestCase
             GreenhouseMock::getPostRequestBody()
         );
 
+        /** @var Greenhouse $entity */
         $entity = $this->greenhouseRepository
             ->findOne();
 

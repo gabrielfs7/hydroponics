@@ -24,7 +24,10 @@ class CreateSystemActionTest extends WebTestCase
 
     public function testCreateASystemWhenProvidingCorrectRequest() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
+
+        /** @var Tank $tank */
         $tank = $this->createFixture(Tank::class);
 
         $this->assertCount(0, $this->systemRepository->findAll());
@@ -35,6 +38,7 @@ class CreateSystemActionTest extends WebTestCase
             SystemMock::getPostRequestBody($tank->getId())
         );
 
+        /** @var System $entity */
         $entity = $this->systemRepository
             ->findOne();
 

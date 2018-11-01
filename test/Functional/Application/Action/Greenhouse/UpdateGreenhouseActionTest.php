@@ -2,7 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Greenhouse;
 
-use DateTime;
+use DateTimeInterface;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -23,6 +23,7 @@ class UpdateGreenhouseActionTest extends WebTestCase
 
     public function testCanUpdateGreenhouseWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $entity */
         $entity = $this->createFixture(
             Greenhouse::class,
             [
@@ -31,6 +32,7 @@ class UpdateGreenhouseActionTest extends WebTestCase
                 ]
         );
 
+        /** @var Greenhouse $entityFound */
         $entityFound = $this->greenhouseRepository
             ->addFilter('id', $entity->getId())
             ->findOne();
@@ -50,13 +52,14 @@ class UpdateGreenhouseActionTest extends WebTestCase
             )
         );
 
+        /** @var Greenhouse $entity */
         $entity = $this->greenhouseRepository
             ->addFilter('id', $entityFound->getId())
             ->findOne();
 
-        $this->assertEquals('DEF', $entity->getName());
-        $this->assertEquals('Updated', $entity->getDescription());
-        $this->assertInstanceOf(DateTime::class, $entity->getUpdatedAt());
+        $this->assertSame('DEF', $entity->getName());
+        $this->assertSame('Updated', $entity->getDescription());
+        $this->assertInstanceOf(DateTimeInterface::class, $entity->getUpdatedAt());
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
     }

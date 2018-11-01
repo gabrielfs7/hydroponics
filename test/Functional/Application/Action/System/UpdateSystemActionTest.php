@@ -25,31 +25,23 @@ class UpdateSystemActionTest extends WebTestCase
 
     public function testCanUpdateSystemWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
+
+        /** @var Tank $tank */
         $tank = $this->createFixture(Tank::class);
 
-        $entity = $this->createFixture(
-            System::class,
-            [
-                    'name' => 'ABC',
-                    'description' => 'Created',
-                ]
-        );
+        /** @var System $entity */
+        $entity = $this->createFixture(System::class);
 
-        $entityFound = $this->systemRepository
-            ->addFilter('id', $entity->getId())
-            ->findOne();
-
-        $this->assertEquals('ABC', $entityFound->getName());
-        $this->assertEquals('Created', $entityFound->getDescription());
-        $this->assertNull($entityFound->getUpdatedAt());
+        $this->assertNull($entity->getUpdatedAt());
 
         $this->runApp(
             'PATCH',
             sprintf(
                 '/api/greenhouses/%s/systems/%s',
                 $greenhouse->getId(),
-                $entityFound->getId()
+                $entity->getId()
             ),
             SystemMock::getPatchRequestBody(
                 [
@@ -61,8 +53,9 @@ class UpdateSystemActionTest extends WebTestCase
             )
         );
 
+        /** @var System $entity */
         $entity = $this->systemRepository
-            ->addFilter('id', $entityFound->getId())
+            ->addFilter('id', $entity->getId())
             ->findOne();
 
         $this->assertEquals('DEF', $entity->getName());

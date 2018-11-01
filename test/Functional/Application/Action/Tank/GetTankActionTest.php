@@ -23,6 +23,7 @@ class GetTankActionTest extends WebTestCase
 
     public function testCanGetTankWhenProvidingExistentId() : void
     {
+        /** @var Tank $entity */
         $entity = $this->createFixture(Tank::class);
 
         $this->runApp('GET', '/api/tanks/1');

@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use DateTimeInterface;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
@@ -23,30 +24,29 @@ class RemoveSystemActionTest extends WebTestCase
 
     public function testCanRemoveSystemWhenProvidingExistentId() : void
     {
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->createFixture(Greenhouse::class);
-        $entity = $this->createFixture(System::class, ['name' => ' ABC ']);
 
-        $entityFound = $this->systemRepository
-            ->addFilter('id', $entity->getId())
-            ->findOne();
+        /** @var System $entity */
+        $entity = $this->createFixture(System::class);
 
-        $this->assertEquals($entity->getId(), $entityFound->getId());
-        $this->assertNull($entityFound->getDeletedAt());
+        $this->assertNull($entity->getDeletedAt());
 
         $this->runApp(
             'DELETE',
             sprintf(
                 '/api/greenhouses/%s/systems/%s',
                 $greenhouse->getId(),
-                $entityFound->getId()
+                $entity->getId()
             )
         );
 
+        /** @var System $entity */
         $entity = $this->systemRepository
-            ->addFilter('id', $entityFound->getId())
+            ->addFilter('id', $entity->getId())
             ->findOne();
 
-        $this->assertNotNull($entity->getDeletedAt());
+        $this->assertInstanceOf(DateTimeInterface::class, $entity->getDeletedAt());
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(SystemMock::getResponseBody($entity));
     }
