@@ -37,13 +37,12 @@ class CropsFactoryTest extends TestCase
         $invocationMocker->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5, null);
-        $greenhouse = new Greenhouse('Vegetables');
-        $system = new System('NFT', $greenhouse, $tank);
+        $system = new System('NFT', new Greenhouse('Vegetables'), $tank);
         $plant = new Plant('Lettuce', 'Lactuca sativa');
 
-        $crops = new Crops('Lettuce Crops', $system, $plant);
+        $crops = new Crops('Lettuce Crops', 25, $system, $plant);
         $crops->changeCreatedAt($currentTime);
 
-        $this->assertEquals($crops, $this->factory->make('Lettuce Crops', $system, $plant));
+        $this->assertEquals($crops, $this->factory->make('Lettuce Crops', 25, $system, $plant));
     }
 }

@@ -17,9 +17,9 @@ class CropsFactory
         $this->dateTimeProvider = $dateTimeProvider;
     }
 
-    public function make(string $name, System $system, Plant $plant): Crops
+    public function make(string $name, int $quantity, System $system, Plant $plant): Crops
     {
-        $domainObject = new Crops($name, $system, $plant);
+        $domainObject = new Crops($name, $quantity, $system, $plant);
         $domainObject->changeCreatedAt($this->dateTimeProvider->current());
 
         return $domainObject;

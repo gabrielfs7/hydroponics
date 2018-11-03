@@ -3,8 +3,10 @@
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use GSoares\Hydroponics\Domain\Entity\Crops;
+use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
 use GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository;
 use GSoares\Hydroponics\Domain\Service\Crops\CropsDeleter;
+use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -16,6 +18,13 @@ return [
             $container->get(EntityManager::class),
             new ClassMetadata(Crops::class)
         );
+    },
+
+    #
+    # Domain - Factory
+    #
+    CropsFactory::class => function (ContainerInterface $container): CropsFactory {
+        return new CropsFactory($container->get(DateTimeProvider::class));
     },
 
     #
