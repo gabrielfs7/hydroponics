@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Domain\Entity;
 
+use DateTimeInterface;
 use GSoares\Hydroponics\Domain\Entity\Traits\PlantTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\SystemTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\IdTrait;
@@ -20,10 +21,13 @@ class Crops
     private $quantity;
 
     /** @var int */
-    private $totalHarvested;
+    private $quantityHarvested;
 
     /** @var int */
-    private $totalLost;
+    private $quantityLost;
+
+    /** @var  DateTimeInterface */
+    private $harvestedAt;
 
     public function __construct(string $name, int $quantity, System $system, Plant $plant)
     {
@@ -31,8 +35,8 @@ class Crops
         $this->system = $system;
         $this->plant = $plant;
         $this->quantity = $quantity;
-        $this->totalHarvested = 0;
-        $this->totalLost = 0;
+        $this->quantityHarvested = 0;
+        $this->quantityLost = 0;
     }
 
     public function getQuantity(): int
@@ -47,26 +51,38 @@ class Crops
         return $this;
     }
 
-    public function getTotalHarvested(): int
+    public function getQuantityHarvested(): int
     {
-        return $this->totalHarvested;
+        return $this->quantityHarvested;
     }
 
-    public function changeTotalHarvested(int $totalHarvested): self
+    public function changeQuantityHarvested(int $quantityHarvested): self
     {
-        $this->totalHarvested = $totalHarvested;
+        $this->quantityHarvested = $quantityHarvested;
 
         return $this;
     }
 
-    public function getTotalLost(): int
+    public function getQuantityLost(): int
     {
-        return $this->totalLost;
+        return $this->quantityLost;
     }
 
-    public function changeTotalLost(int $totalLost): self
+    public function changeQuantityLost(int $quantityLost): self
     {
-        $this->totalLost = $totalLost;
+        $this->quantityLost = $quantityLost;
+
+        return $this;
+    }
+
+    public function getHarvestedAt(): ?DateTimeInterface
+    {
+        return $this->harvestedAt;
+    }
+
+    public function changeHarvestedAt(DateTimeInterface $harvestedAt): self
+    {
+        $this->harvestedAt = $harvestedAt;
 
         return $this;
     }

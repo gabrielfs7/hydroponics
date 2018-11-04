@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Unit\Domain\Factory\Crops;
 
+use ArrayObject;
 use GSoares\Hydroponics\Domain\Entity\Crops;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
@@ -43,6 +44,15 @@ class CropsFactoryTest extends TestCase
         $crops = new Crops('Lettuce Crops', 25, $system, $plant);
         $crops->changeCreatedAt($currentTime);
 
-        $this->assertEquals($crops, $this->factory->make('Lettuce Crops', 25, $system, $plant));
+        $parameters = new ArrayObject(
+            [
+                'name' => 'Lettuce Crops',
+                'quantity' => 25,
+                'system' => $system,
+                'plant' => $plant,
+            ]
+        );
+
+        $this->assertEquals($crops, $this->factory->make($parameters));
     }
 }

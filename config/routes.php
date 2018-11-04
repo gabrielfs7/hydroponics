@@ -1,5 +1,10 @@
 <?php
 
+use GSoares\Hydroponics\Application\Action\Crops\CreateCropsAction;
+use GSoares\Hydroponics\Application\Action\Crops\DeleteCropsAction;
+use GSoares\Hydroponics\Application\Action\Crops\GetCropsAction;
+use GSoares\Hydroponics\Application\Action\Crops\ListCropsAction;
+use GSoares\Hydroponics\Application\Action\Crops\UpdateCropsAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\CreateGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\DeleteGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\GetGreenhouseAction;
@@ -21,6 +26,7 @@ use GSoares\Hydroponics\Application\Action\Tank\GetTankAction;
 use GSoares\Hydroponics\Application\Action\Tank\ListTankAction;
 use GSoares\Hydroponics\Application\Action\Tank\UpdateTankAction;
 use GSoares\Hydroponics\Application\Middleware\Greenhouse\GreenhouseMiddleware;
+use GSoares\Hydroponics\Application\Middleware\System\SystemMiddleware;
 use Psr\Container\ContainerInterface;
 
 /** @var ContainerInterface $container */
@@ -49,6 +55,17 @@ $app->group(
                 $app->delete('/{id}', DeleteSystemAction::class);
             }
         )->add(GreenhouseMiddleware::class);
+        $app->group(
+            '/greenhouses/{greenhouseId}/systems/{systemId}/crops',
+            function () use ($app) {
+                $app->get('[/]', ListCropsAction::class);
+                $app->get('/{id}', GetCropsAction::class);
+                $app->post('[/]', CreateCropsAction::class);
+                $app->patch('/{id}', UpdateCropsAction::class);
+                $app->delete('/{id}', DeleteCropsAction::class);
+            }
+        )->add(GreenhouseMiddleware::class)
+        ->add(SystemMiddleware::class);
         $app->group(
             '/tanks',
             function () use ($app) {

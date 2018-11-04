@@ -17,10 +17,10 @@ class CropsDtoEncoder implements EncoderInterface
         $attributes = new CropsAttributesDto();
         $attributes->name = $object->getName();
         $attributes->quantity = $object->getQuantity();
+        $attributes->harvestedAt = $object->getHarvestedAt() ? $object->getHarvestedAt()->format(DATE_ATOM) : null;
+        $attributes->quantityHarvested = $object->getQuantityHarvested();
+        $attributes->quantityLost = $object->getQuantityLost();
         $attributes->createdAt = $object->getCreatedAt()->format(DATE_ATOM);
-        $attributes->harvestedAt = $object->getCreatedAt() ? $object->getCreatedAt()->format(DATE_ATOM) : null;
-        $attributes->totalHarvested = $object->getTotalHarvested();
-        $attributes->totalLost = $object->getTotalLost();
 
         $dto = new ResourceDto(
             $object->getId(),

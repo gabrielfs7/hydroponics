@@ -5,6 +5,7 @@ namespace GSoares\Hydroponics\Test\Fixture;
 use DateTimeImmutable;
 use Doctrine\Common\Persistence\ObjectManager;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
+use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
@@ -103,6 +104,15 @@ class FixtureMapping
             NutritionalFormula::class => function (array $params, array $mapping) {
                 $entity = new NutritionalFormula($params['name'] ?? self::randomName());
                 $entity->changeDescription($params['description'] ?? self::randomName());
+
+                return $entity;
+            },
+            Plant::class => function (array $params, array $mapping) {
+                $entity = new Plant(
+                    $params['name'] ?? self::randomName(),
+                    $params['species'] ?? self::randomName()
+                );
+                $entity->changeCreatedAt(new DateTimeImmutable());
 
                 return $entity;
             }

@@ -8,12 +8,10 @@ use GSoares\Hydroponics\Domain\Repository\Greenhouse\GreenhouseRepository;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Slim\Http\Request;
-use Slim\Http\Uri;
 
 class GreenhouseMiddleware implements MiddlewareInterface
 {
-    public const REQUESTED_GREENHOUSE = 'requested-greenhouse';
+    private const REQUESTED_GREENHOUSE = 'requested-greenhouse';
 
     /** @var GreenhouseRepository */
     private $greenhouseRepository;
@@ -47,6 +45,7 @@ class GreenhouseMiddleware implements MiddlewareInterface
         $greenhouseId = preg_replace('/\/api\/greenhouses\//', '', $path);
         $greenhouseId = preg_replace('/\/systems.*/', '', $greenhouseId);
 
+        /** @var Greenhouse $greenhouse */
         $greenhouse = $this->greenhouseRepository
             ->find((int)$greenhouseId);
 

@@ -13,8 +13,8 @@ class CropsAttributesFiller implements ResourceAttributesFillerInterface
         /** @var Crops $domainObject */
         $domainObject->changeUpdatedAt(new \DateTime());
         $domainObject->changeName($resourceDto->getAttributes()->name);
-        $domainObject->changeTotalLost($resourceDto->getAttributes()->totalLost);
-        $domainObject->changeTotalHarvested($resourceDto->getAttributes()->totalHarvested);
+        $domainObject->changeQuantityLost($resourceDto->getAttributes()->quantityLost ?? 0);
+        $domainObject->changeQuantityHarvested($resourceDto->getAttributes()->quantityHarvested ?? 0);
 
         return $domainObject;
     }

@@ -19,8 +19,8 @@ class CropsAttributesDto extends ResourceAttributesDto
     public $harvestedAt;
 
     /** @var int */
-    public $totalHarvested;
+    public $quantityHarvested;
 
     /** @var int */
-    public $totalLost;
+    public $quantityLost;
 }
