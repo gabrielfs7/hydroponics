@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Domain\Entity;
 
+use GSoares\Hydroponics\Domain\Entity\Traits\CropsTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\GreenhouseTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\TankTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
@@ -17,6 +18,7 @@ class System
     use ModifiedAtTrait;
     use GreenhouseTrait;
     use TankTrait;
+    use CropsTrait;
 
     public function __construct(string $name, Greenhouse $greenhouse, Tank $tank)
     {

@@ -15,6 +15,7 @@ use GSoares\Hydroponics\Application\Service\Crops\CropsAttributesFiller;
 use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
 use GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository;
 use GSoares\Hydroponics\Domain\Repository\Plant\PlantRepository;
+use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Domain\Service\Crops\CropsDeleter;
 use Psr\Container\ContainerInterface;
 
@@ -37,7 +38,7 @@ return [
     # Application - Service - Creator
     #
     CropsApplicationCreator::class => function (ContainerInterface $container): CropsApplicationCreator {
-        $creator= new CropsApplicationCreator(
+        $creator = new CropsApplicationCreator(
             $container->get(CropsDtoDecoder::class),
             $container->get(CropsDtoEncoder::class),
             $container->get(CropsFactory::class),
@@ -87,7 +88,11 @@ return [
     # Application - Service - AttributesFiller
     #
     CropsAttributesFiller::class => function (ContainerInterface $container): CropsAttributesFiller {
-        return new CropsAttributesFiller();
+        $attributesFiller = new CropsAttributesFiller();
+        $attributesFiller->setPlantRepository($container->get(PlantRepository::class));
+        $attributesFiller->setSystemRepository($container->get(SystemRepository::class));
+
+        return $attributesFiller;
     },
 
     #

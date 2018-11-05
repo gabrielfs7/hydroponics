@@ -40,6 +40,5 @@ class CreateGreenhouseActionTest extends WebTestCase
 
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(GreenhouseMock::getResponseBody($entity));
-        $this->assertNotNull($entity);
     }
 }

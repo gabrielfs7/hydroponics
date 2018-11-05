@@ -13,4 +13,11 @@ trait PlantTrait
     {
         return $this->plant;
     }
+
+    public function changePlant(Plant $plant): self
+    {
+        $this->plant = $plant;
+
+        return $this;
+    }
 }

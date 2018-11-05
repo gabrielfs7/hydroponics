@@ -13,4 +13,11 @@ trait SystemTrait
     {
         return $this->system;
     }
+
+    public function changeSystem(System $system): self
+    {
+        $this->system = $system;
+
+        return $this;
+    }
 }

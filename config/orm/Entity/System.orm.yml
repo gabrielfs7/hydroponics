@@ -37,3 +37,8 @@ GSoares\Hydroponics\Domain\Entity\System:
         name: greenhouse_id
         referencedColumnName: id
         nullable: false
+  oneToMany:
+    crops:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\Crops
+      mappedBy: system
+      cascade: ["persist", "merge"]

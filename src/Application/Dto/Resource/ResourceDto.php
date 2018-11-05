@@ -2,9 +2,6 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Resource;
 
-use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface;
-use GSoares\Hydroponics\Application\Dto\Resource\ResourceLinksDtoInterface;
-use GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface;
 use stdClass;
 
 class ResourceDto implements ResourceDtoInterface
@@ -61,9 +58,7 @@ class ResourceDto implements ResourceDtoInterface
 
     public function getAttributeValue(string $name): ?string
     {
-        if (property_exists($this->attributes, $name)) {
-            return $this->attributes->{$name};
-        }
+        return property_exists($this->attributes, $name) ? $this->attributes->{$name} : null;
     }
 
     /** @return ResourceRelationshipDtoInterface[] */

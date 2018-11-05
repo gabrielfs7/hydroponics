@@ -43,7 +43,7 @@ class Fixture extends AbstractFixture
         $this->entities = [];
     }
 
-    private function getMapping(ObjectManager $manager): array
+    private function getMapping(ObjectManager $manager): iterable
     {
         return (new FixtureMapping())->getMapping($manager);
     }

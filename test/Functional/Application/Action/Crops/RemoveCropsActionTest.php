@@ -2,15 +2,14 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Crops;
 
+use DateTimeInterface;
 use GSoares\Hydroponics\Domain\Entity\Crops;
-use GSoares\Hydroponics\Domain\Entity\Greenhouse;
-use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
 use GSoares\Hydroponics\Test\Mock\CropsMock;
 
-class CreateCropsActionTest extends WebTestCase
+class RemoveCropsActionTest extends WebTestCase
 {
     /** @var CropsRepository */
     private $cropsRepository;
@@ -23,33 +22,32 @@ class CreateCropsActionTest extends WebTestCase
             ->get(CropsRepository::class);
     }
 
-    public function testCreateASystemWhenProvidingCorrectRequest() : void
+    public function testCanRemoveSystemWhenProvidingExistentId() : void
     {
-        /** @var Plant $plant */
-        $plant = $this->createFixture(Plant::class);
-
-        /** @var Greenhouse $greenhouse */
-        $greenhouse = $this->createFixture(Greenhouse::class);
-
         /** @var System $system */
         $system = $this->createFixture(System::class);
 
-        $this->assertCount(0, $this->cropsRepository->findAll());
+        /** @var Crops $entity */
+        $entity = $this->createFixture(Crops::class);
+
+        $this->assertNull($entity->getDeletedAt());
 
         $this->runApp(
-            'POST',
+            'DELETE',
             sprintf(
-                '/api/greenhouses/%s/systems/%s/crops',
-                $greenhouse->getId(),
-                $system->getId()
-            ),
-            CropsMock::getPostRequestBody($plant->getId())
+                '/api/greenhouses/%s/systems/%s/crops/%s',
+                $system->getGreenhouse()->getId(),
+                $system->getId(),
+                $entity->getId()
+            )
         );
 
         /** @var Crops $entity */
         $entity = $this->cropsRepository
+            ->addFilter('id', $entity->getId())
             ->findOne();
 
+        $this->assertInstanceOf(DateTimeInterface::class, $entity->getDeletedAt());
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(CropsMock::getResponseBody($entity));
     }

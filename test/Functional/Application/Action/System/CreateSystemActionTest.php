@@ -44,6 +44,5 @@ class CreateSystemActionTest extends WebTestCase
 
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(SystemMock::getResponseBody($entity));
-        $this->assertNotNull($entity);
     }
 }

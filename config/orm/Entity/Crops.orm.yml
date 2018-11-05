@@ -8,10 +8,27 @@ GSoares\Hydroponics\Domain\Entity\Crops:
       generator:
         strategy: AUTO
   fields:
+    name:
+      type: string
+      length: 250
+      column: name
+      nullable: false
     quantity:
       type: integer
       column: quantity
       nullable: false
+    quantityHarvested:
+      type: integer
+      column: quantity_harvested
+      nullable: true
+    quantityLost:
+      type: integer
+      column: quantity_lost
+      nullable: true
+    harvestedAt:
+      type: datetime
+      column: harvested_at
+      nullable: true
     createdAt:
       type: datetime
       column: created_at
@@ -29,5 +46,11 @@ GSoares\Hydroponics\Domain\Entity\Crops:
       targetEntity: GSoares\Hydroponics\Domain\Entity\Plant
       joinColumn:
         name: plant_id
+        referencedColumnName: id
+        nullable: false
+    system:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\System
+      joinColumn:
+        name: system_id
         referencedColumnName: id
         nullable: false

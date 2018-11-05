@@ -32,6 +32,5 @@ class CreateTankActionTest extends WebTestCase
 
         $this->assertResponseHasStatusCode(200);
         $this->assertResponseHasBody(TankMock::getResponseBody($entity));
-        $this->assertNotNull($entity);
     }
 }

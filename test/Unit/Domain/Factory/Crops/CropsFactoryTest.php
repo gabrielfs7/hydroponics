@@ -3,6 +3,7 @@
 namespace GSoares\Hydroponics\Test\Unit\Domain\Factory\Crops;
 
 use ArrayObject;
+use DateTimeImmutable;
 use GSoares\Hydroponics\Domain\Entity\Crops;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\System;
@@ -29,13 +30,12 @@ class CropsFactoryTest extends TestCase
 
     public function testMake()
     {
-        $currentTime = new \DateTime('2010-10-10 10:10:10');
+        $currentTime = new DateTimeImmutable();
 
-        $dateProvider = $this->dateTimeProvider;
-        $invocationMocker = $dateProvider->expects($this->once());
-
-        $invocationMocker->method('current');
-        $invocationMocker->willReturn($currentTime);
+        $this->dateTimeProvider
+            ->expects($this->once())
+            ->method('current')
+            ->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5, null);
         $system = new System('NFT', new Greenhouse('Vegetables'), $tank);

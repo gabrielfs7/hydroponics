@@ -2,8 +2,6 @@
 
 namespace GSoares\Hydroponics\Application\Dto\Resource;
 
-use GSoares\Hydroponics\Application\Dto\Resource\ResourceAttributesDtoInterface;
-use GSoares\Hydroponics\Application\Dto\Resource\ResourceRelationshipDtoInterface;
 use stdClass;
 
 interface ResourceDtoInterface
