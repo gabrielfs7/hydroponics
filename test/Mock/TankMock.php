@@ -10,7 +10,7 @@ class TankMock
     {
         return [
             'data' => [
-                'type' => 'tanks',
+                'type' => 'tank',
                 'attributes' => self::getDefaultAttributes()
             ]
         ];
@@ -23,7 +23,7 @@ class TankMock
 
         return [
             'data' => [
-                'type' => 'tanks',
+                'type' => 'tank',
                 'attributes' => $attributes
             ]
         ];
@@ -46,7 +46,7 @@ class TankMock
 
         return [
             'id' => (string) $tank->getId(),
-            'type' => 'tanks',
+            'type' => 'tank',
             'attributes' => [
                 'name' => $tank->getName(),
                 'description' => $tank->getDescription(),

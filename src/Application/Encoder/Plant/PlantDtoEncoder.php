@@ -19,7 +19,7 @@ class PlantDtoEncoder implements EncoderInterface
 
         $dto = new ResourceDto(
             $object->getId(),
-            'plants',
+            'plant',
             $attributes,
             new ResourceLinksDto('', ''),
             [],

@@ -10,7 +10,7 @@ class GreenhouseMock
     {
         return [
             'data' => [
-                'type' => 'greenhouse',
+                'type' => 'greenhouses',
                 'attributes' => [
                     'name' => 'Name test',
                     'description' => 'Description test',

@@ -8,6 +8,6 @@ class PlantDtoDecoder extends AbstractDtoDecoder
 {
     protected function getResourceType(): string
     {
-        return 'plants';
+        return 'plant';
     }
 }

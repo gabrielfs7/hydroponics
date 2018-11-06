@@ -10,7 +10,7 @@ class CropsMock
     {
         return [
             'data' => [
-                'type' => 'system',
+                'type' => 'crops',
                 'attributes' => [
                     'name' => 'Name test',
                     'quantity' => 1000
@@ -31,7 +31,7 @@ class CropsMock
     {
         return [
             'data' => [
-                'type' => 'system',
+                'type' => 'crops',
                 'attributes' => [
                     'name' => $params['name'],
                     'quantity' => $params['quantity'],

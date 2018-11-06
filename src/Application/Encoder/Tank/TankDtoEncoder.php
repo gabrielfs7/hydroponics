@@ -39,7 +39,7 @@ class TankDtoEncoder implements EncoderInterface
 
         $dto = new ResourceDto(
             $object->getId(),
-            'tanks',
+            'tank',
             $attributes,
             new ResourceLinksDto('', ''),
             [],

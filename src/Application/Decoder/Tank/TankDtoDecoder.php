@@ -8,6 +8,6 @@ class TankDtoDecoder extends AbstractDtoDecoder
 {
     protected function getResourceType(): string
     {
-        return 'tanks';
+        return 'tank';
     }
 }

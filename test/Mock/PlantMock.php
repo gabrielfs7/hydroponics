@@ -10,7 +10,7 @@ class PlantMock
     {
         return [
             'data' => [
-                'type' => 'plants',
+                'type' => 'plant',
                 'attributes' => [
                     'name' => 'Name test',
                     'species' => 'Species test',
@@ -23,7 +23,7 @@ class PlantMock
     {
         return [
             'data' => [
-                'type' => 'plants',
+                'type' => 'plant',
                 'attributes' => [
                     'name' => $params['name'],
                     'species' => $params['species'],
@@ -47,7 +47,7 @@ class PlantMock
     {
         return [
             'id' => (string) $plant->getId(),
-            'type' => 'plants',
+            'type' => 'plant',
             'attributes' => [
                 'name' => $plant->getName(),
                 'species' => $plant->getSpecies(),
