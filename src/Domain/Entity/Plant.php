@@ -27,4 +27,11 @@ class Plant
     {
         return $this->species;
     }
+
+    public function changeSpecies(string $species): self
+    {
+        $this->species = $species;
+
+        return $this;
+    }
 }

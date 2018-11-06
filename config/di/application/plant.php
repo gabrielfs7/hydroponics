@@ -1,5 +1,10 @@
 <?php
 
+use GSoares\Hydroponics\Application\Action\Plant\CreatePlantAction;
+use GSoares\Hydroponics\Application\Action\Plant\DeletePlantAction;
+use GSoares\Hydroponics\Application\Action\Plant\GetPlantAction;
+use GSoares\Hydroponics\Application\Action\Plant\ListPlantAction;
+use GSoares\Hydroponics\Application\Action\Plant\UpdatePlantAction;
 use GSoares\Hydroponics\Application\Decoder\Plant\PlantDtoDecoder;
 use GSoares\Hydroponics\Application\Encoder\Plant\PlantDtoEncoder;
 use GSoares\Hydroponics\Application\Service\Plant\PlantApplicationDeleter;
@@ -78,5 +83,24 @@ return [
     #
     PlantAttributesFiller::class => function (ContainerInterface $container): PlantAttributesFiller {
         return new PlantAttributesFiller();
+    },
+
+    #
+    # Application - Action
+    #
+    ListPlantAction::class => function (ContainerInterface $container): ListPlantAction {
+        return new ListPlantAction($container->get(PlantApplicationSearcher::class));
+    },
+    GetPlantAction::class => function (ContainerInterface $container): GetPlantAction {
+        return new GetPlantAction($container->get(PlantApplicationSearcher::class));
+    },
+    CreatePlantAction::class => function (ContainerInterface $container): CreatePlantAction {
+        return new CreatePlantAction($container->get(PlantApplicationCreator::class));
+    },
+    UpdatePlantAction::class => function (ContainerInterface $container): UpdatePlantAction {
+        return new UpdatePlantAction($container->get(PlantApplicationUpdater::class));
+    },
+    DeletePlantAction::class => function (ContainerInterface $container): DeletePlantAction {
+        return new DeletePlantAction($container->get(PlantApplicationDeleter::class));
     },
 ];
