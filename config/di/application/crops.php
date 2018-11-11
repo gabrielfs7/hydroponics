@@ -1,49 +1,49 @@
 <?php
 
-use GSoares\Hydroponics\Application\Action\Crops\CreateCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\DeleteCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\GetCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\ListCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\UpdateCropsAction;
-use GSoares\Hydroponics\Application\Decoder\Crops\CropsDtoDecoder;
-use GSoares\Hydroponics\Application\Encoder\Crops\CropsDtoEncoder;
-use GSoares\Hydroponics\Application\Service\Crops\CropsApplicationCreator;
-use GSoares\Hydroponics\Application\Service\Crops\CropsApplicationDeleter;
-use GSoares\Hydroponics\Application\Service\Crops\CropsApplicationSearcher;
-use GSoares\Hydroponics\Application\Service\Crops\CropsApplicationUpdater;
-use GSoares\Hydroponics\Application\Service\Crops\CropsAttributesFiller;
-use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
-use GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository;
+use GSoares\Hydroponics\Application\Action\Crop\CreateCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\DeleteCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\GetCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\ListCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\UpdateCropAction;
+use GSoares\Hydroponics\Application\Decoder\Crop\CropDtoDecoder;
+use GSoares\Hydroponics\Application\Encoder\Crop\CropDtoEncoder;
+use GSoares\Hydroponics\Application\Service\Crop\CropApplicationCreator;
+use GSoares\Hydroponics\Application\Service\Crop\CropApplicationDeleter;
+use GSoares\Hydroponics\Application\Service\Crop\CropApplicationSearcher;
+use GSoares\Hydroponics\Application\Service\Crop\CropApplicationUpdater;
+use GSoares\Hydroponics\Application\Service\Crop\CropAttributesFiller;
+use GSoares\Hydroponics\Domain\Factory\Crop\CropFactory;
+use GSoares\Hydroponics\Domain\Repository\Crop\CropRepository;
 use GSoares\Hydroponics\Domain\Repository\Plant\PlantRepository;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
-use GSoares\Hydroponics\Domain\Service\Crops\CropsDeleter;
+use GSoares\Hydroponics\Domain\Service\Crop\CropDeleter;
 use Psr\Container\ContainerInterface;
 
 return [
     #
     # Application - Decoders
     #
-    CropsDtoDecoder::class => function (ContainerInterface $container): CropsDtoDecoder {
-        return new CropsDtoDecoder();
+    CropDtoDecoder::class => function (ContainerInterface $container): CropDtoDecoder {
+        return new CropDtoDecoder();
     },
 
     #
     # Application - Encoders
     #
-    CropsDtoEncoder::class => function (ContainerInterface $container): CropsDtoEncoder {
-        return new CropsDtoEncoder();
+    CropDtoEncoder::class => function (ContainerInterface $container): CropDtoEncoder {
+        return new CropDtoEncoder();
     },
 
     #
     # Application - Service - Creator
     #
-    CropsApplicationCreator::class => function (ContainerInterface $container): CropsApplicationCreator {
-        $creator = new CropsApplicationCreator(
-            $container->get(CropsDtoDecoder::class),
-            $container->get(CropsDtoEncoder::class),
-            $container->get(CropsFactory::class),
-            $container->get(CropsRepository::class),
-            $container->get(CropsAttributesFiller::class)
+    CropApplicationCreator::class => function (ContainerInterface $container): CropApplicationCreator {
+        $creator = new CropApplicationCreator(
+            $container->get(CropDtoDecoder::class),
+            $container->get(CropDtoEncoder::class),
+            $container->get(CropFactory::class),
+            $container->get(CropRepository::class),
+            $container->get(CropAttributesFiller::class)
         );
 
         $creator->setPlantRepository($container->get(PlantRepository::class));
@@ -54,41 +54,41 @@ return [
     #
     # Application - Service - Updater
     #
-    CropsApplicationUpdater::class => function (ContainerInterface $container): CropsApplicationUpdater {
-        return new CropsApplicationUpdater(
-            $container->get(CropsDtoDecoder::class),
-            $container->get(CropsDtoEncoder::class),
-            $container->get(CropsFactory::class),
-            $container->get(CropsRepository::class),
-            $container->get(CropsAttributesFiller::class)
+    CropApplicationUpdater::class => function (ContainerInterface $container): CropApplicationUpdater {
+        return new CropApplicationUpdater(
+            $container->get(CropDtoDecoder::class),
+            $container->get(CropDtoEncoder::class),
+            $container->get(CropFactory::class),
+            $container->get(CropRepository::class),
+            $container->get(CropAttributesFiller::class)
         );
     },
 
     #
     # Application - Service - Deleter
     #
-    CropsApplicationDeleter::class => function (ContainerInterface $container): CropsApplicationDeleter {
-        return new CropsApplicationDeleter(
-            $container->get(CropsDtoEncoder::class),
-            $container->get(CropsDeleter::class)
+    CropApplicationDeleter::class => function (ContainerInterface $container): CropApplicationDeleter {
+        return new CropApplicationDeleter(
+            $container->get(CropDtoEncoder::class),
+            $container->get(CropDeleter::class)
         );
     },
 
     #
     # Application - Service - Searcher
     #
-    CropsApplicationSearcher::class => function (ContainerInterface $container): CropsApplicationSearcher {
-        return new CropsApplicationSearcher(
-            $container->get(CropsDtoEncoder::class),
-            $container->get(CropsRepository::class)
+    CropApplicationSearcher::class => function (ContainerInterface $container): CropApplicationSearcher {
+        return new CropApplicationSearcher(
+            $container->get(CropDtoEncoder::class),
+            $container->get(CropRepository::class)
         );
     },
 
     #
     # Application - Service - AttributesFiller
     #
-    CropsAttributesFiller::class => function (ContainerInterface $container): CropsAttributesFiller {
-        $attributesFiller = new CropsAttributesFiller();
+    CropAttributesFiller::class => function (ContainerInterface $container): CropAttributesFiller {
+        $attributesFiller = new CropAttributesFiller();
         $attributesFiller->setPlantRepository($container->get(PlantRepository::class));
         $attributesFiller->setSystemRepository($container->get(SystemRepository::class));
 
@@ -98,19 +98,19 @@ return [
     #
     # Application - Action
     #
-    ListCropsAction::class => function (ContainerInterface $container): ListCropsAction {
-        return new ListCropsAction($container->get(CropsApplicationSearcher::class));
+    ListCropAction::class => function (ContainerInterface $container): ListCropAction {
+        return new ListCropAction($container->get(CropApplicationSearcher::class));
     },
-    GetCropsAction::class => function (ContainerInterface $container): GetCropsAction {
-        return new GetCropsAction($container->get(CropsApplicationSearcher::class));
+    GetCropAction::class => function (ContainerInterface $container): GetCropAction {
+        return new GetCropAction($container->get(CropApplicationSearcher::class));
     },
-    CreateCropsAction::class => function (ContainerInterface $container): CreateCropsAction {
-        return new CreateCropsAction($container->get(CropsApplicationCreator::class));
+    CreateCropAction::class => function (ContainerInterface $container): CreateCropAction {
+        return new CreateCropAction($container->get(CropApplicationCreator::class));
     },
-    UpdateCropsAction::class => function (ContainerInterface $container): UpdateCropsAction {
-        return new UpdateCropsAction($container->get(CropsApplicationUpdater::class));
+    UpdateCropAction::class => function (ContainerInterface $container): UpdateCropAction {
+        return new UpdateCropAction($container->get(CropApplicationUpdater::class));
     },
-    DeleteCropsAction::class => function (ContainerInterface $container): DeleteCropsAction {
-        return new DeleteCropsAction($container->get(CropsApplicationDeleter::class));
+    DeleteCropAction::class => function (ContainerInterface $container): DeleteCropAction {
+        return new DeleteCropAction($container->get(CropApplicationDeleter::class));
     },
 ];

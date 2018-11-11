@@ -4,7 +4,7 @@ namespace GSoares\Hydroponics\Test\Fixture;
 
 use DateTimeImmutable;
 use Doctrine\Common\Persistence\ObjectManager;
-use GSoares\Hydroponics\Domain\Entity\Crops;
+use GSoares\Hydroponics\Domain\Entity\Crop;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Entity\System;
@@ -119,14 +119,14 @@ class FixtureMapping
 
                 return $entity;
             },
-            Crops::class => function (array $params) {
+            Crop::class => function (array $params) {
                 /** @var System $system */
                 $system = $this->getManageableEntity('system', System::class, $params);
 
                 /** @var Plant $plant */
                 $plant = $this->getManageableEntity('plant', Plant::class, $params);
 
-                $entity = new Crops(
+                $entity = new Crop(
                     $params['name'] ?? self::randomName(),
                     $params['quantity'] ?? self::randomInt(),
                     $system,

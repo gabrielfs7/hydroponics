@@ -39,6 +39,6 @@ GSoares\Hydroponics\Domain\Entity\System:
         nullable: false
   oneToMany:
     crops:
-      targetEntity: GSoares\Hydroponics\Domain\Entity\Crops
+      targetEntity: GSoares\Hydroponics\Domain\Entity\Crop
       mappedBy: system
       cascade: ["persist", "merge"]

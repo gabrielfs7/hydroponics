@@ -1,10 +1,10 @@
 <?php
 
-use GSoares\Hydroponics\Application\Action\Crops\CreateCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\DeleteCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\GetCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\ListCropsAction;
-use GSoares\Hydroponics\Application\Action\Crops\UpdateCropsAction;
+use GSoares\Hydroponics\Application\Action\Crop\CreateCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\DeleteCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\GetCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\ListCropAction;
+use GSoares\Hydroponics\Application\Action\Crop\UpdateCropAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\CreateGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\DeleteGreenhouseAction;
 use GSoares\Hydroponics\Application\Action\Greenhouse\GetGreenhouseAction;
@@ -58,11 +58,11 @@ $app->group(
         $app->group(
             '/greenhouses/{greenhouseId}/systems/{systemId}/crops',
             function () use ($app) {
-                $app->get('[/]', ListCropsAction::class);
-                $app->get('/{id}', GetCropsAction::class);
-                $app->post('[/]', CreateCropsAction::class);
-                $app->patch('/{id}', UpdateCropsAction::class);
-                $app->delete('/{id}', DeleteCropsAction::class);
+                $app->get('[/]', ListCropAction::class);
+                $app->get('/{id}', GetCropAction::class);
+                $app->post('[/]', CreateCropAction::class);
+                $app->patch('/{id}', UpdateCropAction::class);
+                $app->delete('/{id}', DeleteCropAction::class);
             }
         )->add(GreenhouseMiddleware::class)
         ->add(SystemMiddleware::class);

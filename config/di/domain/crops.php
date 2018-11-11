@@ -2,10 +2,10 @@
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use GSoares\Hydroponics\Domain\Entity\Crops;
-use GSoares\Hydroponics\Domain\Factory\Crops\CropsFactory;
-use GSoares\Hydroponics\Domain\Repository\Crops\CropsRepository;
-use GSoares\Hydroponics\Domain\Service\Crops\CropsDeleter;
+use GSoares\Hydroponics\Domain\Entity\Crop;
+use GSoares\Hydroponics\Domain\Factory\Crop\CropFactory;
+use GSoares\Hydroponics\Domain\Repository\Crop\CropRepository;
+use GSoares\Hydroponics\Domain\Service\Crop\CropDeleter;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use Psr\Container\ContainerInterface;
 
@@ -13,24 +13,24 @@ return [
     #
     # Domain - Repository
     #
-    CropsRepository::class => function (ContainerInterface $container): CropsRepository {
-        return new CropsRepository(
+    CropRepository::class => function (ContainerInterface $container): CropRepository {
+        return new CropRepository(
             $container->get(EntityManager::class),
-            new ClassMetadata(Crops::class)
+            new ClassMetadata(Crop::class)
         );
     },
 
     #
     # Domain - Factory
     #
-    CropsFactory::class => function (ContainerInterface $container): CropsFactory {
-        return new CropsFactory($container->get(DateTimeProvider::class));
+    CropFactory::class => function (ContainerInterface $container): CropFactory {
+        return new CropFactory($container->get(DateTimeProvider::class));
     },
 
     #
     # Domain - Service
     #
-    CropsDeleter::class => function (ContainerInterface $container): CropsDeleter {
-        return new CropsDeleter($container->get(CropsRepository::class));
+    CropDeleter::class => function (ContainerInterface $container): CropDeleter {
+        return new CropDeleter($container->get(CropRepository::class));
     },
 ];
