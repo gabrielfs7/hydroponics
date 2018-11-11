@@ -16,7 +16,6 @@ class TankVersion
 {
     use IdTrait;
     use CreatedAtTrait;
-    use DeletedAtTrait;
     use TankTrait;
 
     /** @var WaterVolume */
