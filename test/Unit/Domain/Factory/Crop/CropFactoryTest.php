@@ -38,17 +38,15 @@ class CropFactoryTest extends TestCase
             ->willReturn($currentTime);
 
         $tank = new Tank('Tank', 1.5, null);
-        $system = new System('NFT', new Greenhouse('Vegetables'), $tank);
         $plant = new Plant('Lettuce', 'Lactuca sativa');
 
-        $crop = new Crop('Lettuce Crop', 25, $system, $plant);
+        $crop = new Crop('Lettuce Crop', 25, $plant);
         $crop->changeCreatedAt($currentTime);
 
         $parameters = new ArrayObject(
             [
                 'name' => 'Lettuce Crop',
                 'quantity' => 25,
-                'system' => $system,
                 'plant' => $plant,
             ]
         );

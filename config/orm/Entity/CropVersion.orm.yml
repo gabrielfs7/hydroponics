@@ -1,0 +1,35 @@
+GSoares\Hydroponics\Domain\Entity\CropVersion:
+  type: entity
+  repositoryClass: GSoares\Hydroponics\Domain\Repository\Crop\CropVersionRepository
+  table: CropVersion
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    quantityHarvested:
+      type: integer
+      column: quantity_harvested
+      nullable: true
+    quantityLost:
+      type: integer
+      column: quantity_lost
+      nullable: true
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+  manyToOne:
+    crop:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\Crop
+      joinColumn:
+        name: crop_id
+        referencedColumnName: id
+        nullable: false
+    system:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\System
+      joinColumn:
+        name: system_id
+        referencedColumnName: id
+        nullable: false

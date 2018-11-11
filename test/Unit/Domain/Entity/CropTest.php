@@ -15,12 +15,10 @@ class CropTest extends TestCase
     {
         $tank = new Tank('Tank', 1.5, null);
         $plant = new Plant('Lettuce', 'Lactuca sativa');
-        $system = new System('NFT', new Greenhouse('greenhouse'), $tank);
-        $crop = new Crop('Lettuce Crop', 25, $system, $plant);
+        $crop = new Crop('Lettuce Crop', 25, $plant);
 
         $this->assertEquals('Lettuce Crop', $crop->getName());
         $this->assertEquals(25, $crop->getQuantity());
-        $this->assertEquals($system, $crop->getSystem());
         $this->assertEquals($plant, $crop->getPlant());
     }
 }

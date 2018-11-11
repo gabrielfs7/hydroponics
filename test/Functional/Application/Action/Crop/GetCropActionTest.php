@@ -3,6 +3,7 @@
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\Crop;
 
 use GSoares\Hydroponics\Domain\Entity\Crop;
+use GSoares\Hydroponics\Domain\Entity\CropVersion;
 use GSoares\Hydroponics\Domain\Entity\System;
 use GSoares\Hydroponics\Domain\Repository\Crop\CropRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -27,12 +28,15 @@ class GetCropActionTest extends WebTestCase
         /** @var Crop $entity */
         $entity = $this->createFixture(Crop::class);
 
+        /** @var CropVersion $latestVersion */
+        $cropVersion = $entity->getLastVersion();
+
         $this->runApp(
             'GET',
             sprintf(
                 '/api/greenhouses/%s/systems/%s/crops/%s',
-                $entity->getSystem()->getGreenhouse()->getId(),
-                $entity->getSystem()->getId(),
+                $cropVersion->getSystem()->getGreenhouse()->getId(),
+                $cropVersion->getSystem()->getId(),
                 $entity->getId()
             )
         );

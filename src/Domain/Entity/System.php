@@ -2,7 +2,7 @@
 
 namespace GSoares\Hydroponics\Domain\Entity;
 
-use GSoares\Hydroponics\Domain\Entity\Traits\CropsTrait;
+use Doctrine\Common\Collections\Collection;
 use GSoares\Hydroponics\Domain\Entity\Traits\GreenhouseTrait;
 use GSoares\Hydroponics\Domain\Entity\Traits\TankTrait;
 use GSoares\Hydroponics\Domain\ValueObject\Traits\DescriptionTrait;
@@ -18,12 +18,19 @@ class System
     use ModifiedAtTrait;
     use GreenhouseTrait;
     use TankTrait;
-    use CropsTrait;
+
+    /** @var Collection */
+    private $cropVersions;
 
     public function __construct(string $name, Greenhouse $greenhouse, Tank $tank)
     {
         $this->changeName($name);
         $this->greenhouse = $greenhouse;
         $this->tank = $tank;
+    }
+
+    public function getCropVersions(): Collection
+    {
+        return $this->cropVersions;
     }
 }

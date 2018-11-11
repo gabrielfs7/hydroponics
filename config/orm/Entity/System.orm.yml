@@ -38,7 +38,7 @@ GSoares\Hydroponics\Domain\Entity\System:
         referencedColumnName: id
         nullable: false
   oneToMany:
-    crops:
-      targetEntity: GSoares\Hydroponics\Domain\Entity\Crop
+    cropVersions:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\CropVersion
       mappedBy: system
       cascade: ["persist", "merge"]

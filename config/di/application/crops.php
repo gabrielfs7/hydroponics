@@ -17,6 +17,7 @@ use GSoares\Hydroponics\Domain\Repository\Crop\CropRepository;
 use GSoares\Hydroponics\Domain\Repository\Plant\PlantRepository;
 use GSoares\Hydroponics\Domain\Repository\System\SystemRepository;
 use GSoares\Hydroponics\Domain\Service\Crop\CropDeleter;
+use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -88,7 +89,7 @@ return [
     # Application - Service - AttributesFiller
     #
     CropAttributesFiller::class => function (ContainerInterface $container): CropAttributesFiller {
-        $attributesFiller = new CropAttributesFiller();
+        $attributesFiller = new CropAttributesFiller($container->get(DateTimeProvider::class));
         $attributesFiller->setPlantRepository($container->get(PlantRepository::class));
         $attributesFiller->setSystemRepository($container->get(SystemRepository::class));
 

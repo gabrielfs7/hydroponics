@@ -17,18 +17,6 @@ GSoares\Hydroponics\Domain\Entity\Crop:
       type: integer
       column: quantity
       nullable: false
-    quantityHarvested:
-      type: integer
-      column: quantity_harvested
-      nullable: true
-    quantityLost:
-      type: integer
-      column: quantity_lost
-      nullable: true
-    harvestedAt:
-      type: datetime
-      column: harvested_at
-      nullable: true
     createdAt:
       type: datetime
       column: created_at
@@ -41,16 +29,15 @@ GSoares\Hydroponics\Domain\Entity\Crop:
       type: datetime
       column: deleted_at
       nullable: true
+  oneToMany:
+    cropVersions:
+      targetEntity: GSoares\Hydroponics\Domain\Entity\CropVersion
+      mappedBy: crop
+      cascade: ["persist", "merge"]
   manyToOne:
     plant:
       targetEntity: GSoares\Hydroponics\Domain\Entity\Plant
       joinColumn:
         name: plant_id
-        referencedColumnName: id
-        nullable: false
-    system:
-      targetEntity: GSoares\Hydroponics\Domain\Entity\System
-      joinColumn:
-        name: system_id
         referencedColumnName: id
         nullable: false

@@ -43,7 +43,7 @@ class CreateCropActionTest extends WebTestCase
                 $greenhouse->getId(),
                 $system->getId()
             ),
-            CropMock::getPostRequestBody($plant->getId())
+            CropMock::getPostRequestBody($plant->getId(), $system->getId())
         );
 
         /** @var Crop $entity */

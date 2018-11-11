@@ -22,7 +22,6 @@ class CropFactory implements FactoryInterface
         $domainObject = new Crop(
             $parameters->offsetGet('name'),
             $parameters->offsetGet('quantity'),
-            $parameters->offsetGet('system'),
             $parameters->offsetGet('plant')
         );
         $domainObject->changeCreatedAt($this->dateTimeProvider->current());

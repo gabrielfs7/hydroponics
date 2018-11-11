@@ -5,6 +5,7 @@ namespace GSoares\Hydroponics\Test\Fixture;
 use DateTimeImmutable;
 use Doctrine\Common\Persistence\ObjectManager;
 use GSoares\Hydroponics\Domain\Entity\Crop;
+use GSoares\Hydroponics\Domain\Entity\CropVersion;
 use GSoares\Hydroponics\Domain\Entity\Greenhouse;
 use GSoares\Hydroponics\Domain\Entity\Plant;
 use GSoares\Hydroponics\Domain\Entity\System;
@@ -129,10 +130,20 @@ class FixtureMapping
                 $entity = new Crop(
                     $params['name'] ?? self::randomName(),
                     $params['quantity'] ?? self::randomInt(),
-                    $system,
                     $plant
                 );
                 $entity->changeCreatedAt(new DateTimeImmutable());
+
+                $cropVersion = new CropVersion(
+                    $entity,
+                    $system,
+                    $params['quantityHarvested'] ?? 0,
+                    $params['quantityLost'] ?? 0
+                );
+
+                $cropVersion->changeCreatedAt($entity->getCreatedAt());
+
+                $entity->addVersion($cropVersion);
 
                 return $entity;
             },

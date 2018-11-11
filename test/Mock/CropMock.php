@@ -6,7 +6,7 @@ use GSoares\Hydroponics\Domain\Entity\Crop;
 
 class CropMock
 {
-    public static function getPostRequestBody(int $plantId): array
+    public static function getPostRequestBody(int $plantId, int $systemId): array
     {
         return [
             'data' => [
@@ -21,6 +21,12 @@ class CropMock
                             'type' => 'plant',
                             'id' => $plantId,
                         ]
+                    ],
+                    'system' => [
+                        'data' => [
+                            'type' => 'system',
+                            'id' => $systemId,
+                        ]
                     ]
                 ]
             ]
@@ -34,7 +40,6 @@ class CropMock
                 'type' => 'crops',
                 'attributes' => [
                     'name' => $params['name'],
-                    'quantity' => $params['quantity'],
                     'quantityHarvested' => $params['quantityHarvested'],
                     'quantityLost' => $params['quantityLost'],
                     'harvestedAt' => $params['harvestedAt'],
@@ -64,6 +69,8 @@ class CropMock
 
     public static function getPaginationResponseBody(Crop $crop): array
     {
+        $harvestedAt = $crop->getHarvestedAt();
+
         return [
             'id' => (string) $crop->getId(),
             'type' => 'crops',
@@ -73,7 +80,7 @@ class CropMock
                 'quantityHarvested' => $crop->getQuantityHarvested(),
                 'quantityLost' => $crop->getQuantityLost(),
                 'createdAt' => $crop->getCreatedAt()->format(DATE_ATOM),
-                'harvestedAt' => $crop->getHarvestedAt() ? $crop->getHarvestedAt()->format(DATE_ATOM) : null,
+                'harvestedAt' => $harvestedAt ? $harvestedAt->format(DATE_ATOM) : null,
             ],
             'relationships' => [],
             'links' => [
