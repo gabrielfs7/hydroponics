@@ -4,8 +4,10 @@ namespace GSoares\Hydroponics\Application\Service\Tank;
 
 use GSoares\Hydroponics\Application\Dto\Resource\ResourceDtoInterface;
 use GSoares\Hydroponics\Application\Service\Resource\ResourceAttributesFillerInterface;
+use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
 use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Entity\TankVersion;
+use GSoares\Hydroponics\Domain\Repository\NutritionalFormula\NutritionalFormulaRepository;
 use GSoares\Hydroponics\Domain\ValueObject\WaterDbo;
 use GSoares\Hydroponics\Domain\ValueObject\WaterEc;
 use GSoares\Hydroponics\Domain\ValueObject\WaterPh;
@@ -15,12 +17,18 @@ use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
 
 class TankAttributesFiller implements ResourceAttributesFillerInterface
 {
+    /** @var NutritionalFormulaRepository */
+    private $nutritionalFormulaRepository;
+
     /** @var DateTimeProvider */
     private $dateTimeProvider;
 
-    public function __construct(DateTimeProvider $dateTimeProvider)
-    {
+    public function __construct(
+        DateTimeProvider $dateTimeProvider,
+        NutritionalFormulaRepository $nutritionalFormulaRepository
+    ) {
         $this->dateTimeProvider = $dateTimeProvider;
+        $this->nutritionalFormulaRepository = $nutritionalFormulaRepository;
     }
 
     public function fillAttributes(object $tank, ResourceDtoInterface $resourceDto): object
@@ -29,6 +37,10 @@ class TankAttributesFiller implements ResourceAttributesFillerInterface
         $tank->changeUpdatedAt($this->dateTimeProvider->current());
         $tank->changeName($resourceDto->getAttributeValue('name'));
         $tank->changeDescription($resourceDto->getAttributeValue('description'));
+
+        if ($nutritionalFormula = $this->getNutritionalFormula($resourceDto)) {
+            $tank->changeNutritionalFormula($nutritionalFormula);
+        }
 
         $tankVersion = new TankVersion(
             $tank,
@@ -63,5 +75,16 @@ class TankAttributesFiller implements ResourceAttributesFillerInterface
         $tank->addVersion($tankVersion);
 
         return $tank;
+    }
+
+    private function getNutritionalFormula(ResourceDtoInterface $resourceDto): ?NutritionalFormula
+    {
+        $id = $resourceDto->getRelationships()['nutritionalFormula']['data']['id'] ?? 0;
+
+        if ($id) {
+            return $this->nutritionalFormulaRepository->find($id);
+        }
+
+        return null;
     }
 }

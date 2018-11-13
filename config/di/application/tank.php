@@ -13,6 +13,7 @@ use GSoares\Hydroponics\Application\Service\Tank\TankAttributesFiller;
 use GSoares\Hydroponics\Application\Service\Tank\TankApplicationCreator;
 use GSoares\Hydroponics\Application\Service\Tank\TankApplicationUpdater;
 use GSoares\Hydroponics\Domain\Factory\Tank\TankFactory;
+use GSoares\Hydroponics\Domain\Repository\NutritionalFormula\NutritionalFormulaRepository;
 use GSoares\Hydroponics\Domain\Repository\Tank\TankRepository;
 use GSoares\Hydroponics\Domain\Service\Tank\TankDeleter;
 use GSoares\Hydroponics\Infrastructure\DateTime\DateTimeProvider;
@@ -83,7 +84,10 @@ return [
     # Application - Service - AttributesFiller
     #
     TankAttributesFiller::class => function (ContainerInterface $container): TankAttributesFiller {
-        return new TankAttributesFiller($container->get(DateTimeProvider::class));
+        return new TankAttributesFiller(
+            $container->get(DateTimeProvider::class),
+            $container->get(NutritionalFormulaRepository::class)
+        );
     },
 
     #

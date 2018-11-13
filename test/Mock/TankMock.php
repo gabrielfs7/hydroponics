@@ -6,12 +6,20 @@ use GSoares\Hydroponics\Domain\Entity\Tank;
 
 class TankMock
 {
-    public static function getPostRequestBody(): array
+    public static function getPostRequestBody(int $nutritionalFormulaId): array
     {
         return [
             'data' => [
                 'type' => 'tank',
-                'attributes' => self::getDefaultAttributes()
+                'attributes' => self::getDefaultAttributes(),
+                'relationships' => [
+                    'nutritionalFormula' => [
+                        'data' => [
+                            'type' => 'plant',
+                            'id' => $nutritionalFormulaId,
+                        ]
+                    ],
+                ]
             ]
         ];
     }

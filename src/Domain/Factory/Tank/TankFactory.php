@@ -27,8 +27,7 @@ class TankFactory implements FactoryInterface
     {
         $tank = new Tank(
             $parameters->offsetGet('name'),
-            $parameters->offsetGet('volumeCapacity'),
-            null // @TODO Handle tank with nutritional formula
+            $parameters->offsetGet('volumeCapacity')
         );
         $tank->changeCreatedAt($this->dateTimeProvider->current());
 

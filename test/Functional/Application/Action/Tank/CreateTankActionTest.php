@@ -2,6 +2,7 @@
 
 namespace GSoares\Hydroponics\Test\Functional\Application\Action\System;
 
+use GSoares\Hydroponics\Domain\Entity\NutritionalFormula;
 use GSoares\Hydroponics\Domain\Entity\Tank;
 use GSoares\Hydroponics\Domain\Repository\Tank\TankRepository;
 use GSoares\Hydroponics\Test\Functional\Application\Action\WebTestCase;
@@ -24,7 +25,14 @@ class CreateTankActionTest extends WebTestCase
     {
         $this->assertCount(0, $this->tankRepository->findAll());
 
-        $this->runApp('POST', '/api/tanks', TankMock::getPostRequestBody());
+        /** @var NutritionalFormula $nutritionalFormula */
+        $nutritionalFormula = $this->createFixture(NutritionalFormula::class);
+
+        $this->runApp(
+            'POST',
+            '/api/tanks',
+            TankMock::getPostRequestBody($nutritionalFormula->getId())
+        );
 
         /** @var Tank $entity */
         $entity = $this->tankRepository

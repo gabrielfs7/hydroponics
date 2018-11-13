@@ -25,20 +25,23 @@ class Tank
     /** @var NutritionalFormula */
     private $nutritionalFormula;
 
-    public function __construct(
-        string $name,
-        float $volumeCapacity,
-        ?NutritionalFormula $nutritionalFormula
-    ) {
+    public function __construct(string $name, float $volumeCapacity)
+    {
         $this->name = $name;
         $this->volumeCapacity = $volumeCapacity;
-        $this->nutritionalFormula = $nutritionalFormula;
         $this->tankVersions = new ArrayCollection();
     }
 
     public function getVolumeCapacity(): float
     {
         return $this->volumeCapacity;
+    }
+
+    public function changeNutritionalFormula(NutritionalFormula $nutritionalFormula): self
+    {
+        $this->nutritionalFormula = $nutritionalFormula;
+
+        return $this;
     }
 
     public function getNutritionalFormula(): ?NutritionalFormula
