@@ -34,7 +34,7 @@ $container = $app->getContainer();
 
 $app->group(
     '/api',
-    function() use ($app) {
+    function () use ($app) {
         $app->group(
             '/greenhouses',
             function () use ($app) {
