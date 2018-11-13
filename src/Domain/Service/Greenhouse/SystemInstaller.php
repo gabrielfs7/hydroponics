@@ -7,7 +7,6 @@ use GSoares\Hydroponics\Domain\Entity\System;
 
 class SystemInstaller
 {
-
     public function install(Greenhouse $greenhouse, System $system): void
     {
     }
